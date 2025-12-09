@@ -110,25 +110,9 @@ Copyright © 2025 Your Name.
 
 * Special thanks to all open source projects that made this tool possible!
 
-<!-- STAR HISTORY -->
-<picture>
-  <source
-    media="(prefers-color-scheme: dark)"
-    srcset="
-      https://api.star-history.com/svg?repos=Zmh20121211/ClassIn-DL&type=Date&theme=dark
-    "
-  />
-  <source
-    media="(prefers-color-scheme: light)"
-    srcset="
-      https://api.star-history.com/svg?repos=Zmh20121211/ClassIn-DL&type=Date&theme=light
-    "
-  />
-  <img
-    alt="Star History Chart"
-    src="https://api.star-history.com/svg?repos=Zmh20121211/ClassIn-DL&type=Date&theme=light"
-  />
-</picture>
+## Star History
+
+[![Star History Chart](https://api.star-history.com/svg?repos=Zmh20121211/ClassIn-DL&type=date&legend=top-left)](https://www.star-history.com/#Zmh20121211/ClassIn-DL&type=date&legend=top-left)
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
