@@ -4,10 +4,11 @@
 
 <!-- PROJECT LOGO -->
 <div align="center">
-
-<h3>
-    A powerful cross-platform ClassIn video downloader
-</h3>
+  <br />
+  
+  <h1 style="font-size: 3.5rem; margin-bottom: 0.5rem;">
+    <span style="color: #2E86C1;">ClassIn</span> Video Downloader
+  </h1>
 
 [![Forks][forks-shield]][forks-url]
 [![Stargazers][stars-shield]][stars-url]
