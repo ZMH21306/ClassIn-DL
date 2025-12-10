@@ -1,0 +1,22 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+    <ApplicationIcon>icon\green-icon.ico</ApplicationIcon>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="icon\green-icon.ico" />
+    <None Remove="icon\white-icon.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="icon\green-icon.ico" />
+    <Resource Include="icon\white-icon.ico" />
+  </ItemGroup>
+
+</Project>

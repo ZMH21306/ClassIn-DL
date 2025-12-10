@@ -1,0 +1,578 @@
+﻿<Window x:Class="VideoDownloader.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:VideoDownloader"
+        xmlns:conv="clr-namespace:VideoDownloader"
+        mc:Ignorable="d"
+        Title="Classin视频下载工具" 
+        Icon="/icon/green-icon.ico"
+        Height="720" 
+        Width="1280"
+        WindowStartupLocation="CenterScreen"
+        Background="#F0F2F5"
+        Loaded="Window_Loaded"
+        Closing="Window_Closing"
+        MinHeight="450" MinWidth="800"
+        SizeChanged="Window_SizeChanged">
+
+    <Window.Resources>
+        <SolidColorBrush x:Key="VibrantBlue" Color="#2196F3"/>
+        <SolidColorBrush x:Key="VibrantGreen" Color="#4CAF50"/>
+        <SolidColorBrush x:Key="VibrantPurple" Color="#9C27B0"/>
+        <SolidColorBrush x:Key="VibrantRed" Color="#F44336"/>
+        <SolidColorBrush x:Key="VibrantTeal" Color="#00BCD4"/>
+        <SolidColorBrush x:Key="VibrantOrange" Color="#FF9800"/>
+
+        <conv:DarkenColorConverter x:Key="DarkenConverter" DarkenFactor="0.3"/>
+        <conv:DarkenColorConverter x:Key="DarkenConverterPressed" DarkenFactor="0.5"/>
+        <conv:HeightConverter x:Key="HeightConverter"/>
+        <conv:IndexFormatConverter x:Key="IndexFormatConverter"/>
+        <conv:ScalingConverter x:Key="ScalingConverter" BaseWidth="1440"/>
+        <conv:PathMaxWidthConverter x:Key="PathMaxWidthConverter"/>
+
+        <Style TargetType="Button">
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontWeight" Value="Medium"/>
+            <Setter Property="Padding" Value="8,6"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="MinWidth" Value="100"/>
+            <Setter Property="MinHeight" Value="32"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="border" 
+                                Background="{TemplateBinding Background}"
+                                CornerRadius="6"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                BorderBrush="{TemplateBinding BorderBrush}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="border" Property="Background" 
+                                        Value="{Binding Background, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource DarkenConverter}}"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter TargetName="border" Property="Background" 
+                                        Value="{Binding Background, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource DarkenConverterPressed}}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="FontSize" Value="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=Window}, Converter={StaticResource ScalingConverter}, ConverterParameter=14}"/>
+            <Setter Property="Margin" Value="0,0,0,8"/>
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+        </Style>
+
+        <Style x:Key="SmallButtonStyle" TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderBrush" Value="#D9D9D9"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Foreground" Value="#4A90E2"/>
+            <Setter Property="FontSize" Value="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=Window}, Converter={StaticResource ScalingConverter}, ConverterParameter=12}"/>
+            <Setter Property="Padding" Value="6,3"/>
+            <Setter Property="Margin" Value="5,0,0,0"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="MinWidth" Value="60"/>
+            <Setter Property="MinHeight" Value="26"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="border" 
+                                Background="{TemplateBinding Background}"
+                                CornerRadius="4"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                BorderBrush="{TemplateBinding BorderBrush}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="border" Property="Background" 
+                                        Value="{Binding Background, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource DarkenConverter}}"/>
+                                <Setter TargetName="border" Property="BorderBrush" Value="#4A90E2"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="ActionButtonStyle" TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
+            <Setter Property="Padding" Value="2"/>
+            <Setter Property="FontSize" Value="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=Window}, Converter={StaticResource ScalingConverter}, ConverterParameter=11}"/>
+            <Setter Property="Margin" Value="0,0,0,0"/>
+            <Setter Property="MinWidth" Value="50"/>
+            <Setter Property="MaxWidth" Value="100"/>
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="border" 
+                                Background="{TemplateBinding Background}"
+                                CornerRadius="4"
+                                BorderThickness="1"
+                                BorderBrush="{TemplateBinding BorderBrush}">
+                            <TextBlock Text="{TemplateBinding Content}" 
+                                       TextWrapping="Wrap"
+                                       TextTrimming="CharacterEllipsis"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       Padding="2,0"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="border" Property="Background" 
+                                        Value="{Binding Background, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource DarkenConverter}}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="CompactActionButtonStyle" TargetType="Button" BasedOn="{StaticResource ActionButtonStyle}">
+            <Setter Property="Margin" Value="3,0"/>
+            <Setter Property="Padding" Value="2,0"/>
+            <Setter Property="MinHeight" Value="20"/>
+            <Setter Property="VerticalAlignment" Value="Stretch"/>
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+        </Style>
+
+        <Style x:Key="CompactSmallButtonStyle" TargetType="Button" BasedOn="{StaticResource SmallButtonStyle}">
+            <Setter Property="Margin" Value="3"/>
+            <Setter Property="Padding" Value="4,1"/>
+            <Setter Property="MinHeight" Value="20"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+
+        <Style TargetType="TextBlock">
+            <Setter Property="Margin" Value="0,0,0,5"/>
+            <Setter Property="Foreground" Value="#333"/>
+            <Setter Property="FontSize" Value="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=Window}, Converter={StaticResource ScalingConverter}, ConverterParameter=13}"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+
+        <Style x:Key="TitleTextStyle" TargetType="TextBlock">
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="FontSize" Value="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=Window}, Converter={StaticResource ScalingConverter}, ConverterParameter=16}"/>
+            <Setter Property="Margin" Value="5,0,0,10"/>
+        </Style>
+
+        <Style x:Key="LargeTitleTextStyle" TargetType="TextBlock">
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="FontSize" Value="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=Window}, Converter={StaticResource ScalingConverter}, ConverterParameter=19}"/>
+            <Setter Property="Margin" Value="8,0,0,0"/>
+        </Style>
+
+        <Style x:Key="StatusTextStyle" TargetType="TextBlock">
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Margin" Value="0,0,5,0"/>
+            <Setter Property="FontSize" Value="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=Window}, Converter={StaticResource ScalingConverter}, ConverterParameter=12}"/>
+        </Style>
+
+        <Style TargetType="TextBox" BasedOn="{StaticResource {x:Type TextBox}}">
+            <Setter Property="Padding" Value="6"/>
+            <Setter Property="Background" Value="#FFF"/>
+            <Setter Property="BorderBrush" Value="#D9D9D9"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="FontSize" Value="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=Window}, Converter={StaticResource ScalingConverter}, ConverterParameter=13}"/>
+            <Setter Property="Margin" Value="0,0,0,10"/>
+        </Style>
+
+        <Style TargetType="ListView">
+            <Setter Property="Background" Value="#FFF"/>
+            <Setter Property="BorderBrush" Value="#D9D9D9"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Margin" Value="0,0,0,10"/>
+        </Style>
+
+        <Style TargetType="StatusBar">
+            <Setter Property="Background" Value="#FFF"/>
+            <Setter Property="Height" Value="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=Window}, Converter={StaticResource ScalingConverter}, ConverterParameter=30}"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+        </Style>
+
+        <Style x:Key="VideoItemStyle" TargetType="ListViewItem">
+            <Setter Property="Padding" Value="5"/>
+            <Setter Property="Margin" Value="0,0,0,2"/>
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="BorderBrush" Value="#E0E0E0"/>
+            <Setter Property="BorderThickness" Value="0,0,0,1"/>
+            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+            <Setter Property="VerticalContentAlignment" Value="Stretch"/>
+        </Style>
+
+        <SolidColorBrush x:Key="ParsedColor" Color="Green"/>
+        <SolidColorBrush x:Key="WaitingColor" Color="Orange"/>
+        <SolidColorBrush x:Key="DownloadingColor" Color="Orange"/>
+        <SolidColorBrush x:Key="CompletedColor" Color="Green"/>
+        <SolidColorBrush x:Key="FailedColor" Color="Red"/>
+
+        <Style TargetType="GridViewColumnHeader">
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <EventSetter Event="Loaded" Handler="GridViewColumnHeader_Loaded"/>
+        </Style>
+    </Window.Resources>
+
+    <Grid Margin="10" x:Name="MainGrid">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="2.5*" x:Name="MainContentRow"/>
+            <RowDefinition Height="5" x:Name="LogSplitterRow"/>
+            <RowDefinition Height="*" x:Name="LogRow" MinHeight="150"/>
+            <RowDefinition Height="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=Window}, Converter={StaticResource ScalingConverter}, ConverterParameter=30}" x:Name="StatusRow"/>
+        </Grid.RowDefinitions>
+
+        <Border Grid.Row="0" Background="#FFF" CornerRadius="8" Padding="12" Margin="0,0,0,10">
+            <StackPanel Orientation="Horizontal">
+                <Path Data="M12,3C7.03,3 3,7.03 3,12C3,16.97 7.03,21 12,21C16.97,21 21,16.97 21,12C21,7.03 16.97,3 12,3M12,19C8.13,19 5,15.87 5,12C5,8.13 8.13,5 12,5C15.87,5 19,8.13 19,12C19,15.87 15.87,19 12,19M11,16.5L16.5,11L15,9.5L11,13.5L9,11.5L7.5,13" 
+                      Fill="#4A90E2" Stretch="Uniform" 
+                      Width="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=Window}, Converter={StaticResource ScalingConverter}, ConverterParameter=22}"
+                      Height="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=Window}, Converter={StaticResource ScalingConverter}, ConverterParameter=22}"/>
+                <TextBlock Text="Classin视频下载工具" 
+                           Style="{StaticResource LargeTitleTextStyle}"
+                           Foreground="#4A90E2"/>
+            </StackPanel>
+        </Border>
+
+        <Grid Grid.Row="1" x:Name="ContentGrid">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*" x:Name="PanelColumn" MinWidth="200"/>
+                <ColumnDefinition Width="5"/>
+                <ColumnDefinition Width="3*" x:Name="ResultColumn" MinWidth="400"/>
+            </Grid.ColumnDefinitions>
+
+            <Border Grid.Column="0" 
+                Background="#FFF" 
+                CornerRadius="8"
+                Padding="10">
+                <ScrollViewer VerticalScrollBarVisibility="Auto" 
+                          HorizontalScrollBarVisibility="Disabled"
+                          Padding="0,0,10,0">
+                    <StackPanel>
+                        <TextBlock Text="操作面板" 
+                                   Style="{StaticResource TitleTextStyle}"
+                                   HorizontalAlignment="Left"/>
+
+                        <Button x:Name="btnCopyCommand" 
+                                Content="1. 复制筛选关键词至剪贴板"
+                                Background="{StaticResource VibrantBlue}"
+                                Click="CopyCommand_Click" 
+                                MinHeight="32"
+                                Margin="0,0,0,6"/>
+
+                        <Button x:Name="btnParse" 
+                                Content="2. 解析剪贴板中的请求头"
+                                Background="{StaticResource VibrantTeal}"
+                                Click="Parse_Click" 
+                                MinHeight="32"
+                                Margin="0,0,0,6"/>
+
+                        <Button x:Name="btnDownload" 
+                                Content="3. 下载全部视频"
+                                Background="{StaticResource VibrantGreen}"
+                                Margin="0,0,0,6"
+                                Click="Download_Click" 
+                                MinHeight="32"/>
+
+                        <Button x:Name="btnOpenFolder" 
+                                Content="4.打开下载目录"
+                                Background="{StaticResource VibrantPurple}"
+                                Margin="0,0,0,6"
+                                Click="OpenFolder_Click" 
+                                MinHeight="32"/>
+
+                        <TextBlock Text="最大同时下载视频数量" Margin="0,0,0,0" FontSize="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=Window}, Converter={StaticResource ScalingConverter}, ConverterParameter=13}"/>
+                        <Slider x:Name="sliderMaxConcurrentDownloads" 
+                            Minimum="1" 
+                            Maximum="16"
+                            Value="5"
+                            Margin="0,5,0,5"
+                            IsSnapToTickEnabled="True"
+                            TickFrequency="1"
+                            Ticks="1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16"
+                            ValueChanged="Slider_ValueChanged"
+                            PreviewMouseUp="Slider_PreviewMouseUp"
+                            ToolTip="设置同时最大视频下载数量"/>
+
+                        <TextBlock x:Name="txtMaxConcurrentDownloadsFull" 
+                                   Text="当前值: 5" 
+                                   FontSize="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=Window}, Converter={StaticResource ScalingConverter}, ConverterParameter=13}" 
+                                   Margin="0,0,0,10"
+                                   VerticalAlignment="Center"/>
+
+                        <TextBlock Text="最大下载可用线程数量" Margin="0,0,0,0" FontSize="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=Window}, Converter={StaticResource ScalingConverter}, ConverterParameter=13}"/>
+                        <Slider x:Name="sliderMaxDownloadThreads" 
+                            Minimum="1" 
+                            Maximum="256"
+                            Value="32"
+                            Margin="0,5,0,5"
+                            IsSnapToTickEnabled="True"
+                            TickFrequency="1"
+                            ValueChanged="Slider_ValueChanged"
+                            PreviewMouseUp="Slider_PreviewMouseUp"
+                            ToolTip="设置最大下载使用线程数量"/>
+
+                        <TextBlock x:Name="txtMaxDownloadThreadsFull" 
+                                   Text="当前值: 32" 
+                                   FontSize="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=Window}, Converter={StaticResource ScalingConverter}, ConverterParameter=13}" 
+                                   Margin="0,0,0,10"
+                                   VerticalAlignment="Center"/>
+
+                        <Button x:Name="btnInitialize" 
+                            Content="初始化解析工具"
+                            Background="{StaticResource VibrantOrange}"
+                            Margin="0,0,0,0"
+                            Click="InitializeTool_Click" 
+                            MinHeight="32"/>
+                    </StackPanel>
+                </ScrollViewer>
+            </Border>
+
+            <GridSplitter Grid.Column="1"
+                          HorizontalAlignment="Stretch"
+                          VerticalAlignment="Stretch"
+                          Background="#D9D9D9"
+                          Width="5"
+                          ShowsPreview="False"/>
+
+            <Border Grid.Column="2" 
+                    Background="#FFF" 
+                    CornerRadius="8"
+                    Padding="10"
+                    Margin="5,0,0,0">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Text="解析结果" 
+                               Style="{StaticResource TitleTextStyle}"/>
+
+                    <ListView x:Name="lstResults" Grid.Row="1" SizeChanged="ListView_SizeChanged">
+                        <ListView.ItemContainerStyle>
+                            <Style TargetType="ListViewItem" BasedOn="{StaticResource VideoItemStyle}">
+                                <Setter Property="Height" Value="{Binding ActualHeight, RelativeSource={RelativeSource AncestorType=ListView}, Converter={StaticResource HeightConverter}}"/>
+                            </Style>
+                        </ListView.ItemContainerStyle>
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="序号">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding DisplayIndex, Converter={StaticResource IndexFormatConverter}}" 
+                                   VerticalAlignment="Center"
+                                   HorizontalAlignment="Left"
+                                   Margin="5,0"
+                                   FontSize="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=Window}, Converter={StaticResource ScalingConverter}, ConverterParameter = 13}"/>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+
+                                <GridViewColumn Header="课程名称">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding Name}" 
+                                   ToolTip="{Binding Name}" 
+                                   TextTrimming="CharacterEllipsis"
+                                   MinWidth="150"
+                                   VerticalAlignment="Center"
+                                   HorizontalAlignment="Left"
+                                   Margin="5,0"
+                                   FontSize="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=Window}, Converter={StaticResource ScalingConverter}, ConverterParameter=13}"/>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+
+                                <GridViewColumn Header="状态">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Foreground="{Binding StatusColor}" 
+                                   Text="{Binding DisplayStatus}" 
+                                   MinWidth="120"
+                                   VerticalAlignment="Center"
+                                   HorizontalAlignment="Left"
+                                   Margin="5,0"
+                                   FontSize="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=Window}, Converter={StaticResource ScalingConverter}, ConverterParameter=13}"/>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+
+                                <GridViewColumn Header="操作">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Grid HorizontalAlignment="Stretch" Margin="3,3">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="*"/>
+                                                </Grid.ColumnDefinitions>
+                                                <Button Grid.Column="0" 
+                                                        Content="复制URL" 
+                                                        Style="{StaticResource CompactActionButtonStyle}"
+                                                        Background="{StaticResource VibrantBlue}"
+                                                        Foreground="White"
+                                                        Click="CopyUrl_Click"
+                                                        Tag="{Binding Url}"/>
+                                                <Button Grid.Column="1" 
+                                                        Content="下载" 
+                                                        Style="{StaticResource CompactActionButtonStyle}"
+                                                        Background="{StaticResource VibrantGreen}"
+                                                        Foreground="White"
+                                                        Click="DownloadSingle_Click"
+                                                        Tag="{Binding}"/>
+                                                <Button Grid.Column="2" 
+                                                        Content="删除" 
+                                                        Style="{StaticResource CompactActionButtonStyle}"
+                                                        Background="{StaticResource VibrantRed}"
+                                                        Foreground="White"
+                                                        Click="DeleteItem_Click"
+                                                        Tag="{Binding}"/>
+                                            </Grid>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+
+                    <TextBlock x:Name="txtStatusSummary" 
+                               Text="当前没有视频正在下载，统计信息为空" 
+                               FontSize="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=Window}, Converter={StaticResource ScalingConverter}, ConverterParameter=13}" 
+                               Margin="0,5" 
+                               HorizontalAlignment="Right" 
+                               VerticalAlignment="Center"
+                               Grid.Row="2"/>
+                </Grid>
+            </Border>
+        </Grid>
+
+        <GridSplitter Grid.Row="2"
+                      HorizontalAlignment="Stretch"
+                      VerticalAlignment="Center"
+                      Background="#D9D9D9"
+                      Height="5"
+                      ShowsPreview="False"/>
+
+        <Border Grid.Row="3" 
+                Background="#FFF" 
+                CornerRadius="8"
+                Padding="8"
+                Margin="0,10,0,10">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <TextBlock Text="日志与输出" 
+                           Style="{StaticResource TitleTextStyle}"/>
+
+                <TabControl Grid.Row="1" 
+                            Background="Transparent" 
+                            BorderThickness="0"
+                            Margin="0,5,0,0"
+                            MinHeight="80">
+                    <TabItem Header="解析日志">
+                        <ScrollViewer VerticalScrollBarVisibility="Auto"
+                                      HorizontalScrollBarVisibility="Auto"
+                                      x:Name="logScrollViewer"
+                                      Background="#F8F9FA"
+                                      HorizontalContentAlignment="Stretch"
+                                      VerticalContentAlignment="Stretch">
+                            <TextBox x:Name="txtLog" 
+                                     IsReadOnly="True" 
+                                     TextWrapping="NoWrap"
+                                     FontFamily="Consolas"
+                                     FontSize="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=Window}, Converter={StaticResource ScalingConverter}, ConverterParameter=12}"
+                                     Background="Transparent"
+                                     BorderThickness="0"
+                                     HorizontalAlignment="Stretch"
+                                     VerticalAlignment="Stretch"
+                                     HorizontalScrollBarVisibility="Auto"
+                                     VerticalScrollBarVisibility="Auto"
+                                     Padding="4"/>
+                        </ScrollViewer>
+                    </TabItem>
+                </TabControl>
+            </Grid>
+        </Border>
+
+        <Border Grid.Row="4" 
+                Background="#FFF" 
+                CornerRadius="8,8,8,8" 
+                Padding="0"
+                VerticalAlignment="Stretch">
+            <Grid VerticalAlignment="Center" x:Name="statusBarGrid">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="0.6*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <Border Grid.Column="0" Padding="0,2,0,3" VerticalAlignment="Stretch">
+                    <TextBlock Text="解析状态：" 
+                               VerticalAlignment="Center" 
+                               HorizontalAlignment="Left"
+                               Margin="10,0,5,0"
+                               FontSize="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=Window}, Converter={StaticResource ScalingConverter}, ConverterParameter=13}"/>
+                </Border>
+
+                <Border Grid.Column="1" Padding="0,4,0,4" VerticalAlignment="Stretch">
+                    <ProgressBar x:Name="progressBar" 
+                                 Height="12" 
+                                 Minimum="0" 
+                                 Maximum="100"
+                                 Value="0"
+                                 Margin="0,0,10,0"
+                                 VerticalAlignment="Center"
+                                 HorizontalAlignment="Stretch"/>
+                </Border>
+
+                <TextBlock Text="下载目录：" 
+                           VerticalAlignment="Center" 
+                           Margin="0,0,5,1"
+                           FontSize="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=Window}, Converter={StaticResource ScalingConverter}, ConverterParameter=13}"
+                           Grid.Column="3"/>
+
+                <TextBlock x:Name="txtDownloadPath" 
+                           Text="下载目录" 
+                           VerticalAlignment="Center"
+                           Margin="0,0,5,1"
+                           FontSize="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=Window}, Converter={StaticResource ScalingConverter}, ConverterParameter=13}"
+                           TextWrapping="NoWrap"
+                           TextTrimming="CharacterEllipsis"
+                           ToolTip="{Binding Text, RelativeSource={RelativeSource Self}}"
+                           Grid.Column="4">
+                    <TextBlock.MaxWidth>
+                        <MultiBinding Converter="{StaticResource PathMaxWidthConverter}">
+                            <Binding ElementName="statusBarGrid" Path="ActualWidth"/>
+                            <Binding ElementName="txtDownloadPath" Path="ActualWidth"/>
+                            <Binding ElementName="btnChangePath" Path="ActualWidth"/>
+                        </MultiBinding>
+                    </TextBlock.MaxWidth>
+                </TextBlock>
+
+                <Button x:Name="btnChangePath" 
+                        Content="更改" 
+                        Style="{StaticResource CompactSmallButtonStyle}" 
+                        VerticalAlignment="Center"
+                        Margin="5,0,10,0"
+                        Click="ChangeDownloadPath_Click"
+                        MinWidth="50"
+                        Padding="4,1"
+                        Grid.Column="5"/>
+            </Grid>
+        </Border>
+    </Grid>
+</Window>
