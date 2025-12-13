@@ -48,6 +48,19 @@
 |  🐧 **Linux**  | `glibc 2.35+` | `x86_64`/`arm64` |     ❌      |
 |  🍎 **macOS**  |   `11.0+`     | `x86_64`/`arm64` |     ❌      |
 
+<!-- ENCODING ISSUE -->
+## 编码问题说明
+
+> **🔧 HTTP Debugger Pro 乱码问题**
+>
+> 目前已知，当使用 HTTP Debugger Pro 捕获请求时，部分用户会遇到**输出内容乱码**的问题。这是由于 ClassIn 服务器响应使用了不同的字符编码导致的。
+>
+> **临时解决方案**：某些情况下，将捕获到的文本从 **GBK 编码转换为 UTF-8 编码**可以修复部分乱码问题。
+>
+> **开发计划**：我们正在开发**自动编码修复功能**，计划在后续版本中集成 GBK→UTF-8 自动转换，以解决此问题。此功能目前正在积极开发中。
+>
+> 如果您遇到此问题，可以尝试使用外部工具（如 Notepad++、VSCode 等）手动转换编码，或关注我们的更新。
+
 <!-- ROADMAP -->
 ## 开发路线
 
@@ -66,6 +79,7 @@
 
 ### 🔄 计划中功能
 - 🔄 自助抓包 (长期目标)
+- 🔄 **自动编码修复 (GBK→UTF-8)**
 
 访问 [GitHub Issues](https://github.com/ZMH21306/ClassIn-DL/issues) 查看所有功能请求（和已知问题）。
 
@@ -85,8 +99,8 @@
 | 平台 | 架构 | 下载链接 |
 |:----:|:----:|:--------:|
 | Windows | x86_64 | [GitHub 直链](https://github.com/ZMH21306/ClassIn-DL/releases/download/v0.8.0/Classin_DL-v0.8.0-Windows-x64.exe) <br> [CDN 镜像](https://gh-proxy.org/https://github.com/ZMH21306/Classin-DL/releases/download/v0.8.0/Classin_DL-v0.8.0-Windows-x64.exe) |
-| Windows | x86    | [GitHub 直链](https://github.com/ZMH21306/ClassIn-DL/releases/download/v0.8.0/Classin_DL-v0.8.0-Windows-x86.exe) <br> [CDN 镜像](https://gh-proxy.org/https://github.com/ZMH21306/Classin-DL/releases/download/v0.8.0/Classin_DL-v0.8.0-Windows-x86.exe) |
-| Windows | arm64  | [GitHub 直链](https://github.com/ZMH21306/ClassIn-DL/releases/download/v0.8.0/Classin_DL-v0.8.0-Windows-arm64.exe) <br> [CDN 镜像](https://gh-proxy.org/https://github.com/ZMH21306/Classin-DL/releases/download/v0.8.0/Classin_DL-v0.8.0-Windows-arm64.exe) |
+| Windows | x86    | [GitHub 直链](https://github.com/ZMH21306/ClassIn-DL/releases/download/v0.8.0/Classin_DL-v0.8.0-Windows-x86.exe) <br> [CDN 镜像](https://gh-proxy.org/https://github.com/ZMH21306/Classin_DL/releases/download/v0.8.0/Classin_DL-v0.8.0-Windows-x86.exe) |
+| Windows | arm64  | [GitHub 直链](https://github.com/ZMH21306/ClassIn-DL/releases/download/v0.8.0/Classin_DL-v0.8.0-Windows-arm64.exe) <br> [CDN 镜像](https://gh-proxy.org/https://github.com/ZMH21306/Classin_DL/releases/download/v0.8.0/Classin_DL-v0.8.0-Windows-arm64.exe) |
 
 <!-- CONTRIBUTING -->
 ## 贡献指南
