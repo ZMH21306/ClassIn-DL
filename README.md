@@ -48,6 +48,19 @@ Requires HTTP Debugger Pro for capturing video requests, providing a reliable wa
 |  🐧 **Linux**  |  `glibc 2.35+`   | `x86_64`/`arm64` |     ❌      |
 |  🍎 **macOS**  |     `11.0+`      | `x86_64`/`arm64` |     ❌      |
 
+<!-- ENCODING ISSUE -->
+## Encoding Issue Notice
+
+> **🔧 HTTP Debugger Pro Encoding Problem**
+>
+> Currently, some users encounter **garbled text** in the output when using HTTP Debugger Pro to capture requests. This is caused by the ClassIn server using different character encodings in responses.
+>
+> **Temporary Solution**: In some cases, converting the captured text from **GBK encoding to UTF-8 encoding** can fix part of the garbled text issues.
+>
+> **Development Plan**: We are developing an **automatic encoding repair feature** and plan to integrate GBK→UTF-8 automatic conversion in future releases to address this issue. This feature is currently under active development.
+>
+> If you encounter this issue, you can try manually converting the encoding using external tools (such as Notepad++, VSCode, etc.), or stay tuned for our updates.
+
 <!-- ROADMAP -->
 ## Roadmap
 
@@ -66,6 +79,7 @@ Requires HTTP Debugger Pro for capturing video requests, providing a reliable wa
 
 ### 🔄 Planned Features
 - 🔄 Self-service packet capture (long-term)
+- 🔄 **Automatic encoding repair (GBK→UTF-8)**
 
 Visit [GitHub Issues](https://github.com/ZMH21306/ClassIn-DL/issues) to see all requested features (and known issues).
 
@@ -93,7 +107,7 @@ Get the latest version of ClassIn Video Downloader for Windows:
 
 Contributions make the open source community an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
 
-If you have a suggestion, fork the repo and create a pull request. You can also simply open an issue with the "Enhancement" tag. Don‘t forget to give the project a star⭐! Thanks again!
+If you have a suggestion, fork the repo and create a pull request. You can also simply open an issue with the "Enhancement" tag. Don't forget to give the project a star⭐! Thanks again!
 
 1. Fork the Project
 2. Create your Feature Branch (git checkout -b feature/AmazingFeature)
