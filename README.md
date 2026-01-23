@@ -39,6 +39,10 @@ Requires HTTP Debugger Pro for capturing video requests, providing a reliable wa
 >
 > This tool is a technical learning project. According to the ClassIn platform rules, student accounts typically only have the **right to view** course replays, **not to download** them. Unauthorized downloading of course content may **infringe intellectual property rights and violate the platform's user agreement**. Please only use this tool to download course content for which you have legal rights, and assume all related risks.
 
+> **🔄 Migration Notice**
+>
+> This project is currently migrating from WPF to **Avalonia C#** to support cross-platform compatibility (Windows, Linux, macOS). We will continue to provide updates and improvements during the migration process. Stay tuned for more information!
+
 <!-- COMPATIBILITY -->
 ## Compatibility
 
