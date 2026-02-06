@@ -135,7 +135,7 @@
 <!-- CONTACT -->
 ## 联系方式
 
-* [电子邮件](mailto:2130606191@qq.com) - 2130606191@qq.com
+* [电子邮箱](mailto:2130606191@qq.com) - 2130606191@qq.com
 * [QQ 群](https://qm.qq.com/q/PlUBdzqZCm) - 2130606191
 
 ## 致谢
