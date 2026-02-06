@@ -133,7 +133,7 @@ Copyright © 2025 ZMH.
 <!-- CONTACT -->
 ## Contact
 
-* [E-mail](mailto:zhounbdev@gmail.com) - zhounbdev@gmail.com
+* [G-mail](mailto:zhounbdev@gmail.com) - zhounbdev@gmail.com
 * [QQ Group](https://qm.qq.com/q/PlUBdzqZCm) - 2130606191
 
 ## Acknowledgments
