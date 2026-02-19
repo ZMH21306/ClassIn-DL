@@ -41,7 +41,7 @@
 
 > **🔄 迁移通知**
 >
-> 本项目目前正在从 WPF 迁移到 **Avalonia C#**，以支持跨平台兼容（Windows、Linux、macOS）。我们将在迁移过程中持续提供更新和改进，敬请期待！
+> 本项目目前已从 WPF 迁移到 **Avalonia C#**，以支持跨平台兼容（Windows、Linux、macOS）。当前的版本仍然存在许多问题，欢迎前往<a href="https://github.com/ZMH21306/ClassIn-DL/issues/new?template=bug_report.yml">报告问题</a>
 
 <!-- COMPATIBILITY -->
 ## 兼容性
