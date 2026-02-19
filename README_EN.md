@@ -18,7 +18,7 @@
 
 <h4>
   <a href="https://github.com/ZMH21306/ClassIn-DL/issues/new?template=bug_report.yml">Report Bug</a>
- ·    
+  ·    
   <a href="https://github.com/ZMH21306/ClassIn-DL/issues/new?template=feature_request.yml">Request Feature</a>
 </h4>
 
@@ -27,13 +27,13 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-A powerful ClassIn video downloader with both graphical and command-line interfaces, designed to help users easily download ClassIn course videos 📹
+A powerful ClassIn video downloader offering both graphical and command-line interfaces, designed to help users easily download ClassIn course videos 📹
 
-Features high-speed downloading, batch processing, and a friendly WPF graphical interface built with C# 🚀
+Features high-speed downloading, batch processing capabilities, and a user-friendly WPF graphical interface built with C# 🚀
 
 Supports parsing video links from the ClassIn platform and efficiently managing download tasks ⚡
 
-Requires HTTP Debugger Pro to capture video requests, providing a reliable way to obtain video resources 🔍
+Requires HTTP Debugger Pro to capture video requests, providing a reliable method for obtaining video resources 🔍
 
 > **⚠️ Important Notice**
 >
@@ -41,7 +41,7 @@ Requires HTTP Debugger Pro to capture video requests, providing a reliable way t
 
 > **🔄 Migration Notice**
 >
-> This project has currently migrated from WPF to **Avalonia C#** to support cross-platform compatibility (Windows, Linux, macOS). The current version still has many issues, please feel free to <a href="https://github.com/ZMH21306/ClassIn-DL/issues/new?template=bug_report.yml">report problems</a>
+> This project has now migrated from WPF to **Avalonia C#** to support cross-platform compatibility (Windows, Linux, macOS). The current version still has many issues, so please feel free to <a href="https://github.com/ZMH21306/ClassIn-DL/issues/new?template=bug_report.yml">report problems</a>
 
 <!-- COMPATIBILITY -->
 ## Compatibility
@@ -57,11 +57,11 @@ Requires HTTP Debugger Pro to capture video requests, providing a reliable way t
 
 > **🔧 HTTP Debugger Pro Garbled Text Issue**
 >
-> Currently known, when using HTTP Debugger Pro to capture requests, some users may encounter **garbled output content** issues. This is caused by ClassIn server responses using different character encodings.
+> Currently, it's known that when using HTTP Debugger Pro to capture requests, some users may encounter **garbled output content** issues. This is caused by ClassIn server responses using different character encodings.
 >
-> **Development Plan**: We have developed a simple **automatic encoding repair feature** and plan to integrate more complete encoding repair in subsequent versions to solve this issue. This feature is currently under active development.
+> **Development Plan**: We have developed a simple **automatic encoding repair feature** and plan to integrate more comprehensive encoding repair in subsequent versions to resolve this issue. This feature is currently under active development.
 >
-> If you encounter this issue, you can try saving as a JSON file during packet capture and manually copy the content, or follow our updates.
+> If you encounter this issue, you can try saving as a JSON file during packet capture and manually copying the content, or follow our updates.
 
 <!-- ROADMAP -->
 ## Development Roadmap
@@ -96,7 +96,7 @@ Visit [GitHub Issues](https://github.com/ZMH21306/ClassIn-DL/issues) to view all
 ## Download
 
 > [!TIP]
-> For best compatibility, please use the latest version of the tool.
+> For optimal compatibility, please use the latest version of the tool.
 
 Get the latest version of ClassIn Video Downloader for Windows:
 
@@ -109,9 +109,9 @@ Get the latest version of ClassIn Video Downloader for Windows:
 <!-- CONTRIBUTING -->
 ## Contribution Guide
 
-Contributions make the open-source community a great place to learn, inspire, and create. Any contribution you make is **greatly appreciated**.
+Contributions make the open-source community an excellent place to learn, inspire, and create. Any contribution you make is **greatly appreciated**.
 
-If you have suggestions, you can Fork the repository and create a Pull Request. You can also directly open an Issue with the "Enhancement" label. Don't forget to give the project a star⭐! Thank you again!
+If you have suggestions, you can Fork the repository and create a Pull Request, or directly open an Issue with the "Enhancement" label. Don't forget to give the project a star ⭐! Thank you again!
 
 1. Fork this repository
 2. Create a feature branch (git checkout -b feature/AmazingFeature)
@@ -119,7 +119,7 @@ If you have suggestions, you can Fork the repository and create a Pull Request. 
 4. Push to the branch (git push origin feature/AmazingFeature)
 5. Open a Pull Request
 
-Thank you to all contributors who participated in this project!
+Thank you to all contributors who have participated in this project!
 
 <a href="https://github.com/ZMH21306/ClassIn-DL/graphs/contributors"><img src="http://contrib.nn.ci/api?repo=ZMH21306/ClassIn-DL" alt="Contributors" /></a>
 

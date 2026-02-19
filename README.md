@@ -18,7 +18,7 @@
 
 <h4>
   <a href="https://github.com/ZMH21306/ClassIn-DL/issues/new?template=bug_report.yml">报告问题</a>
- ·    
+  ·    
   <a href="https://github.com/ZMH21306/ClassIn-DL/issues/new?template=feature_request.yml">功能请求</a>
 </h4>
 
@@ -27,21 +27,21 @@
 <!-- ABOUT THE PROJECT -->
 ## 关于项目
 
-一款功能强大的 ClassIn 视频下载器，包含图形界面和命令行两种版本，旨在帮助用户轻松下载 ClassIn 课程视频 📹
+一款功能强大的 ClassIn 视频下载器，提供图形界面和命令行两种版本，旨在帮助用户轻松下载 ClassIn 课程视频 📹
 
 具备高速下载、批量处理功能，并提供基于 C# 构建的友好 WPF 图形界面 🚀
 
-支持解析 ClassIn 平台的视频链接，并高效管理下载任务 ⚡
+支持解析 ClassIn 平台的视频链接，高效管理下载任务 ⚡
 
-需要 HTTP Debugger Pro 来捕获视频请求，提供了一种可靠的方式来获取视频资源 🔍
+需要使用 HTTP Debugger Pro 捕获视频请求，为获取视频资源提供可靠方式 🔍
 
 > **⚠️ 重要声明**
 >
-> 本工具是技术学习项目。根据 ClassIn 平台规则，学生账户通常只拥有课程回放的**观看权**，**没有下载权**。未经授权下载课程内容可能**侵犯知识产权并违反平台用户协议**。请仅在拥有合法权利的课程内容上使用本工具，并自行承担相关风险。
+> 本工具为技术学习项目。根据 ClassIn 平台规则，学生账户通常仅拥有课程回放的**观看权**，**无下载权**。未经授权下载课程内容可能**侵犯知识产权并违反平台用户协议**。请仅在拥有合法权利的课程内容上使用本工具，并自行承担相关风险。
 
 > **🔄 迁移通知**
 >
-> 本项目目前已从 WPF 迁移到 **Avalonia C#**，以支持跨平台兼容（Windows、Linux、macOS）。当前的版本仍然存在许多问题，欢迎前往<a href="https://github.com/ZMH21306/ClassIn-DL/issues/new?template=bug_report.yml">报告问题</a>
+> 本项目现已从 WPF 迁移至 **Avalonia C#**，以支持跨平台兼容（Windows、Linux、macOS）。当前版本仍存在诸多问题，欢迎前往 <a href="https://github.com/ZMH21306/ClassIn-DL/issues/new?template=bug_report.yml">报告问题</a>
 
 <!-- COMPATIBILITY -->
 ## 兼容性
@@ -57,11 +57,11 @@
 
 > **🔧 HTTP Debugger Pro 乱码问题**
 >
-> 目前已知，当使用 HTTP Debugger Pro 捕获请求时，部分用户会遇到**输出内容乱码**的问题。这是由于 ClassIn 服务器响应使用了不同的字符编码导致的。
+> 目前已知，使用 HTTP Debugger Pro 捕获请求时，部分用户会遇到**输出内容乱码**问题。这是由于 ClassIn 服务器响应使用了不同字符编码所致。
 >
-> **开发计划**：我们已经开发了简易的**自动编码修复功能**，计划在后续版本中集成 更完善的编码修复，以解决此问题。此功能目前正在积极开发中。
+> **开发计划**：我们已开发简易的**自动编码修复功能**，计划在后续版本中集成更完善的编码修复，以解决此问题。该功能目前正在积极开发中。
 >
-> 如果您遇到此问题，可以尝试在抓包时另存为json文件手动复制内容，或关注我们的更新。
+> 若遇到此问题，可尝试在抓包时另存为 JSON 文件手动复制内容，或关注我们的更新。
 
 <!-- ROADMAP -->
 ## 开发路线
@@ -98,7 +98,7 @@
 > [!TIP]
 > 为获得最佳兼容性，请使用最新版本的工具。
 
-为 Windows 获取 ClassIn 视频下载器最新版本：
+获取适用于 Windows 的 ClassIn 视频下载器最新版本：
 
 | 平台 | 架构 | 下载链接 |
 |:----:|:----:|:--------:|
@@ -109,9 +109,9 @@
 <!-- CONTRIBUTING -->
 ## 贡献指南
 
-贡献使开源社区成为一个学习、启发和创造的绝佳场所。您的任何贡献我们都**深表感谢**。
+贡献让开源社区成为学习、启发和创造的绝佳场所。您的任何贡献我们都**深表感谢**。
 
-如果您有建议，可以 Fork 仓库并创建 Pull Request。您也可以直接打开一个带有"Enhancement"标签的 Issue。别忘了给项目点个星星⭐！再次感谢！
+若有建议，可 Fork 仓库并创建 Pull Request，也可直接打开带有 "Enhancement" 标签的 Issue。别忘了给项目点个星星 ⭐！再次感谢！
 
 1. Fork 本仓库
 2. 创建功能分支 (git checkout -b feature/AmazingFeature)
@@ -126,7 +126,7 @@
 <!-- LICENSE -->
 ## 许可证
 
-根据 GPL v3.0 许可证分发。有关更多信息，请参阅 `LICENSE` 文件。
+根据 GPL v3.0 许可证分发。更多信息请参阅 `LICENSE` 文件。
 
 版权所有 © 2025 ZMH。
 
