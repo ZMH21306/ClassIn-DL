@@ -49,8 +49,8 @@ Requires HTTP Debugger Pro to capture video requests, providing a reliable metho
 |    Platform    |   Minimum Requirement    |      Architecture      |   Compatibility   |
 |:----------:|:-------------:|:--------------:|:----------:|
 | 🪟 **Windows** |   `7 SP1+`    | `x86_64`/`x86`/`arm64` |     ✅      |
-|  🐧 **Linux**  | `glibc 2.35+` | `x86_64`/`arm64` |     ❌      |
-|  🍎 **macOS**  |   `11.0+`     | `x86_64`/`arm64` |     ❌      |
+|  🐧 **Linux**  | `glibc 2.35+` | `x86_64`/`arm64` |     ✅      |
+|  🍎 **macOS**  |   `11.0+`     | `x86_64`/`arm64` |     ✅      |
 
 <!-- ENCODING ISSUE -->
 ## Encoding Issue Description
