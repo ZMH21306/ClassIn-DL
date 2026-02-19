@@ -1,0 +1,5 @@
+C:\Users\21306\Desktop\Classin视频解析下载工具\Classin视频解析下载工具-图形化1.0.0（测试）第七版（彻底修复--Day5）\Publish\linux-arm64\single-file\Classin视频解析下载工具.pdb
+C:\Users\21306\Desktop\Classin视频解析下载工具\Classin视频解析下载工具-图形化1.0.0（测试）第七版（彻底修复--Day5）\Publish\linux-arm64\single-file\appsettings.json
+C:\Users\21306\Desktop\Classin视频解析下载工具\Classin视频解析下载工具-图形化1.0.0（测试）第七版（彻底修复--Day5）\Publish\linux-arm64\single-file\libHarfBuzzSharp.so
+C:\Users\21306\Desktop\Classin视频解析下载工具\Classin视频解析下载工具-图形化1.0.0（测试）第七版（彻底修复--Day5）\Publish\linux-arm64\single-file\libSkiaSharp.so
+C:\Users\21306\Desktop\Classin视频解析下载工具\Classin视频解析下载工具-图形化1.0.0（测试）第七版（彻底修复--Day5）\Publish\linux-arm64\single-file\Classin视频解析下载工具

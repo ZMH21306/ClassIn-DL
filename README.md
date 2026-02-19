@@ -1,5 +1,5 @@
 <h4 align="right">
-  <a href="README_zh.md">简体中文</a> | English
+  <a href="README.md">English</a> | 简体中文
 </h4>
 
 <!-- PROJECT LOGO -->
@@ -7,7 +7,7 @@
   <br />
   
   <h1 style="font-size: 3.5rem; margin-bottom: 0.5rem;">
-    <span style="color: #2E86C1;">ClassIn</span> Video Downloader
+    <span style="color: #2E86C1;">ClassIn</span> 视频下载器
   </h1>
 
 [![Forks][forks-shield]][forks-url]
@@ -17,130 +17,132 @@
 [![Downloads][downloads-shield]][release-url]
 
 <h4>
-  <a href="https://github.com/ZMH21306/ClassIn-DL/issues/new?template=bug_report.yml">Report Bug</a>
+  <a href="https://github.com/ZMH21306/ClassIn-DL/issues/new?template=bug_report.yml">报告问题</a>
  ·    
-  <a href="https://github.com/ZMH21306/ClassIn-DL/issues/new?template=feature_request.yml">Request Feature</a>
+  <a href="https://github.com/ZMH21306/ClassIn-DL/issues/new?template=feature_request.yml">功能请求</a>
 </h4>
 
 </div>
 
 <!-- ABOUT THE PROJECT -->
-## About The Project
+## 关于项目
 
-A powerful ClassIn video downloader with both graphical and command-line versions, designed to help users easily download ClassIn course videos 📹
+一款功能强大的 ClassIn 视频下载器，包含图形界面和命令行两种版本，旨在帮助用户轻松下载 ClassIn 课程视频 📹
 
-Features high-speed downloads, batch processing, and a user-friendly WPF interface built with C# 🚀
+具备高速下载、批量处理功能，并提供基于 C# 构建的友好 WPF 图形界面 🚀
 
-Supports parsing video links from ClassIn platform and managing download tasks efficiently ⚡
+支持解析 ClassIn 平台的视频链接，并高效管理下载任务 ⚡
 
-Requires HTTP Debugger Pro for capturing video requests, providing a reliable way to obtain video resources 🔍
+需要 HTTP Debugger Pro 来捕获视频请求，提供了一种可靠的方式来获取视频资源 🔍
 
-> **⚠️ Important Notice**
+> **⚠️ 重要声明**
 >
-> This tool is a technical learning project. According to the ClassIn platform rules, student accounts typically only have the **right to view** course replays, **not to download** them. Unauthorized downloading of course content may **infringe intellectual property rights and violate the platform's user agreement**. Please only use this tool to download course content for which you have legal rights, and assume all related risks.
+> 本工具是技术学习项目。根据 ClassIn 平台规则，学生账户通常只拥有课程回放的**观看权**，**没有下载权**。未经授权下载课程内容可能**侵犯知识产权并违反平台用户协议**。请仅在拥有合法权利的课程内容上使用本工具，并自行承担相关风险。
 
-> **🔄 Migration Notice**
+> **🔄 迁移通知**
 >
-> This project is currently migrating from WPF to **Avalonia C#** to support cross-platform compatibility (Windows, Linux, macOS). We will continue to provide updates and improvements during the migration process. Stay tuned for more information!
+> 本项目目前正在从 WPF 迁移到 **Avalonia C#**，以支持跨平台兼容（Windows、Linux、macOS）。我们将在迁移过程中持续提供更新和改进，敬请期待！
 
 <!-- COMPATIBILITY -->
-## Compatibility
+## 兼容性
 
-|    Platform    | Required Version |  Architectures   | Compatible |
-|:--------------:|:----------------:|:----------------:|:----------:|
-| 🪟 **Windows** |     `7 SP1+`     | `x86_64`/`x86`/`arm64` |     ✅      |
-|  🐧 **Linux**  |  `glibc 2.35+`   | `x86_64`/`arm64` |     ❌      |
-|  🍎 **macOS**  |     `11.0+`      | `x86_64`/`arm64` |     ❌      |
+|    平台    |   最低要求    |      架构      |   兼容性   |
+|:----------:|:-------------:|:--------------:|:----------:|
+| 🪟 **Windows** |   `7 SP1+`    | `x86_64`/`x86`/`arm64` |     ✅      |
+|  🐧 **Linux**  | `glibc 2.35+` | `x86_64`/`arm64` |     ❌      |
+|  🍎 **macOS**  |   `11.0+`     | `x86_64`/`arm64` |     ❌      |
 
 <!-- ENCODING ISSUE -->
-## Encoding Issue Notice
+## 编码问题说明
 
-> **🔧 HTTP Debugger Pro Encoding Problem**
+> **🔧 HTTP Debugger Pro 乱码问题**
 >
-> Currently, some users encounter **garbled text** in the output when using HTTP Debugger Pro to capture requests. This is caused by the ClassIn server using different character encodings in responses.
+> 目前已知，当使用 HTTP Debugger Pro 捕获请求时，部分用户会遇到**输出内容乱码**的问题。这是由于 ClassIn 服务器响应使用了不同的字符编码导致的。
 >
-> **Temporary Solution**: In some cases, converting the captured text from **GBK encoding to UTF-8 encoding** can fix part of the garbled text issues.
+> **临时解决方案**：某些情况下，将捕获到的文本从 **GBK 编码转换为 UTF-8 编码**可以修复部分乱码问题。
 >
-> **Development Plan**: We are developing an **automatic encoding repair feature** and plan to integrate GBK→UTF-8 automatic conversion in future releases to address this issue. This feature is currently under active development.
+> **开发计划**：我们正在开发**自动编码修复功能**，计划在后续版本中集成 GBK→UTF-8 自动转换，以解决此问题。此功能目前正在积极开发中。
 >
-> If you encounter this issue, you can try manually converting the encoding using external tools (such as Notepad++, VSCode, etc.), or stay tuned for our updates.
+> 如果您遇到此问题，可以尝试使用外部工具（如 Notepad++、VSCode 等）手动转换编码，或关注我们的更新。
 
 <!-- ROADMAP -->
-## Roadmap
+## 开发路线
 
-### ✅ Completed Features
-- ✅ Graphical user interface (WPF)
-- ✅ Command-line interface support
-- ✅ Basic ClassIn video download functionality
-- ✅ Batch video downloading
-- ✅ Video link parsing from HTTP requests
-- ✅ Multi-threaded downloads with configurable thread count
-- ✅ Real-time download speed display
-- ✅ Download progress tracking
-- ✅ Error handling and logging
-- ✅ Configurable download directory
-- ✅ Adjustable concurrent download limit
+### ✅ 已完成功能
+- ✅ 图形用户界面 (WPF)
+- ✅ 命令行界面支持
+- ✅ 基本的 ClassIn 视频下载功能
+- ✅ 批量视频下载
+- ✅ 从 HTTP 请求中解析视频链接
+- ✅ 可配置线程数的多线程下载
+- ✅ 实时下载速度显示
+- ✅ 下载进度跟踪
+- ✅ 错误处理和日志记录
+- ✅ 可配置的下载目录
+- ✅ 可调节的并发下载限制
 
-### 🔄 Planned Features
-- 🔄 Self-service packet capture (long-term)
-- 🔄 **Automatic encoding repair (GBK→UTF-8)**
+### 🔄 计划中功能
+- 🔄 自助抓包 (长期目标)
+- 🔄 **自动编码修复 (GBK→UTF-8)**
 
-Visit [GitHub Issues](https://github.com/ZMH21306/ClassIn-DL/issues) to see all requested features (and known issues).
+访问 [GitHub Issues](https://github.com/ZMH21306/ClassIn-DL/issues) 查看所有功能请求（和已知问题）。
 
 <!-- TUTORIAL VIDEO -->
-## Tutorial Video
+## 教程视频
 
-📹 **Tutorial video coming soon! Stay tuned for future updates.**
+📹 **教程视频即将推出，敬请期待！**
+
+<!-- 稍后添加视频链接 -->
 
 <!-- DOWNLOAD LINKS -->
-## Download
+## 下载
 
 > [!TIP]
-> For the best compatibility, please use the latest version of the tool.
+> 为获得最佳兼容性，请使用最新版本的工具。
 
-Get the latest version of ClassIn Video Downloader for Windows:
+为 Windows 获取 ClassIn 视频下载器最新版本：
 
-| Platform | Architecture | Download Link |
-|:--------:|:------------:|:-------------:|
-| Windows  | x86_64       | [GitHub Direct](https://github.com/ZMH21306/ClassIn-DL/releases/download/v1.0.0/Classin_DL-v1.0.0-Windows-x64.exe) <br> [CDN Mirror](https://gh-proxy.org/https://github.com/ZMH21306/Classin-DL/releases/download/v1.0.0/Classin_DL-v1.0.0-Windows-x64.exe) |
-| Windows  | x86          | [GitHub Direct](https://github.com/ZMH21306/ClassIn-DL/releases/download/v1.0.0/Classin_DL-v1.0.0-Windows-x86.exe) <br> [CDN Mirror](https://gh-proxy.org/https://github.com/ZMH21306/Classin_DL/releases/download/v1.0.0/Classin_DL-v1.0.0-Windows-x86.exe) |
-| Windows  | arm64        | [GitHub Direct](https://github.com/ZMH21306/ClassIn-DL/releases/download/v1.0.0/Classin_DL-v1.0.0-Windows-arm64.exe) <br> [CDN Mirror](https://gh-proxy.org/https://github.com/ZMH21306/Classin_DL/releases/download/v1.0.0/Classin_DL-v1.0.0-Windows-arm64.exe) |
+| 平台 | 架构 | 下载链接 |
+|:----:|:----:|:--------:|
+| Windows | x86_64 | [GitHub 直链](https://github.com/ZMH21306/ClassIn-DL/releases/download/v0.8.0/Classin_DL-v0.8.0-Windows-x64.exe) <br> [CDN 镜像](https://gh-proxy.org/https://github.com/ZMH21306/Classin-DL/releases/download/v0.8.0/Classin_DL-v0.8.0-Windows-x64.exe) |
+| Windows | x86    | [GitHub 直链](https://github.com/ZMH21306/ClassIn-DL/releases/download/v0.8.0/Classin_DL-v0.8.0-Windows-x86.exe) <br> [CDN 镜像](https://gh-proxy.org/https://github.com/ZMH21306/Classin_DL/releases/download/v0.8.0/Classin_DL-v0.8.0-Windows-x86.exe) |
+| Windows | arm64  | [GitHub 直链](https://github.com/ZMH21306/ClassIn-DL/releases/download/v0.8.0/Classin_DL-v0.8.0-Windows-arm64.exe) <br> [CDN 镜像](https://gh-proxy.org/https://github.com/ZMH21306/Classin_DL/releases/download/v0.8.0/Classin_DL-v0.8.0-Windows-arm64.exe) |
 
 <!-- CONTRIBUTING -->
-## Contributing
+## 贡献指南
 
-Contributions make the open source community an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
+贡献使开源社区成为一个学习、启发和创造的绝佳场所。您的任何贡献我们都**深表感谢**。
 
-If you have a suggestion, fork the repo and create a pull request. You can also simply open an issue with the "Enhancement" tag. Don't forget to give the project a star⭐! Thanks again!
+如果您有建议，可以 Fork 仓库并创建 Pull Request。您也可以直接打开一个带有"Enhancement"标签的 Issue。别忘了给项目点个星星⭐！再次感谢！
 
-1. Fork the Project
-2. Create your Feature Branch (git checkout -b feature/AmazingFeature)
-3. Commit your Changes (git commit -m 'Add some AmazingFeature')
-4. Push to the Branch (git push origin feature/AmazingFeature)
-5. Open a Pull Request
+1. Fork 本仓库
+2. 创建功能分支 (git checkout -b feature/AmazingFeature)
+3. 提交更改 (git commit -m 'Add some AmazingFeature')
+4. 推送到分支 (git push origin feature/AmazingFeature)
+5. 打开 Pull Request
 
-Thanks to all contributors who have participated in this project!
+感谢所有参与此项目的贡献者！
 
-<a href="https://github.com/ZMH21306/ClassIn-DL/graphs/contributors"><img src="http://contrib.nn.ci/api?repo=ZMH21306/ClassIn-DL" alt="Contributors" /></a>
+<a href="https://github.com/ZMH21306/ClassIn-DL/graphs/contributors"><img src="http://contrib.nn.ci/api?repo=ZMH21306/ClassIn-DL" alt="贡献者" /></a>
 
 <!-- LICENSE -->
-## License
+## 许可证
 
-Distributed under the GPL v3.0 License. See `LICENSE` for more information.
+根据 GPL v3.0 许可证分发。有关更多信息，请参阅 `LICENSE` 文件。
 
-Copyright © 2025 ZMH.
+版权所有 © 2025 ZMH。
 
 <!-- CONTACT -->
-## Contact
+## 联系方式
 
-* [G-mail](mailto:zhounbdev@gmail.com) - zhounbdev@gmail.com
-* [QQ Group](https://qm.qq.com/q/PlUBdzqZCm) - 2130606191
+* [电子邮箱](mailto:2130606191@qq.com) - 2130606191@qq.com
+* [QQ 群](https://qm.qq.com/q/PlUBdzqZCm) - 2130606191
 
-## Acknowledgments
+## 致谢
 
-* Special thanks to all open source projects that made this tool possible!
+* 特别感谢所有使此工具成为可能的开源项目！
 
-## Star History
+## Star 历史
 
 [![Star History Chart](https://api.star-history.com/svg?repos=ZMH21306/ClassIn-DL&type=timeline&legend=top-left)](https://www.star-history.com/#ZMH21306/ClassIn-DL&type=timeline&legend=top-left)
 

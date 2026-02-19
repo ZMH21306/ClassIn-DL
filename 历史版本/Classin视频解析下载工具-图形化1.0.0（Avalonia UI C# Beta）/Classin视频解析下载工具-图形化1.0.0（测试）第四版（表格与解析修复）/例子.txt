@@ -1,0 +1,1580 @@
+{
+    "error_info": {
+        "errno": 1,
+        "error": "绋嬪簭姝ｅ父鎵ц(绋嬪簭姝ｅ父鎵ц)"
+    },
+    "data": {
+        "lessonId": 874404893,
+        "lessonName": "銆婂剴鏋楀鍙层€? - 4",
+        "lessonData": {
+            "lessonStatus": 1,
+            "vodList": [],
+            "fileList": [
+                {
+                    "CIDExt": "",
+                    "CreateTime": "2025-03-08 20:31:51",
+                    "CreateTimestamp": 1741437111,
+                    "DeleteTime": 1741438468,
+                    "Duration": 3995,
+                    "EndTime": "2025-03-08 20:31:48",
+                    "EndTimestamp": 1741437108,
+                    "FileId": "1397757906862292684",
+                    "FileName": "",
+                    "Message": "Operation succeeded",
+                    "Playset": [
+                        {
+                            "Definition": "0",
+                            "Url": "https:\/\/playback.eeo.cn\/794b4a11vodbj1252412222\/c853dc5a1397757906862292684\/f0.mp4"
+                        }
+                    ],
+                    "Size": "388497916",
+                    "SourceType": 0,
+                    "StartTime": "2025-03-08 19:25:16",
+                    "StartTimestamp": 1741433116,
+                    "Status": "100"
+                },
+                {
+                    "CIDExt": "",
+                    "CreateTime": "2025-03-08 20:58:58",
+                    "CreateTimestamp": 1741438738,
+                    "Duration": 4286,
+                    "EndTime": "2025-03-08 22:10:24",
+                    "EndTimestamp": 1741443024,
+                    "FileId": "1397757906895625189",
+                    "FileName": "20250308-L2绮捐銆婂剴鏋楀鍙层€?",
+                    "Message": "Operation succeeded",
+                    "Playset": [
+                        {
+                            "Definition": "0",
+                            "Url": "https:\/\/playback.eeo.cn\/794b4a11vodbj1252412222\/7cdf98201397757906895625189\/XcGaajaEfYcA.mp4"
+                        }
+                    ],
+                    "Size": "1011954082",
+                    "SourceType": 1,
+                    "StartTime": "2025-03-08 20:58:58",
+                    "StartTimestamp": 1741438738,
+                    "Status": "2"
+                }
+            ]
+        },
+        "lessonStarttime": 1741433400,
+        "lessonEndtime": 1741437000,
+        "courseName": "銆婂剴鏋楀鍙层€?",
+        "courseIntroduce": "",
+        "teacherId": 5212323,
+        "lessonType": 3,
+        "userType": 1,
+        "courseLogo": "https:\/\/static.eeo.cn\/upload\/images\/20220921\/12f6d2b8d3436e201304_400.jpg",
+        "schoolLogo": "https:\/\/static.eeo.cn\/upload\/images\/20230905\/a2a097039c71515a7135_260.png",
+        "schoolName": "搴勯噸璇讳功浼?,
+        "playNum": 0,
+        "likeNum": 0,
+        "onlineNum": 0,
+        "lessonIntroduce": "",
+        "showClassVideo": 1,
+        "avoidRecordReplay": 0,
+        "avoidRecordVideoRecorded": 0,
+        "teacherName": "搴勯噸",
+        "teacherAvatar": "",
+        "teacherBio": "",
+        "chatroomStatus": 0,
+        "lessonCode": 1,
+        "lessonStatus": 1,
+        "playbackDetail": {
+            "limitCount": 0,
+            "playCount": 2,
+            "canPlay": 1,
+            "canShow": 0
+        }
+    }
+}
+
+{
+    "error_info": {
+        "errno": 1,
+        "error": "程序正常执行(程序正常执行)"
+    },
+    "data": {
+        "lessonId": 874404893,
+        "lessonName": "《儒林外史》2 - 4",
+        "lessonData": {
+            "lessonStatus": 1,
+            "vodList": [],
+            "fileList": [
+                {
+                    "CIDExt": "",
+                    "CreateTime": "2025-03-08 20:31:51",
+                    "CreateTimestamp": 1741437111,
+                    "DeleteTime": 1741438468,
+                    "Duration": 3995,
+                    "EndTime": "2025-03-08 20:31:48",
+                    "EndTimestamp": 1741437108,
+                    "FileId": "1397757906862292684",
+                    "FileName": "",
+                    "Message": "Operation succeeded",
+                    "Playset": [
+                        {
+                            "Definition": "0",
+                            "Url": "https:\/\/playback.eeo.cn\/794b4a11vodbj1252412222\/c853dc5a1397757906862292684\/f0.mp4"
+                        }
+                    ],
+                    "Size": "388497916",
+                    "SourceType": 0,
+                    "StartTime": "2025-03-08 19:25:16",
+                    "StartTimestamp": 1741433116,
+                    "Status": "100"
+                },
+                {
+                    "CIDExt": "",
+                    "CreateTime": "2025-03-08 20:58:58",
+                    "CreateTimestamp": 1741438738,
+                    "Duration": 4286,
+                    "EndTime": "2025-03-08 22:10:24",
+                    "EndTimestamp": 1741443024,
+                    "FileId": "1397757906895625189",
+                    "FileName": "20250308-L2精读《儒林外史》2",
+                    "Message": "Operation succeeded",
+                    "Playset": [
+                        {
+                            "Definition": "0",
+                            "Url": "https:\/\/playback.eeo.cn\/794b4a11vodbj1252412222\/7cdf98201397757906895625189\/XcGaajaEfYcA.mp4"
+                        }
+                    ],
+                    "Size": "1011954082",
+                    "SourceType": 1,
+                    "StartTime": "2025-03-08 20:58:58",
+                    "StartTimestamp": 1741438738,
+                    "Status": "2"
+                }
+            ]
+        },
+        "lessonStarttime": 1741433400,
+        "lessonEndtime": 1741437000,
+        "courseName": "《儒林外史》2",
+        "courseIntroduce": "",
+        "teacherId": 5212323,
+        "lessonType": 3,
+        "userType": 1,
+        "courseLogo": "https:\/\/static.eeo.cn\/upload\/images\/20220921\/12f6d2b8d3436e201304_400.jpg",
+        "schoolLogo": "https:\/\/static.eeo.cn\/upload\/images\/20230905\/a2a097039c71515a7135_260.png",
+        "schoolName": "庄重读书会",
+        "playNum": 0,
+        "likeNum": 0,
+        "onlineNum": 0,
+        "lessonIntroduce": "",
+        "showClassVideo": 1,
+        "avoidRecordReplay": 0,
+        "avoidRecordVideoRecorded": 0,
+        "teacherName": "庄重",
+        "teacherAvatar": "",
+        "teacherBio": "",
+        "chatroomStatus": 0,
+        "lessonCode": 1,
+        "lessonStatus": 1,
+        "playbackDetail": {
+            "limitCount": 0,
+            "playCount": 2,
+            "canPlay": 1,
+            "canShow": 0
+        }
+    }
+}
+
+videoname：《儒林外史》2 - 4
+videonum：1
+url：https:\/\/playback.eeo.cn\/794b4a11vodbj1252412222\/7cdf98201397757906895625189\/XcGaajaEfYcA.mp4
+
+{
+    "error_info": {
+        "errno": 1,
+        "error": "绋嬪簭姝ｅ父鎵ц(绋嬪簭姝ｅ父鎵ц)"
+    },
+    "data": {
+        "lessonId": 874433755,
+        "lessonName": "銆婂彜鏂囪姝⒙锋眽榄忓闃欍€? - 3",
+        "lessonData": {
+            "lessonStatus": 1,
+            "vodList": [],
+            "fileList": [
+                {
+                    "CIDExt": "",
+                    "CreateTime": "2025-03-07 22:13:04",
+                    "CreateTimestamp": 1741356784,
+                    "Duration": 4281,
+                    "EndTime": "2025-03-07 23:24:25",
+                    "EndTimestamp": 1741361065,
+                    "FileId": "1397757906302598510",
+                    "FileName": "20250307-G銆婂彜鏂囪姝⒙锋眽榄忓闃欍€?",
+                    "Message": "Operation succeeded",
+                    "Playset": [
+                        {
+                            "Definition": "0",
+                            "Url": "https:\/\/playback.eeo.cn\/aebb1300vodsh1252412222\/ff5d690c1397757906302598510\/sF8Jgx4uWDoA.mp4"
+                        }
+                    ],
+                    "Size": "1007098975",
+                    "SourceType": 1,
+                    "StartTime": "2025-03-07 22:13:04",
+                    "StartTimestamp": 1741356784,
+                    "Status": "2"
+                }
+            ]
+        },
+        "lessonStarttime": 1741351500,
+        "lessonEndtime": 1741355100,
+        "courseName": "銆婂彜鏂囪姝⒙锋眽榄忓闃欍€?1",
+        "courseIntroduce": "",
+        "teacherId": 1987969,
+        "lessonType": 3,
+        "userType": 1,
+        "courseLogo": "https:\/\/static.eeo.cn\/upload\/images\/20230905\/7350648f1bc5e6ae4728_400.jpg",
+        "schoolLogo": "https:\/\/static.eeo.cn\/upload\/images\/20230905\/cee69e49bbda0dea5278_260.png",
+        "schoolName": "搴勯噸璇讳功浼?,
+        "playNum": 0,
+        "likeNum": 0,
+        "onlineNum": 0,
+        "lessonIntroduce": "",
+        "showClassVideo": 1,
+        "avoidRecordReplay": 0,
+        "avoidRecordVideoRecorded": 0,
+        "teacherName": "搴勯噸",
+        "teacherAvatar": "https:\/\/static.eeo.cn\/upload\/images\/20241104\/1F_00_c7315546893b090659e554bc94e7b3fb_180.png",
+        "teacherBio": "",
+        "chatroomStatus": 0,
+        "lessonCode": 1,
+        "lessonStatus": 1,
+        "playbackDetail": {
+            "limitCount": 0,
+            "playCount": 1,
+            "canPlay": 1,
+            "canShow": 0
+        }
+    }
+}
+
+{
+    "error_info": {
+        "errno": 1,
+        "error": "程序正常执行(程序正常执行)"
+    },
+    "data": {
+        "lessonId": 874433755,
+        "lessonName": "《古文观止·汉魏宫阙》1 - 3",
+        "lessonData": {
+            "lessonStatus": 1,
+            "vodList": [],
+            "fileList": [
+                {
+                    "CIDExt": "",
+                    "CreateTime": "2025-03-07 22:13:04",
+                    "CreateTimestamp": 1741356784,
+                    "Duration": 4281,
+                    "EndTime": "2025-03-07 23:24:25",
+                    "EndTimestamp": 1741361065,
+                    "FileId": "1397757906302598510",
+                    "FileName": "20250307-G《古文观止·汉魏宫阙》1",
+                    "Message": "Operation succeeded",
+                    "Playset": [
+                        {
+                            "Definition": "0",
+                            "Url": "https:\/\/playback.eeo.cn\/aebb1300vodsh1252412222\/ff5d690c1397757906302598510\/sF8Jgx4uWDoA.mp4"
+                        }
+                    ],
+                    "Size": "1007098975",
+                    "SourceType": 1,
+                    "StartTime": "2025-03-07 22:13:04",
+                    "StartTimestamp": 1741356784,
+                    "Status": "2"
+                }
+            ]
+        },
+        "lessonStarttime": 1741351500,
+        "lessonEndtime": 1741355100,
+        "courseName": "《古文观止·汉魏宫阙》01",
+        "courseIntroduce": "",
+        "teacherId": 1987969,
+        "lessonType": 3,
+        "userType": 1,
+        "courseLogo": "https:\/\/static.eeo.cn\/upload\/images\/20230905\/7350648f1bc5e6ae4728_400.jpg",
+        "schoolLogo": "https:\/\/static.eeo.cn\/upload\/images\/20230905\/cee69e49bbda0dea5278_260.png",
+        "schoolName": "庄重读书会",
+        "playNum": 0,
+        "likeNum": 0,
+        "onlineNum": 0,
+        "lessonIntroduce": "",
+        "showClassVideo": 1,
+        "avoidRecordReplay": 0,
+        "avoidRecordVideoRecorded": 0,
+        "teacherName": "庄重",
+        "teacherAvatar": "https:\/\/static.eeo.cn\/upload\/images\/20241104\/1F_00_c7315546893b090659e554bc94e7b3fb_180.png",
+        "teacherBio": "",
+        "chatroomStatus": 0,
+        "lessonCode": 1,
+        "lessonStatus": 1,
+        "playbackDetail": {
+            "limitCount": 0,
+            "playCount": 1,
+            "canPlay": 1,
+            "canShow": 0
+        }
+    }
+}
+
+videoname：《古文观止·汉魏宫阙》1 - 3
+videonum：1
+url：https://playback.eeo.cn/aebb1300vodsh1252412222/ff5d690c1397757906302598510/sF8Jgx4uWDoA.mp4
+
+{
+    "error_info": {
+        "errno": 1,
+        "error": "绋嬪簭姝ｅ父鎵ц(绋嬪簭姝ｅ父鎵ц)"
+    },
+    "data": {
+        "lessonId": 874435197,
+        "lessonName": "銆婂彜鏂囪姝⒙锋眽榄忓闃欍€?2 - 3",
+        "lessonData": {
+            "lessonStatus": 1,
+            "vodList": [],
+            "fileList": [
+                {
+                    "CIDExt": "",
+                    "CreateTime": "2025-03-14 22:13:30",
+                    "CreateTimestamp": 1741961610,
+                    "Duration": 4237,
+                    "EndTime": "2025-03-14 23:24:07",
+                    "EndTimestamp": 1741965847,
+                    "FileId": "1397757906835757340",
+                    "FileName": "20250314-G銆婂彜鏂囪姝⒙锋眽榄忓闃欍€?2",
+                    "Message": "Operation succeeded",
+                    "Playset": [
+                        {
+                            "Definition": "0",
+                            "Url": "https:\/\/playback.eeo.cn\/aebb1300vodsh1252412222\/f5e12db51397757906835757340\/whfL3jvlnzwA.mp4"
+                        }
+                    ],
+                    "Size": "340161522",
+                    "SourceType": 1,
+                    "StartTime": "2025-03-14 22:13:30",
+                    "StartTimestamp": 1741961610,
+                    "Status": "2"
+                }
+            ]
+        },
+        "lessonStarttime": 1741956300,
+        "lessonEndtime": 1741959900,
+        "courseName": "銆婂彜鏂囪姝⒙锋眽榄忓闃欍€?2",
+        "courseIntroduce": "",
+        "teacherId": 1987969,
+        "lessonType": 3,
+        "userType": 1,
+        "courseLogo": "https:\/\/static.eeo.cn\/upload\/images\/20230905\/7350648f1bc5e6ae4728_400.jpg",
+        "schoolLogo": "https:\/\/static.eeo.cn\/upload\/images\/20230905\/cee69e49bbda0dea5278_260.png",
+        "schoolName": "搴勯噸璇讳功浼?,
+        "playNum": 0,
+        "likeNum": 0,
+        "onlineNum": 0,
+        "lessonIntroduce": "",
+        "showClassVideo": 1,
+        "avoidRecordReplay": 0,
+        "avoidRecordVideoRecorded": 0,
+        "teacherName": "搴勯噸",
+        "teacherAvatar": "https:\/\/static.eeo.cn\/upload\/images\/20241104\/1F_00_c7315546893b090659e554bc94e7b3fb_180.png",
+        "teacherBio": "",
+        "chatroomStatus": 0,
+        "lessonCode": 1,
+        "lessonStatus": 1,
+        "playbackDetail": {
+            "limitCount": 0,
+            "playCount": 0,
+            "canPlay": 1,
+            "canShow": 0
+        }
+    }
+}
+
+{
+    "error_info": {
+        "errno": 1,
+        "error": "程序正常执行(程序正常执行)"
+    },
+    "data": {
+        "lessonId": 874435197,
+        "lessonName": "《古文观止·汉魏宫阙》02 - 3",
+        "lessonData": {
+            "lessonStatus": 1,
+            "vodList": [],
+            "fileList": [
+                {
+                    "CIDExt": "",
+                    "CreateTime": "2025-03-14 22:13:30",
+                    "CreateTimestamp": 1741961610,
+                    "Duration": 4237,
+                    "EndTime": "2025-03-14 23:24:07",
+                    "EndTimestamp": 1741965847,
+                    "FileId": "1397757906835757340",
+                    "FileName": "20250314-G《古文观止·汉魏宫阙》02",
+                    "Message": "Operation succeeded",
+                    "Playset": [
+                        {
+                            "Definition": "0",
+                            "Url": "https:\/\/playback.eeo.cn\/aebb1300vodsh1252412222\/f5e12db51397757906835757340\/whfL3jvlnzwA.mp4"
+                        }
+                    ],
+                    "Size": "340161522",
+                    "SourceType": 1,
+                    "StartTime": "2025-03-14 22:13:30",
+                    "StartTimestamp": 1741961610,
+                    "Status": "2"
+                }
+            ]
+        },
+        "lessonStarttime": 1741956300,
+        "lessonEndtime": 1741959900,
+        "courseName": "《古文观止·汉魏宫阙》02",
+        "courseIntroduce": "",
+        "teacherId": 1987969,
+        "lessonType": 3,
+        "userType": 1,
+        "courseLogo": "https:\/\/static.eeo.cn\/upload\/images\/20230905\/7350648f1bc5e6ae4728_400.jpg",
+        "schoolLogo": "https:\/\/static.eeo.cn\/upload\/images\/20230905\/cee69e49bbda0dea5278_260.png",
+        "schoolName": "庄重读书会",
+        "playNum": 0,
+        "likeNum": 0,
+        "onlineNum": 0,
+        "lessonIntroduce": "",
+        "showClassVideo": 1,
+        "avoidRecordReplay": 0,
+        "avoidRecordVideoRecorded": 0,
+        "teacherName": "庄重",
+        "teacherAvatar": "https:\/\/static.eeo.cn\/upload\/images\/20241104\/1F_00_c7315546893b090659e554bc94e7b3fb_180.png",
+        "teacherBio": "",
+        "chatroomStatus": 0,
+        "lessonCode": 1,
+        "lessonStatus": 1,
+        "playbackDetail": {
+            "limitCount": 0,
+            "playCount": 0,
+            "canPlay": 1,
+            "canShow": 0
+        }
+    }
+}
+
+videoname：《古文观止·汉魏宫阙》02 - 3
+videonum：1
+url：https://playback.eeo.cn/aebb1300vodsh1252412222/f5e12db51397757906835757340/whfL3jvlnzwA.mp4
+
+{
+    "error_info": {
+        "errno": 1,
+        "error": "绋嬪簭姝ｅ父鎵ц(绋嬪簭姝ｅ父鎵ц)"
+    },
+    "data": {
+        "lessonId": 874405835,
+        "lessonName": "銆婂剴鏋楀鍙层€? - 4",
+        "lessonData": {
+            "lessonStatus": 1,
+            "vodList": [],
+            "fileList": [
+                {
+                    "CIDExt": "",
+                    "CreateTime": "2025-03-15 20:58:34",
+                    "CreateTimestamp": 1742043514,
+                    "Duration": 3927,
+                    "EndTime": "2025-03-15 22:04:01",
+                    "EndTimestamp": 1742047441,
+                    "FileId": "1397757907443382185",
+                    "FileName": "250315-L2绮捐銆婂剴鏋楀鍙层€?",
+                    "Message": "Operation succeeded",
+                    "Playset": [
+                        {
+                            "Definition": "0",
+                            "Url": "https:\/\/playback.eeo.cn\/794b4a11vodbj1252412222\/712637521397757907443382185\/ztMZFAYf3pkA.mp4"
+                        }
+                    ],
+                    "Size": "382108865",
+                    "SourceType": 1,
+                    "StartTime": "2025-03-15 20:58:34",
+                    "StartTimestamp": 1742043514,
+                    "Status": "2"
+                }
+            ]
+        },
+        "lessonStarttime": 1742038200,
+        "lessonEndtime": 1742041800,
+        "courseName": "銆婂剴鏋楀鍙层€?",
+        "courseIntroduce": "",
+        "teacherId": 5212323,
+        "lessonType": 3,
+        "userType": 1,
+        "courseLogo": "https:\/\/static.eeo.cn\/upload\/images\/20220921\/12f6d2b8d3436e201304_400.jpg",
+        "schoolLogo": "https:\/\/static.eeo.cn\/upload\/images\/20230905\/a2a097039c71515a7135_260.png",
+        "schoolName": "搴勯噸璇讳功浼?,
+        "playNum": 0,
+        "likeNum": 0,
+        "onlineNum": 0,
+        "lessonIntroduce": "",
+        "showClassVideo": 1,
+        "avoidRecordReplay": 0,
+        "avoidRecordVideoRecorded": 0,
+        "teacherName": "搴勯噸",
+        "teacherAvatar": "",
+        "teacherBio": "",
+        "chatroomStatus": 0,
+        "lessonCode": 1,
+        "lessonStatus": 1,
+        "playbackDetail": {
+            "limitCount": 0,
+            "playCount": 3,
+            "canPlay": 1,
+            "canShow": 0
+        }
+    }
+}
+
+{
+    "error_info": {
+        "errno": 1,
+        "error": "程序正常执行(程序正常执行)"
+    },
+    "data": {
+        "lessonId": 874405835,
+        "lessonName": "《儒林外史》3 - 4",
+        "lessonData": {
+            "lessonStatus": 1,
+            "vodList": [],
+            "fileList": [
+                {
+                    "CIDExt": "",
+                    "CreateTime": "2025-03-15 20:58:34",
+                    "CreateTimestamp": 1742043514,
+                    "Duration": 3927,
+                    "EndTime": "2025-03-15 22:04:01",
+                    "EndTimestamp": 1742047441,
+                    "FileId": "1397757907443382185",
+                    "FileName": "250315-L2精读《儒林外史》3",
+                    "Message": "Operation succeeded",
+                    "Playset": [
+                        {
+                            "Definition": "0",
+                            "Url": "https:\/\/playback.eeo.cn\/794b4a11vodbj1252412222\/712637521397757907443382185\/ztMZFAYf3pkA.mp4"
+                        }
+                    ],
+                    "Size": "382108865",
+                    "SourceType": 1,
+                    "StartTime": "2025-03-15 20:58:34",
+                    "StartTimestamp": 1742043514,
+                    "Status": "2"
+                }
+            ]
+        },
+        "lessonStarttime": 1742038200,
+        "lessonEndtime": 1742041800,
+        "courseName": "《儒林外史》3",
+        "courseIntroduce": "",
+        "teacherId": 5212323,
+        "lessonType": 3,
+        "userType": 1,
+        "courseLogo": "https:\/\/static.eeo.cn\/upload\/images\/20220921\/12f6d2b8d3436e201304_400.jpg",
+        "schoolLogo": "https:\/\/static.eeo.cn\/upload\/images\/20230905\/a2a097039c71515a7135_260.png",
+        "schoolName": "庄重读书会",
+        "playNum": 0,
+        "likeNum": 0,
+        "onlineNum": 0,
+        "lessonIntroduce": "",
+        "showClassVideo": 1,
+        "avoidRecordReplay": 0,
+        "avoidRecordVideoRecorded": 0,
+        "teacherName": "庄重",
+        "teacherAvatar": "",
+        "teacherBio": "",
+        "chatroomStatus": 0,
+        "lessonCode": 1,
+        "lessonStatus": 1,
+        "playbackDetail": {
+            "limitCount": 0,
+            "playCount": 3,
+            "canPlay": 1,
+            "canShow": 0
+        }
+    }
+}
+
+videoname：《儒林外史》3 - 4
+videonum：1
+url：https://playback.eeo.cn/794b4a11vodbj1252412222/712637521397757907443382185/ztMZFAYf3pkA.mp4
+
+{
+    "error_info": {
+        "errno": 1,
+        "error": "绋嬪簭姝ｅ父鎵ц(绋嬪簭姝ｅ父鎵ц)"
+    },
+    "data": {
+        "lessonId": 874436821,
+        "lessonName": "銆婂彜鏂囪姝⒙锋眽榄忓闃欍€?3 - 3",
+        "lessonData": {
+            "lessonStatus": 1,
+            "vodList": [],
+            "fileList": [
+                {
+                    "CIDExt": "",
+                    "CreateTime": "2025-03-21 22:11:04",
+                    "CreateTimestamp": 1742566264,
+                    "Duration": 4307,
+                    "EndTime": "2025-03-21 23:22:51",
+                    "EndTimestamp": 1742570571,
+                    "FileId": "1397757907372402912",
+                    "FileName": "20250321-G銆婂彜鏂囪姝⒙锋眽榄忓闃欍€?3",
+                    "Message": "Operation succeeded",
+                    "Playset": [
+                        {
+                            "Definition": "0",
+                            "Url": "https:\/\/playback.eeo.cn\/aebb1300vodsh1252412222\/76398dea1397757907372402912\/2KTcJTXiZxYA.mp4"
+                        }
+                    ],
+                    "Size": "1015703821",
+                    "SourceType": 1,
+                    "StartTime": "2025-03-21 22:11:04",
+                    "StartTimestamp": 1742566264,
+                    "Status": "2"
+                }
+            ]
+        },
+        "lessonStarttime": 1742561100,
+        "lessonEndtime": 1742564700,
+        "courseName": "銆婂彜鏂囪姝⒙锋眽榄忓闃欍€?3",
+        "courseIntroduce": "",
+        "teacherId": 1987969,
+        "lessonType": 3,
+        "userType": 1,
+        "courseLogo": "https:\/\/static.eeo.cn\/upload\/images\/20230905\/7350648f1bc5e6ae4728_400.jpg",
+        "schoolLogo": "https:\/\/static.eeo.cn\/upload\/images\/20230905\/cee69e49bbda0dea5278_260.png",
+        "schoolName": "搴勯噸璇讳功浼?,
+        "playNum": 0,
+        "likeNum": 0,
+        "onlineNum": 0,
+        "lessonIntroduce": "",
+        "showClassVideo": 1,
+        "avoidRecordReplay": 0,
+        "avoidRecordVideoRecorded": 0,
+        "teacherName": "搴勯噸",
+        "teacherAvatar": "https:\/\/static.eeo.cn\/upload\/images\/20241104\/1F_00_c7315546893b090659e554bc94e7b3fb_180.png",
+        "teacherBio": "",
+        "chatroomStatus": 0,
+        "lessonCode": 1,
+        "lessonStatus": 1,
+        "playbackDetail": {
+            "limitCount": 0,
+            "playCount": 0,
+            "canPlay": 1,
+            "canShow": 0
+        }
+    }
+}
+
+{
+    "error_info": {
+        "errno": 1,
+        "error": "程序正常执行(程序正常执行)"
+    },
+    "data": {
+        "lessonId": 874436821,
+        "lessonName": "《古文观止·汉魏宫阙》03 - 3",
+        "lessonData": {
+            "lessonStatus": 1,
+            "vodList": [],
+            "fileList": [
+                {
+                    "CIDExt": "",
+                    "CreateTime": "2025-03-21 22:11:04",
+                    "CreateTimestamp": 1742566264,
+                    "Duration": 4307,
+                    "EndTime": "2025-03-21 23:22:51",
+                    "EndTimestamp": 1742570571,
+                    "FileId": "1397757907372402912",
+                    "FileName": "20250321-G《古文观止·汉魏宫阙》03",
+                    "Message": "Operation succeeded",
+                    "Playset": [
+                        {
+                            "Definition": "0",
+                            "Url": "https:\/\/playback.eeo.cn\/aebb1300vodsh1252412222\/76398dea1397757907372402912\/2KTcJTXiZxYA.mp4"
+                        }
+                    ],
+                    "Size": "1015703821",
+                    "SourceType": 1,
+                    "StartTime": "2025-03-21 22:11:04",
+                    "StartTimestamp": 1742566264,
+                    "Status": "2"
+                }
+            ]
+        },
+        "lessonStarttime": 1742561100,
+        "lessonEndtime": 1742564700,
+        "courseName": "《古文观止·汉魏宫阙》03",
+        "courseIntroduce": "",
+        "teacherId": 1987969,
+        "lessonType": 3,
+        "userType": 1,
+        "courseLogo": "https:\/\/static.eeo.cn\/upload\/images\/20230905\/7350648f1bc5e6ae4728_400.jpg",
+        "schoolLogo": "https:\/\/static.eeo.cn\/upload\/images\/20230905\/cee69e49bbda0dea5278_260.png",
+        "schoolName": "庄重读书会",
+        "playNum": 0,
+        "likeNum": 0,
+        "onlineNum": 0,
+        "lessonIntroduce": "",
+        "showClassVideo": 1,
+        "avoidRecordReplay": 0,
+        "avoidRecordVideoRecorded": 0,
+        "teacherName": "庄重",
+        "teacherAvatar": "https:\/\/static.eeo.cn\/upload\/images\/20241104\/1F_00_c7315546893b090659e554bc94e7b3fb_180.png",
+        "teacherBio": "",
+        "chatroomStatus": 0,
+        "lessonCode": 1,
+        "lessonStatus": 1,
+        "playbackDetail": {
+            "limitCount": 0,
+            "playCount": 0,
+            "canPlay": 1,
+            "canShow": 0
+        }
+    }
+}
+
+videoname：《古文观止·汉魏宫阙》03 - 3
+videonum：1
+url：https://playback.eeo.cn/aebb1300vodsh1252412222/76398dea1397757907372402912/2KTcJTXiZxYA.mp4
+
+{
+    "error_info": {
+        "errno": 1,
+        "error": "绋嬪簭姝ｅ父鎵ц(绋嬪簭姝ｅ父鎵ц)"
+    },
+    "data": {
+        "lessonId": 874407171,
+        "lessonName": "銆婂剴鏋楀鍙层€? - 4",
+        "lessonData": {
+            "lessonStatus": 1,
+            "vodList": [],
+            "fileList": [
+                {
+                    "CIDExt": "",
+                    "CreateTime": "2025-03-22 10:24:38",
+                    "CreateTimestamp": 1742610278,
+                    "Duration": 4212,
+                    "EndTime": "2025-03-22 11:34:50",
+                    "EndTimestamp": 1742614490,
+                    "FileId": "1397757907961652740",
+                    "FileName": "2025-3-22銆婂剴鏋楀鍙层€?",
+                    "Message": "Operation succeeded",
+                    "Playset": [
+                        {
+                            "Definition": "0",
+                            "Url": "https:\/\/playback.eeo.cn\/794b4a11vodbj1252412222\/fcece5f41397757907961652740\/htw4LEhkbBEA.mp4"
+                        }
+                    ],
+                    "Size": "233934699",
+                    "SourceType": 1,
+                    "StartTime": "2025-03-22 10:24:38",
+                    "StartTimestamp": 1742610278,
+                    "Status": "2"
+                }
+            ]
+        },
+        "lessonStarttime": 1742605200,
+        "lessonEndtime": 1742608800,
+        "courseName": "銆婂剴鏋楀鍙层€?",
+        "courseIntroduce": "",
+        "teacherId": 5212323,
+        "lessonType": 3,
+        "userType": 1,
+        "courseLogo": "https:\/\/static.eeo.cn\/upload\/images\/20220921\/12f6d2b8d3436e201304_400.jpg",
+        "schoolLogo": "https:\/\/static.eeo.cn\/upload\/images\/20230905\/a2a097039c71515a7135_260.png",
+        "schoolName": "搴勯噸璇讳功浼?,
+        "playNum": 0,
+        "likeNum": 0,
+        "onlineNum": 0,
+        "lessonIntroduce": "",
+        "showClassVideo": 1,
+        "avoidRecordReplay": 0,
+        "avoidRecordVideoRecorded": 0,
+        "teacherName": "搴勯噸",
+        "teacherAvatar": "",
+        "teacherBio": "",
+        "chatroomStatus": 0,
+        "lessonCode": 1,
+        "lessonStatus": 1,
+        "playbackDetail": {
+            "limitCount": 0,
+            "playCount": 3,
+            "canPlay": 1,
+            "canShow": 0
+        }
+    }
+}
+
+{
+    "error_info": {
+        "errno": 1,
+        "error": "程序正常执行(程序正常执行)"
+    },
+    "data": {
+        "lessonId": 874407171,
+        "lessonName": "《儒林外史》4 - 4",
+        "lessonData": {
+            "lessonStatus": 1,
+            "vodList": [],
+            "fileList": [
+                {
+                    "CIDExt": "",
+                    "CreateTime": "2025-03-22 10:24:38",
+                    "CreateTimestamp": 1742610278,
+                    "Duration": 4212,
+                    "EndTime": "2025-03-22 11:34:50",
+                    "EndTimestamp": 1742614490,
+                    "FileId": "1397757907961652740",
+                    "FileName": "2025-3-22《儒林外史》4",
+                    "Message": "Operation succeeded",
+                    "Playset": [
+                        {
+                            "Definition": "0",
+                            "Url": "https:\/\/playback.eeo.cn\/794b4a11vodbj1252412222\/fcece5f41397757907961652740\/htw4LEhkbBEA.mp4"
+                        }
+                    ],
+                    "Size": "233934699",
+                    "SourceType": 1,
+                    "StartTime": "2025-03-22 10:24:38",
+                    "StartTimestamp": 1742610278,
+                    "Status": "2"
+                }
+            ]
+        },
+        "lessonStarttime": 1742605200,
+        "lessonEndtime": 1742608800,
+        "courseName": "《儒林外史》4",
+        "courseIntroduce": "",
+        "teacherId": 5212323,
+        "lessonType": 3,
+        "userType": 1,
+        "courseLogo": "https:\/\/static.eeo.cn\/upload\/images\/20220921\/12f6d2b8d3436e201304_400.jpg",
+        "schoolLogo": "https:\/\/static.eeo.cn\/upload\/images\/20230905\/a2a097039c71515a7135_260.png",
+        "schoolName": "庄重读书会",
+        "playNum": 0,
+        "likeNum": 0,
+        "onlineNum": 0,
+        "lessonIntroduce": "",
+        "showClassVideo": 1,
+        "avoidRecordReplay": 0,
+        "avoidRecordVideoRecorded": 0,
+        "teacherName": "庄重",
+        "teacherAvatar": "",
+        "teacherBio": "",
+        "chatroomStatus": 0,
+        "lessonCode": 1,
+        "lessonStatus": 1,
+        "playbackDetail": {
+            "limitCount": 0,
+            "playCount": 3,
+            "canPlay": 1,
+            "canShow": 0
+        }
+    }
+}
+
+videoname：《儒林外史》4 - 4
+videonum：1
+url：https://playback.eeo.cn/794b4a11vodbj1252412222/fcece5f41397757907961652740/htw4LEhkbBEA.mp4
+
+{
+    "error_info": {
+        "errno": 1,
+        "error": "绋嬪簭姝ｅ父鎵ц(绋嬪簭姝ｅ父鎵ц)"
+    },
+    "data": {
+        "lessonId": 890674279,
+        "lessonName": "銆愬攼璇楀璧忋€戝紶鑻ヨ櫄 - 1",
+        "lessonData": {
+            "lessonStatus": 1,
+            "vodList": [],
+            "fileList": [
+                {
+                    "CIDExt": "",
+                    "CreateTime": "2025-03-26 20:01:19",
+                    "CreateTimestamp": 1742990479,
+                    "Duration": 4320,
+                    "EndTime": "2025-03-26 20:01:14",
+                    "EndTimestamp": 1742990474,
+                    "FileId": "1397757908208772671",
+                    "FileName": "",
+                    "Message": "Operation succeeded",
+                    "Playset": [
+                        {
+                            "Definition": "0",
+                            "Url": "https:\/\/playback.eeo.cn\/794b4a11vodbj1252412222\/655661d51397757908208772671\/f0.mp4"
+                        }
+                    ],
+                    "Size": "1015963842",
+                    "SourceType": 0,
+                    "StartTime": "2025-03-26 18:49:16",
+                    "StartTimestamp": 1742986156,
+                    "Status": "2"
+                }
+            ]
+        },
+        "lessonStarttime": 1742986800,
+        "lessonEndtime": 1742990400,
+        "courseName": "銆愬攼璇楀璧忋€戝紶鑻ヨ櫄-3",
+        "courseIntroduce": "",
+        "teacherId": 1030821,
+        "lessonType": 9,
+        "userType": 1,
+        "courseLogo": "https:\/\/static.eeo.cn\/upload\/images\/20220921\/89c4af4bf8c2fd0f5867_400.jpg",
+        "schoolLogo": "https:\/\/static.eeo.cn\/upload\/images\/20230905\/dd90a1566cac8d356902_260.png",
+        "schoolName": "搴勯噸璇讳功浼?,
+        "playNum": 0,
+        "likeNum": 0,
+        "onlineNum": 0,
+        "lessonIntroduce": "",
+        "showClassVideo": 1,
+        "avoidRecordReplay": 0,
+        "avoidRecordVideoRecorded": 0,
+        "teacherName": "搴勯噸",
+        "teacherAvatar": "https:\/\/static.eeo.cn\/upload\/images\/20250115\/1F_00_e207c04a-ffff-421d-8eac-c7dbc4b0d1aa_180.png",
+        "teacherBio": "",
+        "chatroomStatus": 0,
+        "lessonCode": 1,
+        "lessonStatus": 1,
+        "playbackDetail": {
+            "limitCount": 0,
+            "playCount": 1,
+            "canPlay": 1,
+            "canShow": 0
+        }
+    }
+}
+
+{
+    "error_info": {
+        "errno": 1,
+        "error": "程序正常执行(程序正常执行)"
+    },
+    "data": {
+        "lessonId": 890674279,
+        "lessonName": "【唐诗妙赏】张若虚 - 1",
+        "lessonData": {
+            "lessonStatus": 1,
+            "vodList": [],
+            "fileList": [
+                {
+                    "CIDExt": "",
+                    "CreateTime": "2025-03-26 20:01:19",
+                    "CreateTimestamp": 1742990479,
+                    "Duration": 4320,
+                    "EndTime": "2025-03-26 20:01:14",
+                    "EndTimestamp": 1742990474,
+                    "FileId": "1397757908208772671",
+                    "FileName": "",
+                    "Message": "Operation succeeded",
+                    "Playset": [
+                        {
+                            "Definition": "0",
+                            "Url": "https:\/\/playback.eeo.cn\/794b4a11vodbj1252412222\/655661d51397757908208772671\/f0.mp4"
+                        }
+                    ],
+                    "Size": "1015963842",
+                    "SourceType": 0,
+                    "StartTime": "2025-03-26 18:49:16",
+                    "StartTimestamp": 1742986156,
+                    "Status": "2"
+                }
+            ]
+        },
+        "lessonStarttime": 1742986800,
+        "lessonEndtime": 1742990400,
+        "courseName": "【唐诗妙赏】张若虚-3",
+        "courseIntroduce": "",
+        "teacherId": 1030821,
+        "lessonType": 9,
+        "userType": 1,
+        "courseLogo": "https:\/\/static.eeo.cn\/upload\/images\/20220921\/89c4af4bf8c2fd0f5867_400.jpg",
+        "schoolLogo": "https:\/\/static.eeo.cn\/upload\/images\/20230905\/dd90a1566cac8d356902_260.png",
+        "schoolName": "庄重读书会",
+        "playNum": 0,
+        "likeNum": 0,
+        "onlineNum": 0,
+        "lessonIntroduce": "",
+        "showClassVideo": 1,
+        "avoidRecordReplay": 0,
+        "avoidRecordVideoRecorded": 0,
+        "teacherName": "庄重",
+        "teacherAvatar": "https:\/\/static.eeo.cn\/upload\/images\/20250115\/1F_00_e207c04a-ffff-421d-8eac-c7dbc4b0d1aa_180.png",
+        "teacherBio": "",
+        "chatroomStatus": 0,
+        "lessonCode": 1,
+        "lessonStatus": 1,
+        "playbackDetail": {
+            "limitCount": 0,
+            "playCount": 1,
+            "canPlay": 1,
+            "canShow": 0
+        }
+    }
+}
+
+videoname：【唐诗妙赏】张若虚 - 1
+videonum：1
+url:https://playback.eeo.cn/794b4a11vodbj1252412222/655661d51397757908208772671/f0.mp4
+
+{
+    "error_info": {
+        "errno": 1,
+        "error": "绋嬪簭姝ｅ父鎵ц(绋嬪簭姝ｅ父鎵ц)"
+    },
+    "data": {
+        "lessonId": 874386489,
+        "lessonName": "銆愬攼璇楀璧忋€戞潕鍟嗛殣 - 4",
+        "lessonData": {
+            "lessonStatus": 1,
+            "vodList": [],
+            "fileList": [
+                {
+                    "CIDExt": "",
+                    "CreateTime": "2025-02-26 20:30:18",
+                    "CreateTimestamp": 1740573018,
+                    "Duration": 4242,
+                    "EndTime": "2025-02-26 21:41:00",
+                    "EndTimestamp": 1740577260,
+                    "FileId": "1397757906128673131",
+                    "FileName": "2025-2-26銆愬攼璇楀璧忋€戞潕鍟嗛殣",
+                    "Message": "Operation succeeded",
+                    "Playset": [
+                        {
+                            "Definition": "0",
+                            "Url": "https:\/\/playback.eeo.cn\/794b4a11vodbj1252412222\/bef3c64b1397757906128673131\/Z3TLUMzV6d8A.mp4"
+                        }
+                    ],
+                    "Size": "1001102219",
+                    "SourceType": 1,
+                    "StartTime": "2025-02-26 20:30:18",
+                    "StartTimestamp": 1740573018,
+                    "Status": "2"
+                }
+            ]
+        },
+        "lessonStarttime": 1740567600,
+        "lessonEndtime": 1740571200,
+        "courseName": "銆愬攼璇楀璧忋€戞潕鍟嗛殣",
+        "courseIntroduce": "",
+        "teacherId": 1030821,
+        "lessonType": 3,
+        "userType": 1,
+        "courseLogo": "https:\/\/static.eeo.cn\/upload\/images\/20220921\/89c4af4bf8c2fd0f5867_400.jpg",
+        "schoolLogo": "https:\/\/static.eeo.cn\/upload\/images\/20230905\/dd90a1566cac8d356902_260.png",
+        "schoolName": "搴勯噸璇讳功浼?,
+        "playNum": 0,
+        "likeNum": 0,
+        "onlineNum": 0,
+        "lessonIntroduce": "",
+        "showClassVideo": 1,
+        "avoidRecordReplay": 0,
+        "avoidRecordVideoRecorded": 0,
+        "teacherName": "搴勯噸",
+        "teacherAvatar": "https:\/\/static.eeo.cn\/upload\/images\/20250115\/1F_00_e207c04a-ffff-421d-8eac-c7dbc4b0d1aa_180.png",
+        "teacherBio": "",
+        "chatroomStatus": 0,
+        "lessonCode": 1,
+        "lessonStatus": 1,
+        "playbackDetail": {
+            "limitCount": 0,
+            "playCount": 0,
+            "canPlay": 1,
+            "canShow": 0
+        }
+    }
+}
+
+{
+    "error_info": {
+        "errno": 1,
+        "error": "程序正常执行(程序正常执行)"
+    },
+    "data": {
+        "lessonId": 874386489,
+        "lessonName": "【唐诗妙赏】李商隐 - 4",
+        "lessonData": {
+            "lessonStatus": 1,
+            "vodList": [],
+            "fileList": [
+                {
+                    "CIDExt": "",
+                    "CreateTime": "2025-02-26 20:30:18",
+                    "CreateTimestamp": 1740573018,
+                    "Duration": 4242,
+                    "EndTime": "2025-02-26 21:41:00",
+                    "EndTimestamp": 1740577260,
+                    "FileId": "1397757906128673131",
+                    "FileName": "2025-2-26【唐诗妙赏】李商隐",
+                    "Message": "Operation succeeded",
+                    "Playset": [
+                        {
+                            "Definition": "0",
+                            "Url": "https:\/\/playback.eeo.cn\/794b4a11vodbj1252412222\/bef3c64b1397757906128673131\/Z3TLUMzV6d8A.mp4"
+                        }
+                    ],
+                    "Size": "1001102219",
+                    "SourceType": 1,
+                    "StartTime": "2025-02-26 20:30:18",
+                    "StartTimestamp": 1740573018,
+                    "Status": "2"
+                }
+            ]
+        },
+        "lessonStarttime": 1740567600,
+        "lessonEndtime": 1740571200,
+        "courseName": "【唐诗妙赏】李商隐",
+        "courseIntroduce": "",
+        "teacherId": 1030821,
+        "lessonType": 3,
+        "userType": 1,
+        "courseLogo": "https:\/\/static.eeo.cn\/upload\/images\/20220921\/89c4af4bf8c2fd0f5867_400.jpg",
+        "schoolLogo": "https:\/\/static.eeo.cn\/upload\/images\/20230905\/dd90a1566cac8d356902_260.png",
+        "schoolName": "庄重读书会",
+        "playNum": 0,
+        "likeNum": 0,
+        "onlineNum": 0,
+        "lessonIntroduce": "",
+        "showClassVideo": 1,
+        "avoidRecordReplay": 0,
+        "avoidRecordVideoRecorded": 0,
+        "teacherName": "庄重",
+        "teacherAvatar": "https:\/\/static.eeo.cn\/upload\/images\/20250115\/1F_00_e207c04a-ffff-421d-8eac-c7dbc4b0d1aa_180.png",
+        "teacherBio": "",
+        "chatroomStatus": 0,
+        "lessonCode": 1,
+        "lessonStatus": 1,
+        "playbackDetail": {
+            "limitCount": 0,
+            "playCount": 0,
+            "canPlay": 1,
+            "canShow": 0
+        }
+    }
+}
+
+videoname：【唐诗妙赏】李商隐 - 4
+videonum：1
+url：https://playback.eeo.cn/794b4a11vodbj1252412222/bef3c64b1397757906128673131/Z3TLUMzV6d8A.mp4
+{
+    "error_info": {
+        "errno": 1,
+        "error": "绋嬪簭姝ｅ父鎵ц(绋嬪簭姝ｅ父鎵ц)"
+    },
+    "data": {
+        "lessonId": 880295371,
+        "lessonName": "瀹堕暱璇惧爞銆婃垜浠殑鑰侀櫌銆?- 7",
+        "lessonData": {
+            "lessonStatus": 1,
+            "vodList": [],
+            "fileList": [
+                {
+                    "CIDExt": "",
+                    "CreateTime": "2025-02-27 21:12:15",
+                    "CreateTimestamp": 1740661935,
+                    "DeleteTime": 1740668703,
+                    "Duration": 7200,
+                    "EndTime": "2025-02-27 21:12:13",
+                    "EndTimestamp": 1740661933,
+                    "FileId": "1397757906171930296",
+                    "FileName": "",
+                    "Message": "Operation succeeded",
+                    "Playset": [
+                        {
+                            "Definition": "0",
+                            "Url": "https:\/\/playback.eeo.cn\/794b4a11vodbj1252412222\/481abd311397757906171930296\/f0.mp4"
+                        }
+                    ],
+                    "Size": "570079855",
+                    "SourceType": 0,
+                    "StartTime": "2025-02-27 19:12:13",
+                    "StartTimestamp": 1740654733,
+                    "Status": "100"
+                },
+                {
+                    "CIDExt": "",
+                    "CreateTime": "2025-02-27 21:32:05",
+                    "CreateTimestamp": 1740663125,
+                    "DeleteTime": 1740668699,
+                    "Duration": 1190,
+                    "EndTime": "2025-02-27 21:32:03",
+                    "EndTimestamp": 1740663123,
+                    "FileId": "1397757906179180155",
+                    "FileName": "",
+                    "Message": "Operation succeeded",
+                    "Playset": [
+                        {
+                            "Definition": "0",
+                            "Url": "https:\/\/playback.eeo.cn\/794b4a11vodbj1252412222\/9d9dd3f01397757906179180155\/f0.mp4"
+                        }
+                    ],
+                    "Size": "95113638",
+                    "SourceType": 0,
+                    "StartTime": "2025-02-27 21:12:13",
+                    "StartTimestamp": 1740661933,
+                    "Status": "100"
+                },
+                {
+                    "CIDExt": "",
+                    "CreateTime": "2025-02-27 23:11:59",
+                    "CreateTimestamp": 1740669119,
+                    "Duration": 9725,
+                    "EndTime": "2025-02-28 01:54:04",
+                    "EndTimestamp": 1740678844,
+                    "FileId": "1397757906216742893",
+                    "FileName": "2025-2-27瀹堕暱璇惧爞銆婃垜浠殑鑰侀櫌銆?,
+                    "Message": "Operation succeeded",
+                    "Playset": [
+                        {
+                            "Definition": "0",
+                            "Url": "https:\/\/playback.eeo.cn\/794b4a11vodbj1252412222\/af585a351397757906216742893\/8BV9L0UvGXkA.mp4"
+                        }
+                    ],
+                    "Size": "1881945529",
+                    "SourceType": 1,
+                    "StartTime": "2025-02-27 23:11:59",
+                    "StartTimestamp": 1740669119,
+                    "Status": "2"
+                }
+            ]
+        },
+        "lessonStarttime": 1740654000,
+        "lessonEndtime": 1740664800,
+        "courseName": "瀹堕暱璇惧爞銆婃垜浠殑鑰侀櫌銆?,
+        "courseIntroduce": "",
+        "teacherId": 16395167,
+        "lessonType": 3,
+        "userType": 1,
+        "courseLogo": "https:\/\/static.eeo.cn\/upload\/images\/20231106\/1F_00_b04753cb591755cfbd7e0c5b8b32b2f7_400.png",
+        "schoolLogo": "https:\/\/static.eeo.cn\/upload\/images\/20231027\/1F_00_15529a6bf75b7a7f65191316d0bd7026_260.png",
+        "schoolName": "搴勯噸璇讳功浼?,
+        "playNum": 0,
+        "likeNum": 0,
+        "onlineNum": 0,
+        "lessonIntroduce": "",
+        "showClassVideo": 1,
+        "avoidRecordReplay": 0,
+        "avoidRecordVideoRecorded": 0,
+        "teacherName": "搴勯噸",
+        "teacherAvatar": "https:\/\/static.eeo.cn\/upload\/images\/20250115\/1F_00_fcccbc48-d8ac-47f2-b591-541fe1d4ea61_180.png",
+        "teacherBio": "",
+        "chatroomStatus": 0,
+        "lessonCode": 1,
+        "lessonStatus": 1,
+        "playbackDetail": {
+            "limitCount": 0,
+            "playCount": 0,
+            "canPlay": 1,
+            "canShow": 0
+        }
+    }
+}
+
+{
+    "error_info": {
+        "errno": 1,
+        "error": "程序正常执行(程序正常执行)"
+    },
+    "data": {
+        "lessonId": 880295371,
+        "lessonName": "家长课堂《我们的老院》 - 7",
+        "lessonData": {
+            "lessonStatus": 1,
+            "vodList": [],
+            "fileList": [
+                {
+                    "CIDExt": "",
+                    "CreateTime": "2025-02-27 21:12:15",
+                    "CreateTimestamp": 1740661935,
+                    "DeleteTime": 1740668703,
+                    "Duration": 7200,
+                    "EndTime": "2025-02-27 21:12:13",
+                    "EndTimestamp": 1740661933,
+                    "FileId": "1397757906171930296",
+                    "FileName": "",
+                    "Message": "Operation succeeded",
+                    "Playset": [
+                        {
+                            "Definition": "0",
+                            "Url": "https:\/\/playback.eeo.cn\/794b4a11vodbj1252412222\/481abd311397757906171930296\/f0.mp4"
+                        }
+                    ],
+                    "Size": "570079855",
+                    "SourceType": 0,
+                    "StartTime": "2025-02-27 19:12:13",
+                    "StartTimestamp": 1740654733,
+                    "Status": "100"
+                },
+                {
+                    "CIDExt": "",
+                    "CreateTime": "2025-02-27 21:32:05",
+                    "CreateTimestamp": 1740663125,
+                    "DeleteTime": 1740668699,
+                    "Duration": 1190,
+                    "EndTime": "2025-02-27 21:32:03",
+                    "EndTimestamp": 1740663123,
+                    "FileId": "1397757906179180155",
+                    "FileName": "",
+                    "Message": "Operation succeeded",
+                    "Playset": [
+                        {
+                            "Definition": "0",
+                            "Url": "https:\/\/playback.eeo.cn\/794b4a11vodbj1252412222\/9d9dd3f01397757906179180155\/f0.mp4"
+                        }
+                    ],
+                    "Size": "95113638",
+                    "SourceType": 0,
+                    "StartTime": "2025-02-27 21:12:13",
+                    "StartTimestamp": 1740661933,
+                    "Status": "100"
+                },
+                {
+                    "CIDExt": "",
+                    "CreateTime": "2025-02-27 23:11:59",
+                    "CreateTimestamp": 1740669119,
+                    "Duration": 9725,
+                    "EndTime": "2025-02-28 01:54:04",
+                    "EndTimestamp": 1740678844,
+                    "FileId": "1397757906216742893",
+                    "FileName": "2025-2-27家长课堂《我们的老院》",
+                    "Message": "Operation succeeded",
+                    "Playset": [
+                        {
+                            "Definition": "0",
+                            "Url": "https:\/\/playback.eeo.cn\/794b4a11vodbj1252412222\/af585a351397757906216742893\/8BV9L0UvGXkA.mp4"
+                        }
+                    ],
+                    "Size": "1881945529",
+                    "SourceType": 1,
+                    "StartTime": "2025-02-27 23:11:59",
+                    "StartTimestamp": 1740669119,
+                    "Status": "2"
+                }
+            ]
+        },
+        "lessonStarttime": 1740654000,
+        "lessonEndtime": 1740664800,
+        "courseName": "家长课堂《我们的老院》",
+        "courseIntroduce": "",
+        "teacherId": 16395167,
+        "lessonType": 3,
+        "userType": 1,
+        "courseLogo": "https:\/\/static.eeo.cn\/upload\/images\/20231106\/1F_00_b04753cb591755cfbd7e0c5b8b32b2f7_400.png",
+        "schoolLogo": "https:\/\/static.eeo.cn\/upload\/images\/20231027\/1F_00_15529a6bf75b7a7f65191316d0bd7026_260.png",
+        "schoolName": "庄重读书会",
+        "playNum": 0,
+        "likeNum": 0,
+        "onlineNum": 0,
+        "lessonIntroduce": "",
+        "showClassVideo": 1,
+        "avoidRecordReplay": 0,
+        "avoidRecordVideoRecorded": 0,
+        "teacherName": "庄重",
+        "teacherAvatar": "https:\/\/static.eeo.cn\/upload\/images\/20250115\/1F_00_fcccbc48-d8ac-47f2-b591-541fe1d4ea61_180.png",
+        "teacherBio": "",
+        "chatroomStatus": 0,
+        "lessonCode": 1,
+        "lessonStatus": 1,
+        "playbackDetail": {
+            "limitCount": 0,
+            "playCount": 0,
+            "canPlay": 1,
+            "canShow": 0
+        }
+    }
+}
+
+videoname：家长课堂《我们的老院》 - 7
+videonum：1
+url：https://playback.eeo.cn/794b4a11vodbj1252412222/af585a351397757906216742893/8BV9L0UvGXkA.mp4
+
+{
+    "error_info": {
+        "errno": 1,
+        "error": "绋嬪簭姝ｅ父鎵ц(绋嬪簭姝ｅ父鎵ц)"
+    },
+    "data": {
+        "lessonId": 874403285,
+        "lessonName": "銆婂剴鏋楀鍙层€? - 4",
+        "lessonData": {
+            "lessonStatus": 1,
+            "vodList": [],
+            "fileList": [
+                {
+                    "CIDExt": "",
+                    "CreateTime": "2025-03-01 20:51:05",
+                    "CreateTimestamp": 1740833465,
+                    "Duration": 5631,
+                    "EndTime": "2025-03-01 20:51:01",
+                    "EndTimestamp": 1740833461,
+                    "FileId": "1397757906194330906",
+                    "FileName": "",
+                    "Message": "Operation succeeded",
+                    "Playset": [
+                        {
+                            "Definition": "0",
+                            "Url": "https:\/\/playback.eeo.cn\/794b4a11vodbj1252412222\/f98e460e1397757906194330906\/f0.mp4"
+                        }
+                    ],
+                    "Size": "268039284",
+                    "SourceType": 0,
+                    "StartTime": "2025-03-01 19:17:06",
+                    "StartTimestamp": 1740827826,
+                    "Status": "2"
+                },
+                {
+                    "CIDExt": "",
+                    "CreateTime": "2025-03-01 21:01:45",
+                    "CreateTimestamp": 1740834105,
+                    "Duration": 4357,
+                    "EndTime": "2025-03-01 22:14:22",
+                    "EndTimestamp": 1740838462,
+                    "FileId": "1397757905814013423",
+                    "FileName": "20250301-L2绮捐銆婂剴鏋楀鍙层€?",
+                    "Message": "Operation succeeded",
+                    "Playset": [
+                        {
+                            "Definition": "0",
+                            "Url": "https:\/\/playback.eeo.cn\/aebb1300vodsh1252412222\/bbba0a241397757905814013423\/k3Rlz7mQz2AA.mp4"
+                        }
+                    ],
+                    "Size": "1026944130",
+                    "SourceType": 1,
+                    "StartTime": "2025-03-01 21:01:45",
+                    "StartTimestamp": 1740834105,
+                    "Status": "2"
+                }
+            ]
+        },
+        "lessonStarttime": 1740828600,
+        "lessonEndtime": 1740832200,
+        "courseName": "銆婂剴鏋楀鍙层€?",
+        "courseIntroduce": "",
+        "teacherId": 5212323,
+        "lessonType": 3,
+        "userType": 1,
+        "courseLogo": "https:\/\/static.eeo.cn\/upload\/images\/20220921\/12f6d2b8d3436e201304_400.jpg",
+        "schoolLogo": "https:\/\/static.eeo.cn\/upload\/images\/20230905\/a2a097039c71515a7135_260.png",
+        "schoolName": "搴勯噸璇讳功浼?,
+        "playNum": 0,
+        "likeNum": 0,
+        "onlineNum": 0,
+        "lessonIntroduce": "",
+        "showClassVideo": 1,
+        "avoidRecordReplay": 0,
+        "avoidRecordVideoRecorded": 0,
+        "teacherName": "搴勯噸",
+        "teacherAvatar": "",
+        "teacherBio": "",
+        "chatroomStatus": 0,
+        "lessonCode": 1,
+        "lessonStatus": 1,
+        "playbackDetail": {
+            "limitCount": 0,
+            "playCount": 1,
+            "canPlay": 1,
+            "canShow": 0
+        }
+    }
+}
+
+{
+    "error_info": {
+        "errno": 1,
+        "error": "程序正常执行(程序正常执行)"
+    },
+    "data": {
+        "lessonId": 874403285,
+        "lessonName": "《儒林外史》1 - 4",
+        "lessonData": {
+            "lessonStatus": 1,
+            "vodList": [],
+            "fileList": [
+                {
+                    "CIDExt": "",
+                    "CreateTime": "2025-03-01 20:51:05",
+                    "CreateTimestamp": 1740833465,
+                    "Duration": 5631,
+                    "EndTime": "2025-03-01 20:51:01",
+                    "EndTimestamp": 1740833461,
+                    "FileId": "1397757906194330906",
+                    "FileName": "",
+                    "Message": "Operation succeeded",
+                    "Playset": [
+                        {
+                            "Definition": "0",
+                            "Url": "https:\/\/playback.eeo.cn\/794b4a11vodbj1252412222\/f98e460e1397757906194330906\/f0.mp4"
+                        }
+                    ],
+                    "Size": "268039284",
+                    "SourceType": 0,
+                    "StartTime": "2025-03-01 19:17:06",
+                    "StartTimestamp": 1740827826,
+                    "Status": "2"
+                },
+                {
+                    "CIDExt": "",
+                    "CreateTime": "2025-03-01 21:01:45",
+                    "CreateTimestamp": 1740834105,
+                    "Duration": 4357,
+                    "EndTime": "2025-03-01 22:14:22",
+                    "EndTimestamp": 1740838462,
+                    "FileId": "1397757905814013423",
+                    "FileName": "20250301-L2精读《儒林外史》1",
+                    "Message": "Operation succeeded",
+                    "Playset": [
+                        {
+                            "Definition": "0",
+                            "Url": "https:\/\/playback.eeo.cn\/aebb1300vodsh1252412222\/bbba0a241397757905814013423\/k3Rlz7mQz2AA.mp4"
+                        }
+                    ],
+                    "Size": "1026944130",
+                    "SourceType": 1,
+                    "StartTime": "2025-03-01 21:01:45",
+                    "StartTimestamp": 1740834105,
+                    "Status": "2"
+                }
+            ]
+        },
+        "lessonStarttime": 1740828600,
+        "lessonEndtime": 1740832200,
+        "courseName": "《儒林外史》1",
+        "courseIntroduce": "",
+        "teacherId": 5212323,
+        "lessonType": 3,
+        "userType": 1,
+        "courseLogo": "https:\/\/static.eeo.cn\/upload\/images\/20220921\/12f6d2b8d3436e201304_400.jpg",
+        "schoolLogo": "https:\/\/static.eeo.cn\/upload\/images\/20230905\/a2a097039c71515a7135_260.png",
+        "schoolName": "庄重读书会",
+        "playNum": 0,
+        "likeNum": 0,
+        "onlineNum": 0,
+        "lessonIntroduce": "",
+        "showClassVideo": 1,
+        "avoidRecordReplay": 0,
+        "avoidRecordVideoRecorded": 0,
+        "teacherName": "庄重",
+        "teacherAvatar": "",
+        "teacherBio": "",
+        "chatroomStatus": 0,
+        "lessonCode": 1,
+        "lessonStatus": 1,
+        "playbackDetail": {
+            "limitCount": 0,
+            "playCount": 1,
+            "canPlay": 1,
+            "canShow": 0
+        }
+    }
+}
+
+videoname：《儒林外史》1 - 4
+videonum：1
+url：https://playback.eeo.cn/794b4a11vodbj1252412222/f98e460e1397757906194330906/f0.mp4

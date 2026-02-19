@@ -1,0 +1,42 @@
+<Application xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="Classin视频解析下载工具.App"
+             xmlns:local="using:Classin视频解析下载工具"
+             RequestedThemeVariant="Default">
+             <!-- "Default" ThemeVariant follows system theme variant. "Dark" or "Light" are other available options. -->
+
+    <Application.DataTemplates>
+        <local:ViewLocator/>
+    </Application.DataTemplates>
+  
+    <Application.Resources>
+        <!-- 品牌主色：用于 Logo、核心按钮、导航栏选中态、关键图标等最具识别性的位置 -->
+        <SolidColorBrush x:Key="CitrusBlue" Color="#29A2C6"/> <!-- 主品牌色，用于主要按钮、链接、选中状态栏 -->
+        <SolidColorBrush x:Key="LemonYellow" Color="#FFCB18"/> <!-- 品牌强调色，用于徽标、角标、高亮促销元素 -->
+        <SolidColorBrush x:Key="CitrusGreen" Color="#73B66B"/> <!-- 成功、完成、正向语义，用于确认按钮、进度完成 -->
+        <SolidColorBrush x:Key="CitrusOrange" Color="#FF6D31"/> <!-- 热情、警告、促销，用于购物车、特殊标签 -->
+        
+        <!-- 功能状态色：从主色的深浅变体中提取，用于表达交互状态、反馈信息 -->
+        <SolidColorBrush x:Key="DeepSeaBlue" Color="#1B7895"/> <!-- 主蓝悬停、深色导航、激活态边框 -->
+        <SolidColorBrush x:Key="LightSkyBlue" Color="#5EC7E6"/> <!-- 信息提示背景、链接辅助色、选中态底纹 -->
+        <SolidColorBrush x:Key="AmberYellow" Color="#F0A800"/> <!-- 警告图标、次要强调、按钮悬停（黄） -->
+        <SolidColorBrush x:Key="CreamYellow" Color="#FFE88C"/> <!-- 弱高亮背景、通知标记、标签底色 -->
+        <SolidColorBrush x:Key="ForestGreen" Color="#4C8F42"/> <!-- 深色成功状态、进度条已完成部分 -->
+        <SolidColorBrush x:Key="BudGreen" Color="#A4D89C"/> <!-- 成功轻背景、次级按钮、正向反馈区域 -->
+        <SolidColorBrush x:Key="BrickOrange" Color="#D45A27"/> <!-- 错误状态、删除按钮、紧急警告 -->
+        <SolidColorBrush x:Key="CoralOrange" Color="#FF9D77"/> <!-- 次要强调、悬停微交互、温柔提示 -->
+        
+        <!-- 界面中性色：支撑整体界面层级，确保可读性与舒适度 -->
+        <SolidColorBrush x:Key="LightGrayBlue" Color="#F5F8FA"/> <!-- 页面主背景、卡片背景、浅色容器 -->
+        <SolidColorBrush x:Key="DarkGrayBlue" Color="#2C3E4F"/> <!-- 主要文字标题、正文默认色、深色图标 -->
+        
+        <!-- 辅助颜色：补充完整灰度体系 -->
+        <SolidColorBrush x:Key="BorderColor" Color="#E6EDF2"/> <!-- 边框色，用于分割线、卡片边框等 -->
+        <SolidColorBrush x:Key="DisabledColor" Color="#E6E6E6"/> <!-- 置灰禁用色，用于禁用状态的控件 -->
+    </Application.Resources>
+  
+    <Application.Styles>
+        <FluentTheme />
+        <StyleInclude Source="avares://Avalonia.Controls.DataGrid/Themes/Fluent.xaml"/>
+    </Application.Styles>
+</Application>
