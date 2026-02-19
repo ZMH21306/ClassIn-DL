@@ -1,5 +1,5 @@
 <h4 align="right">
-  <a href="README.md">English</a> | 简体中文
+  <a href="README_EN.md">English</a> | 简体中文
 </h4>
 
 <!-- PROJECT LOGO -->
