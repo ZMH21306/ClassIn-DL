@@ -21,27 +21,23 @@
   ·    
   <a href="https://github.com/ZMH21306/ClassIn-DL/issues/new?template=feature_request.yml">Request Feature</a>
 </h4>
-
 </div>
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-A powerful ClassIn video downloader offering both graphical and command-line interfaces, designed to help users easily download ClassIn course videos 📹
-
+A powerful ClassIn video downloader that provides both graphical interface and command-line versions, designed to help users easily download ClassIn course videos 📹
 Features high-speed downloading, batch processing capabilities, and a user-friendly WPF graphical interface built with C# 🚀
-
 Supports parsing video links from the ClassIn platform and efficiently managing download tasks ⚡
-
-Requires HTTP Debugger Pro to capture video requests, providing a reliable method for obtaining video resources 🔍
+Requires HTTP Debugger Pro to capture video requests, providing a reliable way to obtain video resources 🔍
 
 > **⚠️ Important Notice**
 >
-> This tool is a technical learning project. According to ClassIn platform rules, student accounts typically only have **viewing rights** for course replays, **not downloading rights**. Unauthorized downloading of course content may **infringe on intellectual property rights and violate platform user agreements**. Please only use this tool on course content for which you have legal rights, and assume all related risks yourself.
+> This tool is a technical learning project. According to ClassIn platform rules, student accounts typically only have **viewing rights** for course replays, **no downloading rights**. Unauthorized downloading of course content may **infringe on intellectual property rights and violate platform user agreements**. Please only use this tool on course content for which you have legal rights, and bear all related risks yourself.
 
 > **🔄 Migration Notice**
 >
-> This project has now migrated from WPF to **Avalonia C#** to support cross-platform compatibility (Windows, Linux, macOS). The current version still has many issues, so please feel free to <a href="https://github.com/ZMH21306/ClassIn-DL/issues/new?template=bug_report.yml">report problems</a>
+> This project has now migrated from WPF to **Avalonia C#** to support cross-platform compatibility (Windows, Linux, macOS). The current version still has many issues, please feel free to <a href="https://github.com/ZMH21306/ClassIn-DL/issues/new?template=bug_report.yml">report bugs</a>
 
 <!-- COMPATIBILITY -->
 ## Compatibility
@@ -57,9 +53,9 @@ Requires HTTP Debugger Pro to capture video requests, providing a reliable metho
 
 > **🔧 HTTP Debugger Pro Garbled Text Issue**
 >
-> Currently, it's known that when using HTTP Debugger Pro to capture requests, some users may encounter **garbled output content** issues. This is caused by ClassIn server responses using different character encodings.
+> It is currently known that when using HTTP Debugger Pro to capture requests, some users will encounter **garbled output content** issues. This is due to different character encodings used in ClassIn server responses.
 >
-> **Development Plan**: We have developed a simple **automatic encoding repair feature** and plan to integrate more comprehensive encoding repair in subsequent versions to resolve this issue. This feature is currently under active development.
+> **Development Plan**: We have developed a simple **automatic encoding fix feature** and plan to integrate more comprehensive encoding fixes in subsequent versions to solve this problem. This feature is currently under active development.
 >
 > If you encounter this issue, you can try saving as a JSON file during packet capture and manually copying the content, or follow our updates.
 
@@ -68,20 +64,20 @@ Requires HTTP Debugger Pro to capture video requests, providing a reliable metho
 
 ### ✅ Completed Features
 - ✅ Graphical User Interface (WPF)
-- ✅ Command-line interface support
-- ✅ Basic ClassIn video download functionality
-- ✅ Batch video downloading
-- ✅ Parse video links from HTTP requests
-- ✅ Multi-threaded download with configurable thread count
-- ✅ Real-time download speed display
-- ✅ Download progress tracking
-- ✅ Error handling and logging
-- ✅ Configurable download directory
-- ✅ Adjustable concurrent download limit
+- ✅ Command-line Interface Support
+- ✅ Basic ClassIn Video Download Functionality
+- ✅ Batch Video Download
+- ✅ Parse Video Links from HTTP Requests
+- ✅ Multi-threaded Download with Configurable Thread Count
+- ✅ Real-time Download Speed Display
+- ✅ Download Progress Tracking
+- ✅ Error Handling and Logging
+- ✅ Configurable Download Directory
+- ✅ Adjustable Concurrent Download Limit
 
 ### 🔄 Planned Features
-- 🔄 Self-service packet capture (long-term goal)
-- 🔄 **Automatic encoding repair (GBK→UTF-8)**
+- 🔄 Self-service Packet Capture (Long-term Goal)
+- 🔄 **Automatic Encoding Fix (GBK→UTF-8)**
 
 Visit [GitHub Issues](https://github.com/ZMH21306/ClassIn-DL/issues) to view all feature requests (and known issues).
 
@@ -90,26 +86,29 @@ Visit [GitHub Issues](https://github.com/ZMH21306/ClassIn-DL/issues) to view all
 
 📹 **Tutorial video coming soon, stay tuned!**
 
-<!-- Add video link later -->
+<!-- Download links will be added later -->
 
 <!-- DOWNLOAD LINKS -->
 ## Download
 
 > [!TIP]
-> For optimal compatibility, please use the latest version of the tool.
+> For best compatibility, please use the latest version of the tool.
 
-Get the latest version of ClassIn Video Downloader for Windows:
+Get the latest version of ClassIn Video Downloader for each platform:
 
-| Platform | Architecture | Download Links |
+| Platform | Architecture | Download Link |
 |:----:|:----:|:--------:|
-| Windows | x86_64 | [GitHub Direct Link](https://github.com/ZMH21306/ClassIn-DL/releases/download/v0.8.0/Classin_DL-v0.8.0-Windows-x64.exe) <br> [CDN Mirror](https://gh-proxy.org/https://github.com/ZMH21306/Classin-DL/releases/download/v0.8.0/Classin_DL-v0.8.0-Windows-x64.exe) |
-| Windows | x86    | [GitHub Direct Link](https://github.com/ZMH21306/ClassIn-DL/releases/download/v0.8.0/Classin_DL-v0.8.0-Windows-x86.exe) <br> [CDN Mirror](https://gh-proxy.org/https://github.com/ZMH21306/Classin_DL/releases/download/v0.8.0/Classin_DL-v0.8.0-Windows-x86.exe) |
-| Windows | arm64  | [GitHub Direct Link](https://github.com/ZMH21306/ClassIn-DL/releases/download/v0.8.0/Classin_DL-v0.8.0-Windows-arm64.exe) <br> [CDN Mirror](https://gh-proxy.org/https://github.com/ZMH21306/Classin_DL/releases/download/v0.8.0/Classin_DL-v0.8.0-Windows-arm64.exe) |
+| Windows | x86_64 | [GitHub Direct Link](https://github.com/ZMH21306/ClassIn-DL/releases/download/v1.0.0-Avalonia_UI/Classin_DL-v1.0.0-Windows-x64.exe) <br> [CDN Mirror](https://gh-proxy.org/https://github.com/ZMH21306/ClassIn-DL/releases/download/v1.0.0-Avalonia_UI/Classin_DL-v1.0.0-Windows-x64.exe) |
+| Windows | arm64  | [GitHub Direct Link](https://github.com/ZMH21306/ClassIn-DL/releases/download/v1.0.0-Avalonia_UI/Classin_DL-v1.0.0-Windows-arm64.exe) <br> [CDN Mirror](https://gh-proxy.org/https://github.com/ZMH21306/ClassIn-DL/releases/download/v1.0.0-Avalonia_UI/Classin_DL-v1.0.0-Windows-arm64.exe) |
+| Linux   | x86_64 | [GitHub Direct Link](https://github.com/ZMH21306/ClassIn-DL/releases/download/v1.0.0-Avalonia_UI/Classin_DL-v1.0.0-Linux-x64) <br> [CDN Mirror](https://gh-proxy.org/https://github.com/ZMH21306/ClassIn-DL/releases/download/v1.0.0-Avalonia_UI/Classin_DL-v1.0.0-Linux-x64) |
+| Linux   | arm64  | [GitHub Direct Link](https://github.com/ZMH21306/ClassIn-DL/releases/download/v1.0.0-Avalonia_UI/Classin_DL-v1.0.0-Linux-arm64) <br> [CDN Mirror](https://gh-proxy.org/https://github.com/ZMH21306/ClassIn-DL/releases/download/v1.0.0-Avalonia_UI/Classin_DL-v1.0.0-Linux-arm64) |
+| macOS   | x86_64 | [GitHub Direct Link](https://github.com/ZMH21306/ClassIn-DL/releases/download/v1.0.0-Avalonia_UI/Classin_DL-v1.0.0-macOS-x64) <br> [CDN Mirror](https://gh-proxy.org/https://github.com/ZMH21306/ClassIn-DL/releases/download/v1.0.0-Avalonia_UI/Classin_DL-v1.0.0-macOS-x64) |
+| macOS   | arm64  | [GitHub Direct Link](https://github.com/ZMH21306/ClassIn-DL/releases/download/v1.0.0-Avalonia_UI/Classin_DL-v1.0.0-macOS-arm64) <br> [CDN Mirror](https://gh-proxy.org/https://github.com/ZMH21306/ClassIn-DL/releases/download/v1.0.0-Avalonia_UI/Classin_DL-v1.0.0-macOS-arm64) |
 
 <!-- CONTRIBUTING -->
-## Contribution Guide
+## Contribution Guidelines
 
-Contributions make the open-source community an excellent place to learn, inspire, and create. Any contribution you make is **greatly appreciated**.
+Contributions make the open-source community a great place to learn, inspire, and create. Any contribution you make is **greatly appreciated**.
 
 If you have suggestions, you can Fork the repository and create a Pull Request, or directly open an Issue with the "Enhancement" label. Don't forget to give the project a star ⭐! Thank you again!
 
@@ -119,26 +118,20 @@ If you have suggestions, you can Fork the repository and create a Pull Request, 
 4. Push to the branch (git push origin feature/AmazingFeature)
 5. Open a Pull Request
 
-Thank you to all contributors who have participated in this project!
-
 <a href="https://github.com/ZMH21306/ClassIn-DL/graphs/contributors"><img src="http://contrib.nn.ci/api?repo=ZMH21306/ClassIn-DL" alt="Contributors" /></a>
 
 <!-- LICENSE -->
 ## License
 
-Distributed under the GPL v3.0 License. For more information, please refer to the `LICENSE` file.
+Distributed under the GPL v3.0 License. See `LICENSE` file for more information.
 
-Copyright © 2025 ZMH.
+Copyright © 2026 ZMH.
 
 <!-- CONTACT -->
 ## Contact
 
-* [Email](mailto:2130606191@qq.com) - 2130606191@qq.com
+* [Email](mailto:zhounbdev@gmail.com) - zhounbdev@gmail.com
 * [QQ Group](https://qm.qq.com/q/PlUBdzqZCm) - 2130606191
-
-## Acknowledgments
-
-* Special thanks to all open-source projects that made this tool possible!
 
 ## Star History
 

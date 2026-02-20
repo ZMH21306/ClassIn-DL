@@ -21,18 +21,14 @@
   ·    
   <a href="https://github.com/ZMH21306/ClassIn-DL/issues/new?template=feature_request.yml">功能请求</a>
 </h4>
-
 </div>
 
 <!-- ABOUT THE PROJECT -->
 ## 关于项目
 
 一款功能强大的 ClassIn 视频下载器，提供图形界面和命令行两种版本，旨在帮助用户轻松下载 ClassIn 课程视频 📹
-
 具备高速下载、批量处理功能，并提供基于 C# 构建的友好 WPF 图形界面 🚀
-
 支持解析 ClassIn 平台的视频链接，高效管理下载任务 ⚡
-
 需要使用 HTTP Debugger Pro 捕获视频请求，为获取视频资源提供可靠方式 🔍
 
 > **⚠️ 重要声明**
@@ -98,13 +94,16 @@
 > [!TIP]
 > 为获得最佳兼容性，请使用最新版本的工具。
 
-获取适用于 Windows 的 ClassIn 视频下载器最新版本：
+获取适用于各平台的 ClassIn 视频下载器最新版本：
 
 | 平台 | 架构 | 下载链接 |
 |:----:|:----:|:--------:|
-| Windows | x86_64 | [GitHub 直链](https://github.com/ZMH21306/ClassIn-DL/releases/download/v0.8.0/Classin_DL-v0.8.0-Windows-x64.exe) <br> [CDN 镜像](https://gh-proxy.org/https://github.com/ZMH21306/Classin-DL/releases/download/v0.8.0/Classin_DL-v0.8.0-Windows-x64.exe) |
-| Windows | x86    | [GitHub 直链](https://github.com/ZMH21306/ClassIn-DL/releases/download/v0.8.0/Classin_DL-v0.8.0-Windows-x86.exe) <br> [CDN 镜像](https://gh-proxy.org/https://github.com/ZMH21306/Classin_DL/releases/download/v0.8.0/Classin_DL-v0.8.0-Windows-x86.exe) |
-| Windows | arm64  | [GitHub 直链](https://github.com/ZMH21306/ClassIn-DL/releases/download/v0.8.0/Classin_DL-v0.8.0-Windows-arm64.exe) <br> [CDN 镜像](https://gh-proxy.org/https://github.com/ZMH21306/Classin_DL/releases/download/v0.8.0/Classin_DL-v0.8.0-Windows-arm64.exe) |
+| Windows | x86_64 | [GitHub 直链](https://github.com/ZMH21306/ClassIn-DL/releases/download/v1.0.0-Avalonia_UI/Classin_DL-v1.0.0-Windows-x64.exe) <br> [CDN 镜像](https://gh-proxy.org/https://github.com/ZMH21306/ClassIn-DL/releases/download/v1.0.0-Avalonia_UI/Classin_DL-v1.0.0-Windows-x64.exe) |
+| Windows | arm64  | [GitHub 直链](https://github.com/ZMH21306/ClassIn-DL/releases/download/v1.0.0-Avalonia_UI/Classin_DL-v1.0.0-Windows-arm64.exe) <br> [CDN 镜像](https://gh-proxy.org/https://github.com/ZMH21306/ClassIn-DL/releases/download/v1.0.0-Avalonia_UI/Classin_DL-v1.0.0-Windows-arm64.exe) |
+| Linux   | x86_64 | [GitHub 直链](https://github.com/ZMH21306/ClassIn-DL/releases/download/v1.0.0-Avalonia_UI/Classin_DL-v1.0.0-Linux-x64) <br> [CDN 镜像](https://gh-proxy.org/https://github.com/ZMH21306/ClassIn-DL/releases/download/v1.0.0-Avalonia_UI/Classin_DL-v1.0.0-Linux-x64) |
+| Linux   | arm64  | [GitHub 直链](https://github.com/ZMH21306/ClassIn-DL/releases/download/v1.0.0-Avalonia_UI/Classin_DL-v1.0.0-Linux-arm64) <br> [CDN 镜像](https://gh-proxy.org/https://github.com/ZMH21306/ClassIn-DL/releases/download/v1.0.0-Avalonia_UI/Classin_DL-v1.0.0-Linux-arm64) |
+| macOS   | x86_64 | [GitHub 直链](https://github.com/ZMH21306/ClassIn-DL/releases/download/v1.0.0-Avalonia_UI/Classin_DL-v1.0.0-macOS-x64) <br> [CDN 镜像](https://gh-proxy.org/https://github.com/ZMH21306/ClassIn-DL/releases/download/v1.0.0-Avalonia_UI/Classin_DL-v1.0.0-macOS-x64) |
+| macOS   | arm64  | [GitHub 直链](https://github.com/ZMH21306/ClassIn-DL/releases/download/v1.0.0-Avalonia_UI/Classin_DL-v1.0.0-macOS-arm64) <br> [CDN 镜像](https://gh-proxy.org/https://github.com/ZMH21306/ClassIn-DL/releases/download/v1.0.0-Avalonia_UI/Classin_DL-v1.0.0-macOS-arm64) |
 
 <!-- CONTRIBUTING -->
 ## 贡献指南
@@ -119,8 +118,6 @@
 4. 推送到分支 (git push origin feature/AmazingFeature)
 5. 打开 Pull Request
 
-感谢所有参与此项目的贡献者！
-
 <a href="https://github.com/ZMH21306/ClassIn-DL/graphs/contributors"><img src="http://contrib.nn.ci/api?repo=ZMH21306/ClassIn-DL" alt="贡献者" /></a>
 
 <!-- LICENSE -->
@@ -128,17 +125,13 @@
 
 根据 GPL v3.0 许可证分发。更多信息请参阅 `LICENSE` 文件。
 
-版权所有 © 2025 ZMH。
+版权所有 © 2026 ZMH。
 
 <!-- CONTACT -->
 ## 联系方式
 
-* [电子邮箱](mailto:2130606191@qq.com) - 2130606191@qq.com
+* [电子邮箱](mailto:zhounbdev@gmail.com) - zhounbdev@gmail.com
 * [QQ 群](https://qm.qq.com/q/PlUBdzqZCm) - 2130606191
-
-## 致谢
-
-* 特别感谢所有使此工具成为可能的开源项目！
 
 ## Star 历史
 
