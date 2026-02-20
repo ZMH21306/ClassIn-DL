@@ -1,6 +1,0 @@
-C:\Users\21306\Desktop\Classin视频解析下载工具\Classin视频解析下载工具-图形化1.0.0（测试）第七版（彻底修复--Day5）\publish\win-arm64\Classin视频解析下载工具.pdb
-C:\Users\21306\Desktop\Classin视频解析下载工具\Classin视频解析下载工具-图形化1.0.0（测试）第七版（彻底修复--Day5）\publish\win-arm64\appsettings.json
-C:\Users\21306\Desktop\Classin视频解析下载工具\Classin视频解析下载工具-图形化1.0.0（测试）第七版（彻底修复--Day5）\publish\win-arm64\av_libglesv2.dll
-C:\Users\21306\Desktop\Classin视频解析下载工具\Classin视频解析下载工具-图形化1.0.0（测试）第七版（彻底修复--Day5）\publish\win-arm64\libHarfBuzzSharp.dll
-C:\Users\21306\Desktop\Classin视频解析下载工具\Classin视频解析下载工具-图形化1.0.0（测试）第七版（彻底修复--Day5）\publish\win-arm64\libSkiaSharp.dll
-C:\Users\21306\Desktop\Classin视频解析下载工具\Classin视频解析下载工具-图形化1.0.0（测试）第七版（彻底修复--Day5）\publish\win-arm64\Classin视频解析下载工具.exe
