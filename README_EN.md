@@ -27,7 +27,7 @@
 ## About The Project
 
 A powerful ClassIn video downloader that provides both graphical interface and command-line versions, designed to help users easily download ClassIn course videos 📹
-Features high-speed downloading, batch processing capabilities, and a user-friendly WPF graphical interface built with C# 🚀
+Features high-speed downloading, batch processing capabilities, and a user-friendly Avalonia graphical interface built with C# 🚀
 Supports parsing video links from the ClassIn platform and efficiently managing download tasks ⚡
 Requires HTTP Debugger Pro to capture video requests, providing a reliable way to obtain video resources 🔍
 
