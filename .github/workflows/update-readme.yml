@@ -2,8 +2,11 @@ name: Update README with latest release links (每分钟检查)
 
 on:
   schedule:
-    - cron: '* * * * *'   # 每分钟运行一次
-  workflow_dispatch:      # 允许手动触发
+    - cron: '* * * * *'   # 每分钟执行一次
+  workflow_dispatch:       # 允许手动触发
+
+permissions:
+  contents: write
 
 jobs:
   update:
@@ -12,12 +15,11 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0   # 获取完整历史，以便比较标签
+          fetch-depth: 0
 
       - name: Get latest release tag from GitHub API
         id: latest
         run: |
-          # 使用 GitHub API 获取最新 release 的标签名
           LATEST_TAG=$(curl -sL -H "Accept: application/vnd.github.v3+json" \
             "https://api.github.com/repos/${{ github.repository }}/releases/latest" | jq -r '.tag_name')
           if [ "$LATEST_TAG" = "null" ] || [ -z "$LATEST_TAG" ]; then
@@ -37,7 +39,6 @@ jobs:
             exit 0
           fi
 
-          # 从文件中读取上次处理的标签（如果存在）
           if [ -f .latest_release ]; then
             LAST_TAG=$(cat .latest_release)
           else
@@ -53,15 +54,19 @@ jobs:
             echo "new_tag=$LATEST_TAG" >> $GITHUB_OUTPUT
           fi
 
+      # ========== 修改部分 ==========
+      # 从完整标签中提取纯版本号（去除最后一个 - 及其之后的所有内容）
       - name: Extract version from tag
         if: steps.check.outputs.updated == 'true'
         id: vars
         run: |
           FULL_TAG="${{ steps.check.outputs.new_tag }}"
-          # 假设后缀固定为 -Avalonia_UI，将其去除得到纯版本号
-          VERSION="${FULL_TAG%-Avalonia_UI}"
+          # 通用提取：删除最后一个 '-' 及其右侧所有字符
+          VERSION="${FULL_TAG%-*}"
+          # 如果原标签中没有 '-'，则 VERSION 等于 FULL_TAG
           echo "FULL_TAG=$FULL_TAG" >> $GITHUB_OUTPUT
           echo "VERSION=$VERSION" >> $GITHUB_OUTPUT
+      # =============================
 
       - name: Replace placeholders in README
         if: steps.check.outputs.updated == 'true'
@@ -81,4 +86,5 @@ jobs:
           git config user.email "actions@github.com"
           git add README.md .latest_release
           git commit -m "Update download links to ${{ steps.check.outputs.new_tag }}"
+          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
           git push
