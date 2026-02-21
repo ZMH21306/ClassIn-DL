@@ -1,0 +1,84 @@
+name: Update README with latest release links (每分钟检查)
+
+on:
+  schedule:
+    - cron: '* * * * *'   # 每分钟运行一次
+  workflow_dispatch:      # 允许手动触发
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0   # 获取完整历史，以便比较标签
+
+      - name: Get latest release tag from GitHub API
+        id: latest
+        run: |
+          # 使用 GitHub API 获取最新 release 的标签名
+          LATEST_TAG=$(curl -sL -H "Accept: application/vnd.github.v3+json" \
+            "https://api.github.com/repos/${{ github.repository }}/releases/latest" | jq -r '.tag_name')
+          if [ "$LATEST_TAG" = "null" ] || [ -z "$LATEST_TAG" ]; then
+            echo "No release found, skipping."
+            echo "tag=" >> $GITHUB_OUTPUT
+          else
+            echo "Latest release tag: $LATEST_TAG"
+            echo "tag=$LATEST_TAG" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Check if README already up-to-date
+        id: check
+        run: |
+          LATEST_TAG="${{ steps.latest.outputs.tag }}"
+          if [ -z "$LATEST_TAG" ]; then
+            echo "updated=false" >> $GITHUB_OUTPUT
+            exit 0
+          fi
+
+          # 从文件中读取上次处理的标签（如果存在）
+          if [ -f .latest_release ]; then
+            LAST_TAG=$(cat .latest_release)
+          else
+            LAST_TAG=""
+          fi
+
+          if [ "$LATEST_TAG" = "$LAST_TAG" ]; then
+            echo "README is already up-to-date for $LATEST_TAG, skipping."
+            echo "updated=false" >> $GITHUB_OUTPUT
+          else
+            echo "New release detected: $LATEST_TAG (previous: $LAST_TAG)"
+            echo "updated=true" >> $GITHUB_OUTPUT
+            echo "new_tag=$LATEST_TAG" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Extract version from tag
+        if: steps.check.outputs.updated == 'true'
+        id: vars
+        run: |
+          FULL_TAG="${{ steps.check.outputs.new_tag }}"
+          # 假设后缀固定为 -Avalonia_UI，将其去除得到纯版本号
+          VERSION="${FULL_TAG%-Avalonia_UI}"
+          echo "FULL_TAG=$FULL_TAG" >> $GITHUB_OUTPUT
+          echo "VERSION=$VERSION" >> $GITHUB_OUTPUT
+
+      - name: Replace placeholders in README
+        if: steps.check.outputs.updated == 'true'
+        run: |
+          sed -i "s/{{FULL_TAG}}/${{ steps.vars.outputs.FULL_TAG }}/g" README.md
+          sed -i "s/{{VERSION}}/${{ steps.vars.outputs.VERSION }}/g" README.md
+
+      - name: Save latest tag to file
+        if: steps.check.outputs.updated == 'true'
+        run: |
+          echo "${{ steps.check.outputs.new_tag }}" > .latest_release
+
+      - name: Commit and push changes
+        if: steps.check.outputs.updated == 'true'
+        run: |
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+          git add README.md .latest_release
+          git commit -m "Update download links to ${{ steps.check.outputs.new_tag }}"
+          git push
