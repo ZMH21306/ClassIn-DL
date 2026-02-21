@@ -21,38 +21,40 @@ jobs:
             const fs = require('fs');
             const path = require('path');
 
-            // 获取最新 release 信息
+            // 1. 获取最新 release 信息
             const { data: latest } = await github.rest.repos.getLatestRelease({
               owner: context.repo.owner,
               repo: context.repo.repo,
             });
             const version = latest.tag_name;
             const assets = latest.assets;
-            console.log(`最新版本: ${version}, 包含 ${assets.length} 个文件`);
+            console.log(`📦 最新版本: ${version}`);
+            console.log(`📄 包含 ${assets.length} 个文件:`);
+            assets.forEach(a => console.log(`   - ${a.name}`));
 
-            // 读取 README.md
+            // 2. 读取 README.md
             const readmePath = path.join(process.env.GITHUB_WORKSPACE, 'README.md');
             let content = fs.readFileSync(readmePath, 'utf8');
 
-            // 定位下载表格区域（从 "## 下载" 到下一个二级标题或文件末尾）
+            // 3. 定位下载表格区域（从 "## 下载" 到下一个二级标题或文件末尾）
             const tableRegex = /(## 下载\n\n.*?)\n(## |$)/s;
             const match = content.match(tableRegex);
             if (!match) {
-              console.log('未找到下载表格区域');
+              console.log('❌ 未找到下载表格区域');
               return;
             }
             const oldTable = match[1];
             const lines = oldTable.split('\n');
             const newLines = [];
 
-            // 辅助函数：从表格行提取平台和架构
+            // 4. 辅助函数：从表格行提取平台和架构
             const parsePlatformArch = (row) => {
               const rowRegex = /\|\s*(\w+)\s*\|\s*([\w_]+)\s*\|/;
               const m = row.match(rowRegex);
               return m ? [m[1].trim(), m[2].trim()] : [null, null];
             };
 
-            // 辅助函数：统一平台名称（用于文件名匹配）
+            // 5. 辅助函数：统一平台名称（用于文件名匹配）
             const normalizePlatform = (platform) => {
               const p = platform.toLowerCase();
               if (p === 'macos') return 'macOS';
@@ -61,34 +63,43 @@ jobs:
               return platform;
             };
 
-            // 辅助函数：在 assets 中查找匹配的文件名
+            // 6. 辅助函数：在 assets 中查找匹配的文件名（基于包含关系，更灵活）
             const findMatchingAsset = (platform, arch) => {
+              // 架构可能的变体
               const archVariants = [arch];
               if (arch === 'x86_64') archVariants.push('x64');
               if (arch === 'arm64') archVariants.push('arm64');
               if (arch === 'x86') archVariants.push('x86');
 
               const normPlatform = normalizePlatform(platform);
-              const basePattern = `Classin_DL-${version}-`;
+              const lowerPlatform = normPlatform.toLowerCase();
+              const lowerArchVariants = archVariants.map(a => a.toLowerCase());
 
+              // 遍历所有资产，查找包含平台和任一架构变体的文件
               for (const asset of assets) {
                 const name = asset.name;
-                if (!name.startsWith(basePattern)) continue;
-                const suffix = name.slice(basePattern.length);
-                const parts = suffix.split('-', 2);
-                if (parts.length < 2) continue;
-                const assetPlatform = parts[0];
-                const assetArch = parts[1].split('.')[0]; // 去掉扩展名
-                if (assetPlatform.toLowerCase() === normPlatform.toLowerCase() &&
-                    archVariants.some(a => a.toLowerCase() === assetArch.toLowerCase())) {
-                  return name;
-                }
+                const lowerName = name.toLowerCase();
+
+                // 必须包含版本号（避免匹配到旧版本）
+                if (!name.includes(version)) continue;
+
+                // 必须包含平台关键词
+                if (!lowerName.includes(lowerPlatform)) continue;
+
+                // 必须包含任一架构关键词
+                const hasArch = lowerArchVariants.some(archVar => lowerName.includes(archVar));
+                if (!hasArch) continue;
+
+                console.log(`   ✅ 匹配到: ${name} (${platform} ${arch})`);
+                return name;
               }
+              console.log(`   ⚠️ 未找到匹配: ${platform} ${arch}`);
               return null;
             };
 
-            // 逐行处理表格
+            // 7. 逐行处理表格
             for (const line of lines) {
+              // 只处理数据行（以 | 开头，且不是表头/分隔行）
               if (line.startsWith('|') && !line.startsWith('|:') && !line.startsWith('| 平台 |')) {
                 const [platform, arch] = parsePlatformArch(line);
                 if (platform && arch) {
@@ -97,7 +108,7 @@ jobs:
                     const newGithub = `https://github.com/${context.repo.owner}/${context.repo.repo}/releases/download/${version}/${filename}`;
                     const newCdn = `https://gh-proxy.org/${newGithub}`;
 
-                    // 替换 GitHub 直链和 CDN 镜像链接
+                    // 替换行内的 GitHub 直链和 CDN 镜像链接（使用正则精确替换）
                     let newLine = line.replace(
                       /(\[GitHub 直链\]\()(https:\/\/github\.com\/[^)]+)(\))/,
                       `$1${newGithub}$3`
@@ -107,12 +118,12 @@ jobs:
                       `$1${newCdn}$3`
                     );
                     newLines.push(newLine);
-                    console.log(`✅ 更新: ${platform} ${arch} → ${filename}`);
                   } else {
-                    console.log(`⚠️ 未找到匹配文件: ${platform} ${arch}，保留原链接`);
+                    // 未找到匹配的资产，保留原行（链接可能已损坏）
                     newLines.push(line);
                   }
                 } else {
+                  // 行格式异常，保留原样
                   newLines.push(line);
                 }
               } else {
@@ -125,7 +136,7 @@ jobs:
 
             if (newContent !== content) {
               fs.writeFileSync(readmePath, newContent, 'utf8');
-              console.log('README.md 已更新');
+              console.log('✅ README.md 已更新');
 
               // 提交更改
               await exec.exec('git', ['config', '--local', 'user.email', 'action@github.com']);
@@ -138,5 +149,5 @@ jobs:
                 await exec.exec('git', ['push']);
               }
             } else {
-              console.log('README.md 无变化');
+              console.log('📭 README.md 无变化');
             }
