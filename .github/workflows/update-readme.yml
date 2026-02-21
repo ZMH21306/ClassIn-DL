@@ -21,22 +21,26 @@ jobs:
             const fs = require('fs');
             const path = require('path');
 
-            // 1. 获取最新 release 信息
+            // ---------- 1. 获取最新 release 信息 ----------
             const { data: latest } = await github.rest.repos.getLatestRelease({
               owner: context.repo.owner,
               repo: context.repo.repo,
             });
-            const version = latest.tag_name;
+            const tag = latest.tag_name;               // 例如 v1.0.0-Avalonia_UI
             const assets = latest.assets;
-            console.log(`📦 最新版本: ${version}`);
+
+            // 从 tag 中提取核心版本号（如 v1.0.0），若提取失败则使用完整 tag
+            const coreVersion = (tag.match(/v\d+\.\d+\.\d+/) || [tag])[0];
+            console.log(`📦 最新 tag: ${tag}`);
+            console.log(`🔢 核心版本: ${coreVersion}`);
             console.log(`📄 包含 ${assets.length} 个文件:`);
             assets.forEach(a => console.log(`   - ${a.name}`));
 
-            // 2. 读取 README.md
+            // ---------- 2. 读取 README.md ----------
             const readmePath = path.join(process.env.GITHUB_WORKSPACE, 'README.md');
             let content = fs.readFileSync(readmePath, 'utf8');
 
-            // 3. 定位下载表格区域（从 "## 下载" 到下一个二级标题或文件末尾）
+            // ---------- 3. 定位下载表格区域 ----------
             const tableRegex = /(## 下载\n\n.*?)\n(## |$)/s;
             const match = content.match(tableRegex);
             if (!match) {
@@ -47,47 +51,36 @@ jobs:
             const lines = oldTable.split('\n');
             const newLines = [];
 
-            // 4. 辅助函数：从表格行提取平台和架构
+            // ---------- 4. 辅助函数：从表格行提取平台和架构 ----------
             const parsePlatformArch = (row) => {
               const rowRegex = /\|\s*(\w+)\s*\|\s*([\w_]+)\s*\|/;
               const m = row.match(rowRegex);
               return m ? [m[1].trim(), m[2].trim()] : [null, null];
             };
 
-            // 5. 辅助函数：统一平台名称（用于文件名匹配）
-            const normalizePlatform = (platform) => {
-              const p = platform.toLowerCase();
-              if (p === 'macos') return 'macOS';
-              if (p === 'windows') return 'Windows';
-              if (p === 'linux') return 'Linux';
-              return platform;
-            };
-
-            // 6. 辅助函数：在 assets 中查找匹配的文件名（基于包含关系，更灵活）
+            // ---------- 5. 辅助函数：在 assets 中查找匹配的文件名 ----------
             const findMatchingAsset = (platform, arch) => {
-              // 架构可能的变体
-              const archVariants = [arch];
+              // 平台名称标准化（用于匹配）
+              const normPlatform = platform.toLowerCase();
+              // 架构可能的变体（例如 x86_64 可能对应 x64）
+              const archVariants = [arch.toLowerCase()];
               if (arch === 'x86_64') archVariants.push('x64');
               if (arch === 'arm64') archVariants.push('arm64');
               if (arch === 'x86') archVariants.push('x86');
 
-              const normPlatform = normalizePlatform(platform);
-              const lowerPlatform = normPlatform.toLowerCase();
-              const lowerArchVariants = archVariants.map(a => a.toLowerCase());
-
-              // 遍历所有资产，查找包含平台和任一架构变体的文件
+              // 遍历所有资产，查找包含核心版本号、平台、任一架构变体的文件
               for (const asset of assets) {
                 const name = asset.name;
                 const lowerName = name.toLowerCase();
 
-                // 必须包含版本号（避免匹配到旧版本）
-                if (!name.includes(version)) continue;
+                // 必须包含核心版本号
+                if (!name.includes(coreVersion)) continue;
 
                 // 必须包含平台关键词
-                if (!lowerName.includes(lowerPlatform)) continue;
+                if (!lowerName.includes(normPlatform)) continue;
 
                 // 必须包含任一架构关键词
-                const hasArch = lowerArchVariants.some(archVar => lowerName.includes(archVar));
+                const hasArch = archVariants.some(archVar => lowerName.includes(archVar));
                 if (!hasArch) continue;
 
                 console.log(`   ✅ 匹配到: ${name} (${platform} ${arch})`);
@@ -97,7 +90,7 @@ jobs:
               return null;
             };
 
-            // 7. 逐行处理表格
+            // ---------- 6. 逐行处理表格 ----------
             for (const line of lines) {
               // 只处理数据行（以 | 开头，且不是表头/分隔行）
               if (line.startsWith('|') && !line.startsWith('|:') && !line.startsWith('| 平台 |')) {
@@ -105,18 +98,22 @@ jobs:
                 if (platform && arch) {
                   const filename = findMatchingAsset(platform, arch);
                   if (filename) {
-                    const newGithub = `https://github.com/${context.repo.owner}/${context.repo.repo}/releases/download/${version}/${filename}`;
+                    const newGithub = `https://github.com/${context.repo.owner}/${context.repo.repo}/releases/download/${tag}/${filename}`;
                     const newCdn = `https://gh-proxy.org/${newGithub}`;
 
-                    // 替换行内的 GitHub 直链和 CDN 镜像链接（使用正则精确替换）
-                    let newLine = line.replace(
-                      /(\[GitHub 直链\]\()(https:\/\/github\.com\/[^)]+)(\))/,
-                      `$1${newGithub}$3`
-                    );
-                    newLine = newLine.replace(
-                      /(\[CDN 镜像\]\()(https:\/\/gh-proxy\.org\/[^)]+)(\))/,
-                      `$1${newCdn}$3`
-                    );
+                    // 替换行内的 GitHub 直链和 CDN 镜像链接（不依赖链接文字）
+                    let newLine = line;
+
+                    // 匹配 GitHub 下载链接：https://github.com/owner/repo/releases/download/.../filename
+                    const githubUrlRegex = /(https:\/\/github\.com\/[^/\s]+\/[^/\s]+\/releases\/download\/[^/]+\/[^\s\)]+)/g;
+                    // 匹配 CDN 镜像链接：https://gh-proxy.org/ 后跟上述 GitHub 链接
+                    const cdnUrlRegex = /(https:\/\/gh-proxy\.org\/https:\/\/github\.com\/[^/\s]+\/[^/\s]+\/releases\/download\/[^/]+\/[^\s\)]+)/g;
+
+                    // 先替换 GitHub 直链（第一个匹配）
+                    newLine = newLine.replace(githubUrlRegex, newGithub);
+                    // 再替换 CDN 镜像（基于新的 GitHub 链接构造）
+                    newLine = newLine.replace(cdnUrlRegex, newCdn);
+
                     newLines.push(newLine);
                   } else {
                     // 未找到匹配的资产，保留原行（链接可能已损坏）
