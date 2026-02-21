@@ -1,145 +1,142 @@
-import os
-import re
-import sys
-import requests
+name: Update Download Links
 
-REPO = "ZMH21306/ClassIn-DL"
-HEADERS = {
-    "Authorization": f"token {os.environ['GITHUB_TOKEN']}",
-    "Accept": "application/vnd.github.v3+json"
-}
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
 
-def get_latest_release():
-    """获取最新 release 的版本号和 assets 列表"""
-    url = f"https://api.github.com/repos/{REPO}/releases/latest"
-    resp = requests.get(url, headers=HEADERS)
-    resp.raise_for_status()
-    data = resp.json()
-    return data['tag_name'], data['assets']
+permissions:
+  contents: write
 
-def parse_platform_arch_from_table_row(row):
-    """从表格行中提取平台和架构"""
-    pattern = r'\|\s*(\w+)\s*\|\s*([\w_]+)\s*\|'
-    match = re.search(pattern, row)
-    if match:
-        return match.group(1).strip(), match.group(2).strip()
-    return None, None
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
 
-def normalize_platform(platform):
-    """统一平台名称大小写（用于文件名匹配）"""
-    pl = platform.lower()
-    if pl == 'macos':
-        return 'macOS'
-    elif pl == 'windows':
-        return 'Windows'
-    elif pl == 'linux':
-        return 'Linux'
-    return platform  # 保留原样
+      - name: Update download links in README
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const fs = require('fs');
+            const path = require('path');
 
-def find_matching_asset(assets, version, platform, arch):
-    """
-    根据平台和架构在 assets 中查找匹配的文件名
-    返回文件名，未找到则返回 None
-    """
-    # 架构可能的变体
-    arch_variants = [arch]
-    if arch == 'x86_64':
-        arch_variants.append('x64')
-    if arch == 'arm64':
-        arch_variants.append('arm64')
-    if arch == 'x86':
-        arch_variants.append('x86')
+            // 获取最新 release 信息
+            const { data: latest } = await github.rest.repos.getLatestRelease({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+            });
+            const version = latest.tag_name;
+            const assets = latest.assets;
+            console.log(`最新版本: ${version}, 包含 ${assets.length} 个文件`);
 
-    platform_norm = normalize_platform(platform)
-    base_pattern = f"Classin_DL-{version}-"
+            // 读取 README.md
+            const readmePath = path.join(process.env.GITHUB_WORKSPACE, 'README.md');
+            let content = fs.readFileSync(readmePath, 'utf8');
 
-    for asset in assets:
-        name = asset['name']
-        if not name.startswith(base_pattern):
-            continue
+            // 定位下载表格区域（从 "## 下载" 到下一个二级标题或文件末尾）
+            const tableRegex = /(## 下载\n\n.*?)\n(## |$)/s;
+            const match = content.match(tableRegex);
+            if (!match) {
+              console.log('未找到下载表格区域');
+              return;
+            }
+            const oldTable = match[1];
+            const lines = oldTable.split('\n');
+            const newLines = [];
 
-        # 去掉前缀，剩下 "平台-架构[.扩展名]"
-        suffix = name[len(base_pattern):]
-        parts = suffix.split('-', 1)
-        if len(parts) < 2:
-            continue
+            // 辅助函数：从表格行提取平台和架构
+            const parsePlatformArch = (row) => {
+              const rowRegex = /\|\s*(\w+)\s*\|\s*([\w_]+)\s*\|/;
+              const m = row.match(rowRegex);
+              return m ? [m[1].trim(), m[2].trim()] : [null, null];
+            };
 
-        asset_platform = parts[0]
-        # 架构部分可能包含扩展名，去掉扩展名
-        asset_arch = parts[1].split('.')[0]
+            // 辅助函数：统一平台名称（用于文件名匹配）
+            const normalizePlatform = (platform) => {
+              const p = platform.toLowerCase();
+              if (p === 'macos') return 'macOS';
+              if (p === 'windows') return 'Windows';
+              if (p === 'linux') return 'Linux';
+              return platform;
+            };
 
-        if (asset_platform.lower() == platform_norm.lower() and
-                asset_arch.lower() in [a.lower() for a in arch_variants]):
-            return name
-    return None
+            // 辅助函数：在 assets 中查找匹配的文件名
+            const findMatchingAsset = (platform, arch) => {
+              const archVariants = [arch];
+              if (arch === 'x86_64') archVariants.push('x64');
+              if (arch === 'arm64') archVariants.push('arm64');
+              if (arch === 'x86') archVariants.push('x86');
 
-def replace_links_in_row(row, new_github_url, new_cdn_url):
-    """替换行中的 GitHub 直链和 CDN 镜像链接"""
-    # 替换 GitHub 直链
-    row = re.sub(
-        r'(\[GitHub 直链\]\()(https://github.com/[^)]+)(\))',
-        r'\g<1>' + new_github_url + r'\g<3>',
-        row
-    )
-    # 替换 CDN 镜像
-    row = re.sub(
-        r'(\[CDN 镜像\]\()(https://gh-proxy.org/[^)]+)(\))',
-        r'\g<1>' + new_cdn_url + r'\g<3>',
-        row
-    )
-    return row
+              const normPlatform = normalizePlatform(platform);
+              const basePattern = `Classin_DL-${version}-`;
 
-def main():
-    readme_path = 'README.md'
-    with open(readme_path, 'r', encoding='utf-8') as f:
-        content = f.read()
+              for (const asset of assets) {
+                const name = asset.name;
+                if (!name.startsWith(basePattern)) continue;
+                const suffix = name.slice(basePattern.length);
+                const parts = suffix.split('-', 2);
+                if (parts.length < 2) continue;
+                const assetPlatform = parts[0];
+                const assetArch = parts[1].split('.')[0]; // 去掉扩展名
+                if (assetPlatform.toLowerCase() === normPlatform.toLowerCase() &&
+                    archVariants.some(a => a.toLowerCase() === assetArch.toLowerCase())) {
+                  return name;
+                }
+              }
+              return null;
+            };
 
-    # 获取最新 release 信息
-    try:
-        version, assets = get_latest_release()
-        print(f"Latest version: {version}, assets count: {len(assets)}")
-    except Exception as e:
-        print(f"Failed to get latest release: {e}")
-        sys.exit(1)
+            // 逐行处理表格
+            for (const line of lines) {
+              if (line.startsWith('|') && !line.startsWith('|:') && !line.startsWith('| 平台 |')) {
+                const [platform, arch] = parsePlatformArch(line);
+                if (platform && arch) {
+                  const filename = findMatchingAsset(platform, arch);
+                  if (filename) {
+                    const newGithub = `https://github.com/${context.repo.owner}/${context.repo.repo}/releases/download/${version}/${filename}`;
+                    const newCdn = `https://gh-proxy.org/${newGithub}`;
 
-    # 定位下载表格区域（从 "## 下载" 到下一个二级标题或文件末尾）
-    table_pattern = r'(## 下载\n\n.*?)\n(## |$)'
-    table_match = re.search(table_pattern, content, re.DOTALL)
-    if not table_match:
-        print("Could not find download table section")
-        sys.exit(1)
+                    // 替换 GitHub 直链和 CDN 镜像链接
+                    let newLine = line.replace(
+                      /(\[GitHub 直链\]\()(https:\/\/github\.com\/[^)]+)(\))/,
+                      `$1${newGithub}$3`
+                    );
+                    newLine = newLine.replace(
+                      /(\[CDN 镜像\]\()(https:\/\/gh-proxy\.org\/[^)]+)(\))/,
+                      `$1${newCdn}$3`
+                    );
+                    newLines.push(newLine);
+                    console.log(`✅ 更新: ${platform} ${arch} → ${filename}`);
+                  } else {
+                    console.log(`⚠️ 未找到匹配文件: ${platform} ${arch}，保留原链接`);
+                    newLines.push(line);
+                  }
+                } else {
+                  newLines.push(line);
+                }
+              } else {
+                newLines.push(line);
+              }
+            }
 
-    table_section = table_match.group(1)
-    lines = table_section.split('\n')
-    new_lines = []
+            const newTable = newLines.join('\n');
+            const newContent = content.replace(oldTable, newTable);
 
-    for line in lines:
-        # 跳过表头、分隔行，只处理数据行
-        if line.startswith('|') and not line.startswith('|:') and not line.startswith('| 平台 |'):
-            platform, arch = parse_platform_arch_from_table_row(line)
-            if platform and arch:
-                filename = find_matching_asset(assets, version, platform, arch)
-                if filename:
-                    new_github_url = f"https://github.com/{REPO}/releases/download/{version}/{filename}"
-                    new_cdn_url = f"https://gh-proxy.org/{new_github_url}"
-                    new_line = replace_links_in_row(line, new_github_url, new_cdn_url)
-                    new_lines.append(new_line)
-                    print(f"Updated: {platform} {arch} -> {filename}")
-                else:
-                    print(f"Warning: No asset found for {platform} {arch}, keeping original")
-                    new_lines.append(line)
-            else:
-                # 行格式异常，保留原样
-                new_lines.append(line)
-        else:
-            new_lines.append(line)
+            if (newContent !== content) {
+              fs.writeFileSync(readmePath, newContent, 'utf8');
+              console.log('README.md 已更新');
 
-    # 替换原内容中的表格部分
-    new_table_section = '\n'.join(new_lines)
-    new_content = content.replace(table_section, new_table_section)
-
-    with open(readme_path, 'w', encoding='utf-8') as f:
-        f.write(new_content)
-
-if __name__ == '__main__':
-    main()
+              // 提交更改
+              await exec.exec('git', ['config', '--local', 'user.email', 'action@github.com']);
+              await exec.exec('git', ['config', '--local', 'user.name', 'GitHub Action']);
+              await exec.exec('git', ['add', 'README.md']);
+              try {
+                await exec.exec('git', ['diff-index', '--quiet', 'HEAD']);
+              } catch {
+                await exec.exec('git', ['commit', '-m', 'Update download links to latest release']);
+                await exec.exec('git', ['push']);
+              }
+            } else {
+              console.log('README.md 无变化');
+            }
