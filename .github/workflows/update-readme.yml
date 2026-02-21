@@ -1,9 +1,9 @@
-name: Update README with latest release links
+name: Update README with latest release links (每分钟检查)
 
 on:
   schedule:
-    - cron: '* * * * *'   # 每分钟执行一次
-  workflow_dispatch:       # 允许手动触发
+    - cron: '* * * * *'
+  workflow_dispatch:
 
 permissions:
   contents: write
@@ -17,46 +17,30 @@ jobs:
         with:
           fetch-depth: 0
 
-      # 获取最新 release 的标签
       - name: Get latest release tag from GitHub API
         id: latest
         run: |
           LATEST_TAG=$(curl -sL -H "Accept: application/vnd.github.v3+json" \
             "https://api.github.com/repos/${{ github.repository }}/releases/latest" | jq -r '.tag_name')
           if [ "$LATEST_TAG" = "null" ] || [ -z "$LATEST_TAG" ]; then
-            echo "No release found, skipping."
             echo "tag=" >> $GITHUB_OUTPUT
           else
-            echo "Latest release tag: $LATEST_TAG"
             echo "tag=$LATEST_TAG" >> $GITHUB_OUTPUT
           fi
 
-      # 检查是否有新 release（通过比对 .latest_release 文件）
       - name: Check if README already up-to-date
         id: check
         run: |
           LATEST_TAG="${{ steps.latest.outputs.tag }}"
-          if [ -z "$LATEST_TAG" ]; then
-            echo "updated=false" >> $GITHUB_OUTPUT
-            exit 0
-          fi
-
-          if [ -f .latest_release ]; then
-            LAST_TAG=$(cat .latest_release)
-          else
-            LAST_TAG=""
-          fi
-
+          [ -z "$LATEST_TAG" ] && { echo "updated=false" >> $GITHUB_OUTPUT; exit 0; }
+          LAST_TAG=$(cat .latest_release 2>/dev/null || echo "")
           if [ "$LATEST_TAG" = "$LAST_TAG" ]; then
-            echo "README is already up-to-date for $LATEST_TAG, skipping."
             echo "updated=false" >> $GITHUB_OUTPUT
           else
-            echo "New release detected: $LATEST_TAG (previous: $LAST_TAG)"
             echo "updated=true" >> $GITHUB_OUTPUT
             echo "new_tag=$LATEST_TAG" >> $GITHUB_OUTPUT
           fi
 
-      # 提取纯版本号（通用：删除最后一个 - 及其之后的所有内容）
       - name: Extract version from tag
         if: steps.check.outputs.updated == 'true'
         id: vars
@@ -66,28 +50,23 @@ jobs:
           echo "FULL_TAG=$FULL_TAG" >> $GITHUB_OUTPUT
           echo "VERSION=$VERSION" >> $GITHUB_OUTPUT
 
-      # ========== 核心修改：使用正则动态替换所有下载链接 ==========
-      - name: Update download links in README using regex
+      # ===== 新增的通用替换步骤 =====
+      - name: Update download links in README
         if: steps.check.outputs.updated == 'true'
         run: |
-          # 转义特殊字符（/ 和 . 需要转义）
-          OLD_TAG_ESCAPED=$(echo "${{ steps.vars.outputs.FULL_TAG }}" | sed 's/[\/&]/\\&/g')
-          NEW_TAG_ESCAPED=$(echo "$FULL_TAG" | sed 's/[\/&]/\\&/g')
-          OLD_VER_ESCAPED=$(echo "${{ steps.vars.outputs.VERSION }}" | sed 's/[\/&]/\\&/g')
-          NEW_VER_ESCAPED=$(echo "$VERSION" | sed 's/[\/&]/\\&/g')
+          sed -i "s|/releases/download/.*/Classin_DL-.*-Windows-x64.exe|/releases/download/${{ steps.check.outputs.new_tag }}/Classin_DL-${{ steps.vars.outputs.VERSION }}-Windows-x64.exe|g" README.md
+          sed -i "s|/releases/download/.*/Classin_DL-.*-Windows-arm64.exe|/releases/download/${{ steps.check.outputs.new_tag }}/Classin_DL-${{ steps.vars.outputs.VERSION }}-Windows-arm64.exe|g" README.md
+          sed -i "s|/releases/download/.*/Classin_DL-.*-Linux-x64|/releases/download/${{ steps.check.outputs.new_tag }}/Classin_DL-${{ steps.vars.outputs.VERSION }}-Linux-x64|g" README.md
+          sed -i "s|/releases/download/.*/Classin_DL-.*-Linux-arm64|/releases/download/${{ steps.check.outputs.new_tag }}/Classin_DL-${{ steps.vars.outputs.VERSION }}-Linux-arm64|g" README.md
+          sed -i "s|/releases/download/.*/Classin_DL-.*-macOS-x64|/releases/download/${{ steps.check.outputs.new_tag }}/Classin_DL-${{ steps.vars.outputs.VERSION }}-macOS-x64|g" README.md
+          sed -i "s|/releases/download/.*/Classin_DL-.*-macOS-arm64|/releases/download/${{ steps.check.outputs.new_tag }}/Classin_DL-${{ steps.vars.outputs.VERSION }}-macOS-arm64|g" README.md
+      # =============================
 
-          # 更新 GitHub 直链和 CDN 镜像链接
-          # 模式匹配：download/旧标签/Classin_DL-旧版本-平台-架构
-          sed -i "s|download/${OLD_TAG_ESCAPED}/Classin_DL-${OLD_VER_ESCAPED}-|download/${NEW_TAG_ESCAPED}/Classin_DL-${NEW_VER_ESCAPED}-|g" README.md
-      # =======================================================
-
-      # 将最新标签写入 .latest_release 文件，供下次比较
       - name: Save latest tag to file
         if: steps.check.outputs.updated == 'true'
         run: |
           echo "${{ steps.check.outputs.new_tag }}" > .latest_release
 
-      # 提交并推送更改（使用 GITHUB_TOKEN 认证）
       - name: Commit and push changes
         if: steps.check.outputs.updated == 'true'
         run: |
