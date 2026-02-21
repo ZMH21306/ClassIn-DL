@@ -2,8 +2,8 @@ name: Update README with latest release links (每分钟检查)
 
 on:
   schedule:
-    - cron: '* * * * *'   # 每分钟执行一次
-  workflow_dispatch:       # 允许手动触发
+    - cron: '* * * * *'
+  workflow_dispatch:
 
 permissions:
   contents: write
@@ -17,7 +17,6 @@ jobs:
         with:
           fetch-depth: 0
 
-      # 获取最新 release 的标签名
       - name: Get latest release tag from GitHub API
         id: latest
         run: |
@@ -29,7 +28,6 @@ jobs:
             echo "tag=$LATEST_TAG" >> $GITHUB_OUTPUT
           fi
 
-      # 检查是否已有新 release（通过比对 .latest_release 文件）
       - name: Check if README already up-to-date
         id: check
         run: |
@@ -50,54 +48,51 @@ jobs:
             echo "new_tag=$LATEST_TAG" >> $GITHUB_OUTPUT
           fi
 
-      # 从完整标签中提取纯版本号（去除最后一个 - 及其之后的内容）
       - name: Extract version from tag
         if: steps.check.outputs.updated == 'true'
         id: vars
         run: |
           FULL_TAG="${{ steps.check.outputs.new_tag }}"
-          VERSION="${FULL_TAG%-*}"   # 通用提取：删除最后一个 '-' 及其右侧所有字符
+          VERSION="${FULL_TAG%-*}"
           echo "FULL_TAG=$FULL_TAG" >> $GITHUB_OUTPUT
           echo "VERSION=$VERSION" >> $GITHUB_OUTPUT
 
-      # ===== 基于表格内容匹配的通用更新步骤 =====
-      - name: Update download links in README (table-based)
+      # ===== 鲁棒的URL替换：直接替换整行中的完整链接 =====
+      - name: Update download links in README (robust)
         if: steps.check.outputs.updated == 'true'
         run: |
           NEW_TAG="${{ steps.check.outputs.new_tag }}"
           NEW_VER="${{ steps.vars.outputs.VERSION }}"
 
           # Windows x86_64
-          sed -i "/| Windows | x86_64 |/ s|https://github.com/ZMH21306/ClassIn-DL/releases/download/[^/]*/Classin_DL-[^-]*-Windows-x64\.exe|https://github.com/ZMH21306/ClassIn-DL/releases/download/${NEW_TAG}/Classin_DL-${NEW_VER}-Windows-x64.exe|g" README.md
-          sed -i "/| Windows | x86_64 |/ s|https://gh-proxy.org/https://github.com/ZMH21306/ClassIn-DL/releases/download/[^/]*/Classin_DL-[^-]*-Windows-x64\.exe|https://gh-proxy.org/https://github.com/ZMH21306/ClassIn-DL/releases/download/${NEW_TAG}/Classin_DL-${NEW_VER}-Windows-x64.exe|g" README.md
+          sed -i "/| *Windows *| *x86_64 *|/ s|https://github.com/ZMH21306/ClassIn-DL/releases/download/[^)]*|https://github.com/ZMH21306/ClassIn-DL/releases/download/${NEW_TAG}/Classin_DL-${NEW_VER}-Windows-x64.exe|g" README.md
+          sed -i "/| *Windows *| *x86_64 *|/ s|https://gh-proxy.org/https://github.com/ZMH21306/ClassIn-DL/releases/download/[^)]*|https://gh-proxy.org/https://github.com/ZMH21306/ClassIn-DL/releases/download/${NEW_TAG}/Classin_DL-${NEW_VER}-Windows-x64.exe|g" README.md
 
           # Windows arm64
-          sed -i "/| Windows | arm64 |/ s|https://github.com/ZMH21306/ClassIn-DL/releases/download/[^/]*/Classin_DL-[^-]*-Windows-arm64\.exe|https://github.com/ZMH21306/ClassIn-DL/releases/download/${NEW_TAG}/Classin_DL-${NEW_VER}-Windows-arm64.exe|g" README.md
-          sed -i "/| Windows | arm64 |/ s|https://gh-proxy.org/https://github.com/ZMH21306/ClassIn-DL/releases/download/[^/]*/Classin_DL-[^-]*-Windows-arm64\.exe|https://gh-proxy.org/https://github.com/ZMH21306/ClassIn-DL/releases/download/${NEW_TAG}/Classin_DL-${NEW_VER}-Windows-arm64.exe|g" README.md
+          sed -i "/| *Windows *| *arm64 *|/ s|https://github.com/ZMH21306/ClassIn-DL/releases/download/[^)]*|https://github.com/ZMH21306/ClassIn-DL/releases/download/${NEW_TAG}/Classin_DL-${NEW_VER}-Windows-arm64.exe|g" README.md
+          sed -i "/| *Windows *| *arm64 *|/ s|https://gh-proxy.org/https://github.com/ZMH21306/ClassIn-DL/releases/download/[^)]*|https://gh-proxy.org/https://github.com/ZMH21306/ClassIn-DL/releases/download/${NEW_TAG}/Classin_DL-${NEW_VER}-Windows-arm64.exe|g" README.md
 
-          # Linux x86_64（无扩展名）
-          sed -i "/| Linux | x86_64 |/ s|https://github.com/ZMH21306/ClassIn-DL/releases/download/[^/]*/Classin_DL-[^-]*-Linux-x64|https://github.com/ZMH21306/ClassIn-DL/releases/download/${NEW_TAG}/Classin_DL-${NEW_VER}-Linux-x64|g" README.md
-          sed -i "/| Linux | x86_64 |/ s|https://gh-proxy.org/https://github.com/ZMH21306/ClassIn-DL/releases/download/[^/]*/Classin_DL-[^-]*-Linux-x64|https://gh-proxy.org/https://github.com/ZMH21306/ClassIn-DL/releases/download/${NEW_TAG}/Classin_DL-${NEW_VER}-Linux-x64|g" README.md
+          # Linux x86_64
+          sed -i "/| *Linux *| *x86_64 *|/ s|https://github.com/ZMH21306/ClassIn-DL/releases/download/[^)]*|https://github.com/ZMH21306/ClassIn-DL/releases/download/${NEW_TAG}/Classin_DL-${NEW_VER}-Linux-x64|g" README.md
+          sed -i "/| *Linux *| *x86_64 *|/ s|https://gh-proxy.org/https://github.com/ZMH21306/ClassIn-DL/releases/download/[^)]*|https://gh-proxy.org/https://github.com/ZMH21306/ClassIn-DL/releases/download/${NEW_TAG}/Classin_DL-${NEW_VER}-Linux-x64|g" README.md
 
           # Linux arm64
-          sed -i "/| Linux | arm64 |/ s|https://github.com/ZMH21306/ClassIn-DL/releases/download/[^/]*/Classin_DL-[^-]*-Linux-arm64|https://github.com/ZMH21306/ClassIn-DL/releases/download/${NEW_TAG}/Classin_DL-${NEW_VER}-Linux-arm64|g" README.md
-          sed -i "/| Linux | arm64 |/ s|https://gh-proxy.org/https://github.com/ZMH21306/ClassIn-DL/releases/download/[^/]*/Classin_DL-[^-]*-Linux-arm64|https://gh-proxy.org/https://github.com/ZMH21306/ClassIn-DL/releases/download/${NEW_TAG}/Classin_DL-${NEW_VER}-Linux-arm64|g" README.md
+          sed -i "/| *Linux *| *arm64 *|/ s|https://github.com/ZMH21306/ClassIn-DL/releases/download/[^)]*|https://github.com/ZMH21306/ClassIn-DL/releases/download/${NEW_TAG}/Classin_DL-${NEW_VER}-Linux-arm64|g" README.md
+          sed -i "/| *Linux *| *arm64 *|/ s|https://gh-proxy.org/https://github.com/ZMH21306/ClassIn-DL/releases/download/[^)]*|https://gh-proxy.org/https://github.com/ZMH21306/ClassIn-DL/releases/download/${NEW_TAG}/Classin_DL-${NEW_VER}-Linux-arm64|g" README.md
 
           # macOS x86_64
-          sed -i "/| macOS | x86_64 |/ s|https://github.com/ZMH21306/ClassIn-DL/releases/download/[^/]*/Classin_DL-[^-]*-macOS-x64|https://github.com/ZMH21306/ClassIn-DL/releases/download/${NEW_TAG}/Classin_DL-${NEW_VER}-macOS-x64|g" README.md
-          sed -i "/| macOS | x86_64 |/ s|https://gh-proxy.org/https://github.com/ZMH21306/ClassIn-DL/releases/download/[^/]*/Classin_DL-[^-]*-macOS-x64|https://gh-proxy.org/https://github.com/ZMH21306/ClassIn-DL/releases/download/${NEW_TAG}/Classin_DL-${NEW_VER}-macOS-x64|g" README.md
+          sed -i "/| *macOS *| *x86_64 *|/ s|https://github.com/ZMH21306/ClassIn-DL/releases/download/[^)]*|https://github.com/ZMH21306/ClassIn-DL/releases/download/${NEW_TAG}/Classin_DL-${NEW_VER}-macOS-x64|g" README.md
+          sed -i "/| *macOS *| *x86_64 *|/ s|https://gh-proxy.org/https://github.com/ZMH21306/ClassIn-DL/releases/download/[^)]*|https://gh-proxy.org/https://github.com/ZMH21306/ClassIn-DL/releases/download/${NEW_TAG}/Classin_DL-${NEW_VER}-macOS-x64|g" README.md
 
           # macOS arm64
-          sed -i "/| macOS | arm64 |/ s|https://github.com/ZMH21306/ClassIn-DL/releases/download/[^/]*/Classin_DL-[^-]*-macOS-arm64|https://github.com/ZMH21306/ClassIn-DL/releases/download/${NEW_TAG}/Classin_DL-${NEW_VER}-macOS-arm64|g" README.md
-          sed -i "/| macOS | arm64 |/ s|https://gh-proxy.org/https://github.com/ZMH21306/ClassIn-DL/releases/download/[^/]*/Classin_DL-[^-]*-macOS-arm64|https://gh-proxy.org/https://github.com/ZMH21306/ClassIn-DL/releases/download/${NEW_TAG}/Classin_DL-${NEW_VER}-macOS-arm64|g" README.md
+          sed -i "/| *macOS *| *arm64 *|/ s|https://github.com/ZMH21306/ClassIn-DL/releases/download/[^)]*|https://github.com/ZMH21306/ClassIn-DL/releases/download/${NEW_TAG}/Classin_DL-${NEW_VER}-macOS-arm64|g" README.md
+          sed -i "/| *macOS *| *arm64 *|/ s|https://gh-proxy.org/https://github.com/ZMH21306/ClassIn-DL/releases/download/[^)]*|https://gh-proxy.org/https://github.com/ZMH21306/ClassIn-DL/releases/download/${NEW_TAG}/Classin_DL-${NEW_VER}-macOS-arm64|g" README.md
 
-      # 将最新标签写入文件，供下次比较
       - name: Save latest tag to file
         if: steps.check.outputs.updated == 'true'
         run: |
           echo "${{ steps.check.outputs.new_tag }}" > .latest_release
 
-      # 提交并推送更改
       - name: Commit and push changes
         if: steps.check.outputs.updated == 'true'
         run: |
