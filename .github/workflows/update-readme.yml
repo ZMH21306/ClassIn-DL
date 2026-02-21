@@ -1,4 +1,4 @@
-name: Update README with latest release links (每分钟检查)
+name: Update README with latest release links
 
 on:
   schedule:
@@ -17,6 +17,7 @@ jobs:
         with:
           fetch-depth: 0
 
+      # 获取最新 release 的标签
       - name: Get latest release tag from GitHub API
         id: latest
         run: |
@@ -30,6 +31,7 @@ jobs:
             echo "tag=$LATEST_TAG" >> $GITHUB_OUTPUT
           fi
 
+      # 检查是否有新 release（通过比对 .latest_release 文件）
       - name: Check if README already up-to-date
         id: check
         run: |
@@ -54,31 +56,38 @@ jobs:
             echo "new_tag=$LATEST_TAG" >> $GITHUB_OUTPUT
           fi
 
-      # ========== 修改部分 ==========
-      # 从完整标签中提取纯版本号（去除最后一个 - 及其之后的所有内容）
+      # 提取纯版本号（通用：删除最后一个 - 及其之后的所有内容）
       - name: Extract version from tag
         if: steps.check.outputs.updated == 'true'
         id: vars
         run: |
           FULL_TAG="${{ steps.check.outputs.new_tag }}"
-          # 通用提取：删除最后一个 '-' 及其右侧所有字符
           VERSION="${FULL_TAG%-*}"
-          # 如果原标签中没有 '-'，则 VERSION 等于 FULL_TAG
           echo "FULL_TAG=$FULL_TAG" >> $GITHUB_OUTPUT
           echo "VERSION=$VERSION" >> $GITHUB_OUTPUT
-      # =============================
 
-      - name: Replace placeholders in README
+      # ========== 核心修改：使用正则动态替换所有下载链接 ==========
+      - name: Update download links in README using regex
         if: steps.check.outputs.updated == 'true'
         run: |
-          sed -i "s/{{FULL_TAG}}/${{ steps.vars.outputs.FULL_TAG }}/g" README.md
-          sed -i "s/{{VERSION}}/${{ steps.vars.outputs.VERSION }}/g" README.md
+          # 转义特殊字符（/ 和 . 需要转义）
+          OLD_TAG_ESCAPED=$(echo "${{ steps.vars.outputs.FULL_TAG }}" | sed 's/[\/&]/\\&/g')
+          NEW_TAG_ESCAPED=$(echo "$FULL_TAG" | sed 's/[\/&]/\\&/g')
+          OLD_VER_ESCAPED=$(echo "${{ steps.vars.outputs.VERSION }}" | sed 's/[\/&]/\\&/g')
+          NEW_VER_ESCAPED=$(echo "$VERSION" | sed 's/[\/&]/\\&/g')
 
+          # 更新 GitHub 直链和 CDN 镜像链接
+          # 模式匹配：download/旧标签/Classin_DL-旧版本-平台-架构
+          sed -i "s|download/${OLD_TAG_ESCAPED}/Classin_DL-${OLD_VER_ESCAPED}-|download/${NEW_TAG_ESCAPED}/Classin_DL-${NEW_VER_ESCAPED}-|g" README.md
+      # =======================================================
+
+      # 将最新标签写入 .latest_release 文件，供下次比较
       - name: Save latest tag to file
         if: steps.check.outputs.updated == 'true'
         run: |
           echo "${{ steps.check.outputs.new_tag }}" > .latest_release
 
+      # 提交并推送更改（使用 GITHUB_TOKEN 认证）
       - name: Commit and push changes
         if: steps.check.outputs.updated == 'true'
         run: |
