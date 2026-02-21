@@ -98,12 +98,12 @@
 
 | 平台 | 架构 | 下载链接 |
 |:----:|:----:|:--------:|
-| Windows | x86_64 | [GitHub 直链](https://github.com/ZMH21306/ClassIn-DL/releases/download/v1.0.0-Av_UI/Classin_DL-v1.0.0-Windows-x64.exe) <br> [CDN 镜像](https://gh-proxy.org/https://github.com/ZMH21306/ClassIn-DL/releases/download/v1.0.0-Avalonia_UI/Classin_DL-v1.0.0-Windows-x64.exe) |
-| Windows | arm64  | [GitHub 直链](https://github.com/ZMH21306/ClassIn-DL/releases/download/v1.0.0-Avalo_UI/Classin_DL-v1.0.0-Windows-arm64.exe) <br> [CDN 镜像](https://gh-proxy.org/https://github.com/ZMH21306/ClassIn-DL/releases/download/v1.0.0-Avalonia_UI/Classin_DL-v1.0.0-Windows-arm64.exe) |
-| Linux   | x86_64 | [GitHub 直链](https://github.com/ZMH21306/ClassIn-DL/releases/download/v1.0.0-AvaloUI/Classin_DL-v1.0.0-Linux-x64) <br> [CDN 镜像](https://gh-proxy.org/https://github.com/ZMH21306/ClassIn-DL/releases/download/v1.0.0-Avalonia_UI/Classin_DL-v1.0.0-Linux-x64) |
-| Linux   | arm64  | [GitHub 直链](https://github.com/ZMH21306/ClassIn-DL/releases/download/v1.0.0-AvalUI/Classin_DL-v1.0.0-Linux-arm64) <br> [CDN 镜像](https://gh-proxy.org/https://github.com/ZMH21306/ClassIn-DL/releases/download/v1.0.0-Avalonia_UI/Classin_DL-v1.0.0-Linux-arm64) |
-| macOS   | x86_64 | [GitHub 直链](https://github.com/ZMH21306/ClassIn-DL/releases/download/v1.0.0-Avala_UI/Classin_DL-v1.0.0-macOS-x64) <br> [CDN 镜像](https://gh-proxy.org/https://github.com/ZMH21306/ClassIn-DL/releases/download/v1.0.0-Avalonia_UI/Classin_DL-v1.0.0-macOS-x64) |
-| macOS   | arm64  | [GitHub 直链](https://github.com/ZMH21306/ClassIn-DL/releases/download/v1.0.0/Classin_DL-v1.0.0-macOS-arm64) <br> [CDN 镜像](https://gh-proxy.org/https://github.com/ZMH21306/ClassIn-DL/releases/download/v1.0.0-Avalonia_UI/Classin_DL-v1.0.0-macOS-arm64) |
+| Windows | x86_64 | [GitHub 直链](https://github.com/ZMH21306/ClassIn-DL/releases/download/v1.0.0-Avalonia_UI/Classin_DL-v1.0.0-Windows-x64.exe) <br> [CDN 镜像](https://gh-proxy.org/https://github.com/ZMH21306/ClassIn-DL/releases/download/v1.0.0-Avalonia_UI/Classin_DL-v1.0.0-Windows-x64.exe) |
+| Windows | arm64  | [GitHub 直链](https://github.com/ZMH21306/ClassIn-DL/releases/download/v1.0.0-Avalonia_UI/Classin_DL-v1.0.0-Windows-arm64.exe) <br> [CDN 镜像](https://gh-proxy.org/https://github.com/ZMH21306/ClassIn-DL/releases/download/v1.0.0-Avalonia_UI/Classin_DL-v1.0.0-Windows-arm64.exe) |
+| Linux   | x86_64 | [GitHub 直链](https://github.com/ZMH21306/ClassIn-DL/releases/download/v1.0.0-Avalonia_UI/Classin_DL-v1.0.0-Linux-x64) <br> [CDN 镜像](https://gh-proxy.org/https://github.com/ZMH21306/ClassIn-DL/releases/download/v1.0.0-Avalonia_UI/Classin_DL-v1.0.0-Linux-x64) |
+| Linux   | arm64  | [GitHub 直链](https://github.com/ZMH21306/ClassIn-DL/releases/download/v1.0.0-Avalonia_UI/Classin_DL-v1.0.0-Linux-arm64) <br> [CDN 镜像](https://gh-proxy.org/https://github.com/ZMH21306/ClassIn-DL/releases/download/v1.0.0-Avalonia_UI/Classin_DL-v1.0.0-Linux-arm64) |
+| macOS   | x86_64 | [GitHub 直链](https://github.com/ZMH21306/ClassIn-DL/releases/download/v1.0.0-Avalonia_UI/Classin_DL-v1.0.0-macOS-x64) <br> [CDN 镜像](https://gh-proxy.org/https://github.com/ZMH21306/ClassIn-DL/releases/download/v1.0.0-Avalonia_UI/Classin_DL-v1.0.0-macOS-x64) |
+| macOS   | arm64  | [GitHub 直链](https://github.com/ZMH21306/ClassIn-DL/releases/download/v1.0.0-Avalonia_UI/Classin_DL-v1.0.0-macOS-arm64) <br> [CDN 镜像](https://gh-proxy.org/https://github.com/ZMH21306/ClassIn-DL/releases/download/v1.0.0-Avalonia_UI/Classin_DL-v1.0.0-macOS-arm64) |
 
 <!-- CONTRIBUTING -->
 ## 贡献指南
