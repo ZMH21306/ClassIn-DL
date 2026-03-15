@@ -31,6 +31,8 @@ Features high-speed downloading, batch processing capabilities, and a user-frien
 Supports parsing video links from the ClassIn platform and efficiently managing download tasks ⚡
 Requires HTTP Debugger Pro to capture video requests, providing a reliable way to obtain video resources 🔍
 
+*The project is still in the testing phase, and it is expected that all issues will be resolved by version 1.5. Development progress is slow due to heavy academic workload.
+
 > **⚠️ Important Notice**
 >
 > This tool is a technical learning project. According to ClassIn platform rules, student accounts typically only have **viewing rights** for course replays, **no downloading rights**. Unauthorized downloading of course content may **infringe on intellectual property rights and violate platform user agreements**. Please only use this tool on course content for which you have legal rights, and bear all related risks yourself.
