@@ -37,9 +37,9 @@
 >
 > 本工具为技术学习项目。根据 ClassIn 平台规则，学生账户通常仅拥有课程回放的**观看权**，**无下载权**。未经授权下载课程内容可能**侵犯知识产权并违反平台用户协议**。请仅在拥有合法权利的课程内容上使用本工具，并自行承担相关风险。
 
-> **🔄 迁移通知**
+> **🔄 开发通知**
 >
-> 本项目现已从 WPF 迁移至 **Avalonia C#**，以支持跨平台兼容（Windows、Linux、macOS）。当前版本仍存在诸多问题，欢迎前往 <a href="https://github.com/ZMH21306/ClassIn-DL/issues/new?template=bug_report.yml">报告问题</a>
+> 为了实现更加便捷的解析流程，此软件准备引入抓包功能，因此发行版本暂缓。欢迎前往 <a href="https://github.com/ZMH21306/ClassIn-DL/issues/new?template=bug_report.yml">报告问题</a>
 
 <!-- COMPATIBILITY -->
 ## 兼容性
