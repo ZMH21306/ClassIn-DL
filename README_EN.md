@@ -37,10 +37,9 @@ Requires HTTP Debugger Pro to capture video requests, providing a reliable way t
 >
 > This tool is a technical learning project. According to ClassIn platform rules, student accounts typically only have **viewing rights** for course replays, **no downloading rights**. Unauthorized downloading of course content may **infringe on intellectual property rights and violate platform user agreements**. Please only use this tool on course content for which you have legal rights, and bear all related risks yourself.
 
-> **🔄 Migration Notice**
+> **🔄 Development Notice**
 >
-> This project has now migrated from WPF to **Avalonia C#** to support cross-platform compatibility (Windows, Linux, macOS). The current version still has many issues, please feel free to <a href="https://github.com/ZMH21306/ClassIn-DL/issues/new?template=bug_report.yml">report bugs</a>
-
+> To achieve a more convenient parsing process, this software is preparing to integrate packet capture functionality, thus the release version is temporarily on hold. Welcome to <a href="https://github.com/ZMH21306/ClassIn-DL/issues/new?template=bug_report.yml">Report Issues</a>.
 <!-- COMPATIBILITY -->
 ## Compatibility
 
