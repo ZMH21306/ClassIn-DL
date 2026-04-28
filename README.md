@@ -2,6 +2,11 @@
   <a href="README_EN.md">English</a> | 简体中文
 </h4>
 
+> **⚠️ 重要提示**
+>
+> 为了抓包功能的开发推进，当前项目正处于暂停开发状态，可前往抓包软件<a href="https://github.com/ZMH21306/FlowReveal">原型仓库</a>查看最新进展
+
+
 <!-- PROJECT LOGO -->
 <div align="center">
   <br />
