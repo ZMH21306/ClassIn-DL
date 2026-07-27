@@ -142,7 +142,7 @@
 
 ## Star 历史
 
-https://www.star-history.com/?repos=ZMH21306%2FClassIn-DL&type=date&legend=top-left
+[![Star History Chart](https://api.star-history.com/svg?repos=ZMH21306/ClassIn-DL&type=Date)](https://star-history.com/#ZMH21306/ClassIn-DL&Date)
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
