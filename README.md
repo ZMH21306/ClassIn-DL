@@ -1,7 +1,3 @@
-<h4 align="right">
-  <a href="README_EN.md">English</a> | 简体中文
-</h4>
-
 <!-- PROJECT LOGO -->
 <div align="center">
   <br />
