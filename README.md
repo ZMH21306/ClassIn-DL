@@ -132,8 +132,15 @@
 * [QQ 群](https://qm.qq.com/q/PlUBdzqZCm) - 2130606191
 
 ## Star 历史
+## Star History
 
-[![Star History Chart](https://api.star-history.com/svg?repos=ZMH21306/ClassIn-DL&type=Date)](https://star-history.com/#ZMH21306/ClassIn-DL&Date)
+<a href="https://www.star-history.com/?repos=ZMH21306%2FClassIn-DL&type=date&legend=top-left">
+ <picture>
+   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/chart?repos=ZMH21306/ClassIn-DL&type=date&theme=dark&legend=top-left&sealed_token=FVBBc-3cPWNb4wJAM7xbbO8PjNMGeQxHJIrf1QzB1gaZGdRiNB9Y-4Bqwvlc8Gz9mpBbZgPo_FwBGtUAB_0k97KKQT6IBfd1k-ksi_7ZWly5nD1HIbtX" />
+   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/chart?repos=ZMH21306/ClassIn-DL&type=date&legend=top-left&sealed_token=FVBBc-3cPWNb4wJAM7xbbO8PjNMGeQxHJIrf1QzB1gaZGdRiNB9Y-4Bqwvlc8Gz9mpBbZgPo_FwBGtUAB_0k97KKQT6IBfd1k-ksi_7ZWly5nD1HIbtX" />
+   <img alt="Star History Chart" src="https://api.star-history.com/chart?repos=ZMH21306/ClassIn-DL&type=date&legend=top-left&sealed_token=FVBBc-3cPWNb4wJAM7xbbO8PjNMGeQxHJIrf1QzB1gaZGdRiNB9Y-4Bqwvlc8Gz9mpBbZgPo_FwBGtUAB_0k97KKQT6IBfd1k-ksi_7ZWly5nD1HIbtX" />
+ </picture>
+</a>
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
