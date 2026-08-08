@@ -1,0 +1,50 @@
+# .NET 构建产物
+bin/
+obj/
+build/
+dist/
+release/
+artifacts/
+
+# IDE
+.vs/
+.idea/
+*.swp
+*.swo
+*~
+
+# 操作系统
+.DS_Store
+Thumbs.db
+
+# 敏感文件
+.env
+.env.*
+*.key
+*.pem
+*.pfx
+credentials.json
+secrets.json
+
+# 日志与临时文件
+*.log
+*.tmp
+logs/
+
+# 测试覆盖率
+coverage/
+TestResults/
+
+# Avalonia / .NET 特定
+*.user
+*.suo
+*.userprefs
+
+# 历史版本快照（含二进制，由 git 历史保留）
+历史版本/
+
+# 第三方软件与激活工具（非项目源码）
+HTTP Debugger Pro软件和激活套件/
+
+# 临时文件
+.latest_release

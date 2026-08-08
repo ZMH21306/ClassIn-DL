@@ -1,0 +1,231 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Release tag (e.g. v1.0.0)'
+        required: true
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - platform: windows-latest
+            rid: win-x64
+            os_name: Windows
+            arch: x64
+          - platform: windows-latest
+            rid: win-x86
+            os_name: Windows
+            arch: x86
+          - platform: windows-latest
+            rid: win-arm64
+            os_name: Windows
+            arch: arm64
+          - platform: ubuntu-22.04
+            rid: linux-x64
+            os_name: Linux
+            arch: x64
+          - platform: ubuntu-22.04-arm
+            rid: linux-arm64
+            os_name: Linux
+            arch: arm64
+          - platform: macos-latest
+            rid: osx-x64
+            os_name: macOS
+            arch: x64
+          - platform: macos-latest
+            rid: osx-arm64
+            os_name: macOS
+            arch: arm64
+
+    runs-on: ${{ matrix.platform }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup .NET 8
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+
+      - name: Restore
+        run: dotnet restore
+
+      - name: Resolve version
+        id: version
+        shell: bash
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            TAG="${{ github.event.inputs.tag }}"
+          else
+            TAG="${GITHUB_REF_NAME}"
+          fi
+          VERSION="${TAG#v}"
+          echo "tag=${TAG}" >> "$GITHUB_OUTPUT"
+          echo "version=${VERSION}" >> "$GITHUB_OUTPUT"
+          echo "Resolved: TAG=${TAG} VERSION=${VERSION}"
+
+      - name: Build
+        run: dotnet publish -c Release -r ${{ matrix.rid }} --self-contained true /p:PublishSingleFile=true /p:IncludeNativeLibrariesForSelfExtract=true
+
+      - name: Collect artifacts
+        shell: bash
+        run: |
+          mkdir -p artifacts
+          VERSION="${{ steps.version.outputs.version }}"
+          NAME="ClassIn-DL_${VERSION}_${{ matrix.os_name }}_${{ matrix.arch }}"
+          PUBLISH_DIR="bin/Release/net8.0/${{ matrix.rid }}/publish"
+
+          if [ -f "$PUBLISH_DIR/Classin视频解析下载工具.exe" ]; then
+            cp "$PUBLISH_DIR/Classin视频解析下载工具.exe" "artifacts/${NAME}.exe"
+          elif [ -f "$PUBLISH_DIR/Classin视频解析下载工具" ]; then
+            cp "$PUBLISH_DIR/Classin视频解析下载工具" "artifacts/${NAME}"
+          fi
+
+          # Portable zip (include publish dir contents)
+          if [ -d "$PUBLISH_DIR" ]; then
+            (cd "$PUBLISH_DIR" && zip -r "../../../artifacts/${NAME}.zip" .) || true
+          fi
+
+          echo "=== Collected artifacts ==="
+          ls -la artifacts/
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.os_name }}-${{ matrix.arch }}
+          path: artifacts/*
+          if-no-files-found: warn
+
+  release:
+    needs: build
+    if: always() && needs.build.result != 'cancelled'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Resolve version
+        id: version
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            TAG="${{ github.event.inputs.tag }}"
+          else
+            TAG="${GITHUB_REF_NAME}"
+          fi
+          VERSION="${TAG#v}"
+          echo "tag=${TAG}" >> "$GITHUB_OUTPUT"
+          echo "version=${VERSION}" >> "$GITHUB_OUTPUT"
+
+      - name: Download all artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: artifacts
+
+      - name: Flatten artifacts
+        run: |
+          mkdir -p release_files
+          find artifacts -type f -name '*.exe' -o -name '*.zip' -o -name '*.tar.gz' | while read f; do
+            cp "$f" release_files/
+          done
+          ls -la release_files/
+
+      - name: Generate SHA256 checksums
+        run: |
+          cd release_files
+          sha256sum * | sort -k2 > ../SHA256SUMS.txt
+          cd ..
+          cat SHA256SUMS.txt
+
+      - name: Generate release notes
+        id: notes
+        run: |
+          TAG="${{ steps.version.outputs.tag }}"
+          VERSION="${{ steps.version.outputs.version }}"
+          DATE=$(date -u +%Y-%m-%d)
+          REPO="${{ github.repository }}"
+          BASE_URL="https://github.com/${REPO}/releases/download/${TAG}"
+          {
+            echo "body<<EOF"
+            echo "## ClassIn-DL ${TAG}"
+            echo ""
+            echo "**发布日期**：${DATE}"
+            echo ""
+            echo "---"
+            echo ""
+            echo "### 新增功能"
+            echo ""
+            echo "- Avalonia UI 图形化版本（.NET 8）"
+            echo "- 7 平台构建矩阵（Windows x64/x86/arm64、Linux x64/arm64、macOS x64/arm64）"
+            echo ""
+            echo "### 改进"
+            echo ""
+            echo "- 优化解析算法与下载管理"
+            echo ""
+            echo "### 修复"
+            echo ""
+            echo "- 解析逻辑与视频项管理优化"
+            echo ""
+            echo "### 下载说明"
+            echo ""
+            echo "| 平台 | 架构 | 文件 | 说明 |"
+            echo "|------|------|------|------|"
+            echo "| Windows | x64 | [\`ClassIn-DL_${VERSION}_Windows_x64.exe\`](${BASE_URL}/ClassIn-DL_${VERSION}_Windows_x64.exe) | 安装程序 |"
+            echo "| Windows | x86 | [\`ClassIn-DL_${VERSION}_Windows_x86.exe\`](${BASE_URL}/ClassIn-DL_${VERSION}_Windows_x86.exe) | 安装程序 |"
+            echo "| Windows | arm64 | [\`ClassIn-DL_${VERSION}_Windows_arm64.exe\`](${BASE_URL}/ClassIn-DL_${VERSION}_Windows_arm64.exe) | 安装程序 |"
+            echo "| Linux | x64 | [\`ClassIn-DL_${VERSION}_Linux_x64.zip\`](${BASE_URL}/ClassIn-DL_${VERSION}_Linux_x64.zip) | 便携版 |"
+            echo "| Linux | arm64 | [\`ClassIn-DL_${VERSION}_Linux_arm64.zip\`](${BASE_URL}/ClassIn-DL_${VERSION}_Linux_arm64.zip) | 便携版 |"
+            echo "| macOS | x64 | [\`ClassIn-DL_${VERSION}_macOS_x64.zip\`](${BASE_URL}/ClassIn-DL_${VERSION}_macOS_x64.zip) | 便携版 |"
+            echo "| macOS | arm64 | [\`ClassIn-DL_${VERSION}_macOS_arm64.zip\`](${BASE_URL}/ClassIn-DL_${VERSION}_macOS_arm64.zip) | 便携版 |"
+            echo ""
+            echo "### 哈希校验"
+            echo ""
+            echo "details>"
+            echo "summary>展开查看 SHA256 校验和</summary>"
+            echo ""
+            echo "\`\`\`"
+            cat SHA256SUMS.txt
+            echo "\`\`\`"
+            echo ""
+            echo "**校验方法：**"
+            echo "- Windows：\`Get-FileHash <文件名> -Algorithm SHA256\`"
+            echo "- Linux/macOS：\`sha256sum <文件名>\`"
+            echo ""
+            echo "</details>"
+            echo ""
+            echo "---"
+            echo ""
+            echo "**完整变更日志**：[CHANGELOG.md](https://github.com/${REPO}/blob/main/CHANGELOG.md)"
+            echo ""
+            echo "EOF"
+          } >> "$GITHUB_OUTPUT"
+
+      - name: Delete existing release (if any)
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          TAG="${{ steps.version.outputs.tag }}"
+          gh release delete "$TAG" --yes --cleanup-tag 2>/dev/null || true
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ steps.version.outputs.tag }}
+          name: ClassIn-DL ${{ steps.version.outputs.tag }}
+          draft: false
+          prerelease: false
+          body: ${{ steps.notes.outputs.body }}
+          files: |
+            release_files/*
+            SHA256SUMS.txt
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
