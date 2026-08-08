@@ -35,7 +35,7 @@
 
 > **🔄 开发通知**
 >
-> 为了实现更加便捷的解析流程，此软件准备引入抓包功能，因此发行版本暂缓。欢迎前往 <a href="https://github.com/ZMH21306/ClassIn-DL/issues/new?template=bug_report.yml">报告问题</a>
+> 为了实现更加便捷的解析流程，此软件正在开发自助抓包功能。最新版本已发布，欢迎前往 <a href="https://github.com/ZMH21306/ClassIn-DL/releases">Releases</a> 下载，或前往 <a href="https://github.com/ZMH21306/ClassIn-DL/issues/new?template=bug_report.yml">报告问题</a>
 
 <!-- COMPATIBILITY -->
 ## 兼容性
