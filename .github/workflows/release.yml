@@ -134,7 +134,7 @@ jobs:
       - name: Flatten artifacts
         run: |
           mkdir -p release_files
-          find artifacts -type f -name '*.exe' -o -name '*.zip' -o -name '*.tar.gz' | while read f; do
+          find artifacts -type f \( -name '*.exe' -o -name '*.zip' -o -name '*.tar.gz' \) | while read f; do
             cp "$f" release_files/
           done
           ls -la release_files/
