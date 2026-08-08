@@ -92,9 +92,9 @@ jobs:
             cp "$PUBLISH_DIR/Classin视频解析下载工具" "artifacts/${NAME}"
           fi
 
-          # Portable zip (include publish dir contents)
+          # Portable zip (include publish dir contents) - use 7z (available on all runners)
           if [ -d "$PUBLISH_DIR" ]; then
-            (cd "$PUBLISH_DIR" && zip -r "../../../artifacts/${NAME}.zip" .) || true
+            (cd "$PUBLISH_DIR" && 7z a "../../../artifacts/${NAME}.zip" .) || true
           fi
 
           echo "=== Collected artifacts ==="
