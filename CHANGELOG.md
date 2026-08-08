@@ -4,6 +4,14 @@
 
 ## [Unreleased]
 
+## [1.0.1] - 2026-08-08
+
+### 改进
+- 清理仓库垃圾文件（移除历史版本快照与第三方激活工具）
+- 添加 7 平台 CI 发布工作流（Windows x64/x86/arm64、Linux x64/arm64、macOS x64/arm64）
+- 添加 CHANGELOG、.gitignore、.editorconfig 等开源规范文件
+- 添加统一构建与发布脚本（build/test/scripts/resources）
+
 ## [1.0.0] - 2026-08-08
 
 ### 新增
