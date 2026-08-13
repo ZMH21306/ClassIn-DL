@@ -1,6 +1,6 @@
 # CHANGELOG 自动生成脚本
 # 从上次 tag 以来的 commit 自动提取变更，按 Conventional Commits 分类
-# 用法: .\scripts\generate-changelog.ps1 [-Version x.y.z] [-Date YYYY-MM-DD]
+# 用法: .\scripts\generate-changelog.ps1 [-Version x.y.z] [-Date YYYY-MM-DD] [-NoInsert]
 #
 # 分类规则:
 #   feat  -> 新增 (Added)
@@ -11,7 +11,8 @@
 
 param(
     [string]$Version,
-    [string]$Date = (Get-Date -Format "yyyy-MM-dd")
+    [string]$Date = (Get-Date -Format "yyyy-MM-dd"),
+    [switch]$NoInsert
 )
 
 $ErrorActionPreference = "Stop"
@@ -101,16 +102,31 @@ Write-Host "================================"
 
 # 写入 CHANGELOG.md
 $changelogPath = Join-Path (Get-Location) "CHANGELOG.md"
+
+if ($NoInsert) {
+    Write-Host "✅ --NoInsert 模式：已输出预览，未写入文件"
+    exit 0
+}
+
 if (Test-Path $changelogPath) {
     $content = Get-Content $changelogPath -Raw -Encoding UTF8
     # 在 [Unreleased] 之后插入新条目
     if ($content -match '## \[Unreleased\]') {
         $content = $content -replace '## \[Unreleased\]', "## [Unreleased]`n`n$result"
     } else {
-        $content = "$result`n`n$content"
+        # 无 [Unreleased]：在文件开头（标题行后）插入
+        if ($content -match '^# .+\r?\n') {
+            $content = $content -replace '^# .+\r?\n', "&`n`n$result`n"
+        } else {
+            $content = "$result`n`n$content"
+        }
     }
     Set-Content $changelogPath $content -Encoding UTF8
     Write-Host "✅ CHANGELOG.md 已更新"
 } else {
-    Write-Host "⚠️ 未找到 CHANGELOG.md，请手动创建"
+    # 文件不存在，创建带规范头部的 CHANGELOG
+    $header = "# 更新日志`n`n本文件记录项目的所有重要变更。格式基于 [Keep a Changelog](https://keepachangelog.com/zh-CN/1.1.0/)，版本号遵循 [语义化版本](https://semver.org/lang/zh-CN/)。`n`n## [Unreleased]`n"
+    $content = "$header`n$result`n"
+    Set-Content $changelogPath $content -Encoding UTF8
+    Write-Host "✅ CHANGELOG.md 已创建并写入"
 }

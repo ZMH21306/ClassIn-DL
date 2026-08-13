@@ -1,6 +1,6 @@
 # 统一发布脚本
 # 当用户说"发布新版本"时，AI 按此流程执行，确保 3 个项目行为一致
-# 用法: .\scripts\release.ps1 [-Version x.y.z] [-Type major|minor|patch]
+# 用法: .\scripts\release.ps1 [-Version x.y.z] [-Type major|minor|patch] [-CommitOnly]
 #
 # 流程:
 #   1. 检查工作区干净
@@ -13,10 +13,20 @@
 param(
     [string]$Version,
     [ValidateSet("major", "minor", "patch")]
-    [string]$Type = "patch"
+    [string]$Type = "patch",
+    [switch]$CommitOnly
 )
 
 $ErrorActionPreference = "Stop"
+
+# ---------- 0. 辅助函数 ----------
+function Get-DefaultBranch {
+    $ref = git symbolic-ref refs/remotes/origin/HEAD 2>$null
+    if ($ref -match 'refs/remotes/origin/(.+)') { return $matches[1] }
+    $branch = git branch --show-current 2>$null
+    if ($branch) { return $branch }
+    return "main"
+}
 
 # ---------- 1. 检查工作区 ----------
 Write-Host "=== 检查工作区 ==="
@@ -97,15 +107,35 @@ if (Test-Path "scripts\generate-changelog.ps1") {
 
 # ---------- 5. 提交 ----------
 Write-Host "=== 提交版本更新 ==="
-git add Cargo.toml tauri.conf.json CHANGELOG.md *.csproj 2>$null
+$filesToStage = @()
+if (Test-Path "Cargo.toml") { $filesToStage += "Cargo.toml" }
+if (Test-Path "tauri.conf.json") { $filesToStage += "tauri.conf.json" }
+Get-ChildItem "*.csproj" -ErrorAction SilentlyContinue | ForEach-Object { $filesToStage += $_.FullName }
+if (Test-Path "CHANGELOG.md") { $filesToStage += "CHANGELOG.md" }
+git add @filesToStage
 git commit -m "chore(release): bump version to v$Version"
-git push origin main 2>$null
+
+if ($CommitOnly) {
+    Write-Host "✅ CommitOnly 模式：已提交但尚未打 tag"
+    exit 0
+}
+
+$defaultBranch = Get-DefaultBranch
+Write-Host "目标分支: $defaultBranch"
+git push origin $defaultBranch
 
 # ---------- 6. 打 tag 并推送 ----------
 Write-Host "=== 打 tag 并推送 ==="
-git tag -a "v$Version" -m "Release v$Version"
-git push origin "v$Version"
+$tagRef = "v$Version"
+if (git tag -l $tagRef) {
+    Write-Host "❌ tag $tagRef 已存在，停止发布以避免覆盖远端 tag"
+    Write-Host "如需重新发布，请先删除本地 tag：git tag -d $tagRef"
+    exit 1
+}
+git tag -a $tagRef -m "Release $tagRef"
+git push origin $tagRef
 
 Write-Host ""
 Write-Host "🎉 发布流程完成！CI 已触发，等待构建完成。"
-Write-Host "查看: https://github.com/$(git remote get-url origin | ForEach-Object { $_ -replace '.*github.com[:/]', '' -replace '\.git$', '' })/releases"
+$repo = git remote get-url origin | ForEach-Object { $_ -replace '.*github.com[:/]', '' -replace '\.git$', '' }
+Write-Host "查看: https://github.com/$repo/releases"
