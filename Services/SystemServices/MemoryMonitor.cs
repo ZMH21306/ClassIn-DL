@@ -46,9 +46,24 @@ namespace Classin视频解析下载工具.Services.SystemServices
         {
             if (!_isMonitoring) return;
 
-            _cts.Cancel();
-            _monitoringTask?.Wait(1000);
-            _isMonitoring = false;
+            try
+            {
+                _cts.Cancel();
+                if (_monitoringTask != null)
+                {
+                    // 异步等待任务结束，不阻塞
+                    _monitoringTask.ContinueWith(t =>
+                    {
+                        System.Diagnostics.Debug.WriteLine("MemoryMonitor 停止完成");
+                    }, TaskScheduler.Default);
+                }
+                _isMonitoring = false;
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"MemoryMonitor 停止异常: {ex.Message}");
+                _isMonitoring = false;
+            }
         }
 
         public MemoryUsage GetCurrentMemoryUsage()
