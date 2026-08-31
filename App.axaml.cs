@@ -2,6 +2,7 @@ using System;
 using System.Linq;
 using System.Threading.Tasks;
 using Avalonia;
+using Avalonia.Controls;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Data.Core;
 using Avalonia.Data.Core.Plugins;
@@ -24,6 +25,8 @@ namespace Classin视频解析下载工具
         private IServiceProvider? _serviceProvider;
         private ILoggingService? _loggingService;
         private bool _isDisposed;
+        private Window? _splashWindow;
+        private SplashViewModel? _splashViewModel;
 
         public override void Initialize()
         {
@@ -291,10 +294,26 @@ namespace Classin视频解析下载工具
                 if (this.ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
                 {
                     _loggingService?.Debug("配置桌面应用程序生命周期...", "Application.Framework");
-                    // Avoid duplicate validations from both Avalonia and the CommunityToolkit. 
-                    // More info: https://docs.avaloniaui.net/docs/guides/development-guides/data-validation#manage-validationplugins
-                    _loggingService?.Debug("禁用Avalonia数据注解验证...", "Application.Framework");
                     DisableAvaloniaDataAnnotationValidation();
+
+                    // 显示启动画面
+                    _loggingService?.Debug("显示启动画面...", "Application.Framework");
+                    _splashViewModel = new SplashViewModel(_loggingService!);
+                    _splashWindow = new SplashView
+                    {
+                        DataContext = _splashViewModel,
+                        ShowInTaskbar = false
+                    };
+                    _splashWindow.Show();
+
+                    try
+                    {
+                        await _splashViewModel.InitializeAsync();
+                    }
+                    catch (Exception ex)
+                    {
+                        _loggingService?.Error($"启动画面初始化失败: {ex.Message}", "Application.Framework");
+                    }
 
                     try
                     {
@@ -345,10 +364,22 @@ namespace Classin视频解析下载工具
                         // 先设置桌面主窗口，让窗口显示出来
                         _loggingService?.Debug("设置桌面主窗口...", "Application.Framework");
                         desktop.MainWindow = mainWindow;
+                        mainWindow.Show();
+                        mainWindow.Activate();
 
                         // 异步初始化MainViewModel，不阻塞UI线程
                         _loggingService?.Debug("异步初始化MainViewModel...", "Application.Framework");
                         await Task.Run(async () => await mainViewModel.InitializeAsync(baseDirectory));
+
+                        // 主窗口准备就绪，关闭启动画面
+                        _loggingService?.Debug("关闭启动画面...", "Application.Framework");
+                        if (_splashWindow != null)
+                        {
+                            _splashWindow.Close();
+                            _splashWindow = null;
+                        }
+                        _splashViewModel?.Dispose();
+                        _splashViewModel = null;
 
                         _loggingService?.Info("主窗口已设置完成...", "Application.Framework");
                     }
