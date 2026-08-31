@@ -13,6 +13,11 @@ on:
 permissions:
   contents: write
 
+env:
+  PROJECT_NAME: 'Classin视频解析下载工具'
+  FILE_VERSION: '0.7.0'
+  DOTNET_VERSION: '8.0.x'
+
 jobs:
   build:
     strategy:
@@ -148,66 +153,80 @@ jobs:
 
       - name: Generate release notes
         id: notes
+        shell: bash
         run: |
           TAG="${{ steps.version.outputs.tag }}"
-          VERSION="${{ steps.version.outputs.version }}"
+          FILE_VERSION="${{ env.FILE_VERSION }}"
           DATE=$(date -u +%Y-%m-%d)
           REPO="${{ github.repository }}"
           BASE_URL="https://github.com/${REPO}/releases/download/${TAG}"
-          {
-            echo "body<<EOF"
-            echo "## ClassIn-DL ${TAG}"
-            echo ""
-            echo "**发布日期**：${DATE}"
-            echo ""
-            echo "---"
-            echo ""
-            echo "### 新增功能"
-            echo ""
-            echo "- Avalonia UI 图形化版本（.NET 8）"
-            echo "- 7 平台构建矩阵（Windows x64/x86/arm64、Linux x64/arm64、macOS x64/arm64）"
-            echo ""
-            echo "### 改进"
-            echo ""
-            echo "- 优化解析算法与下载管理"
-            echo ""
-            echo "### 修复"
-            echo ""
-            echo "- 解析逻辑与视频项管理优化"
-            echo ""
-            echo "### 下载说明"
-            echo ""
-            echo "| 平台 | 架构 | 文件 | 说明 |"
-            echo "|------|------|------|------|"
-            echo "| Windows | x64 | [\`ClassIn-DL_${VERSION}_Windows_x64.exe\`](${BASE_URL}/ClassIn-DL_${VERSION}_Windows_x64.exe) | 安装程序 |"
-            echo "| Windows | x86 | [\`ClassIn-DL_${VERSION}_Windows_x86.exe\`](${BASE_URL}/ClassIn-DL_${VERSION}_Windows_x86.exe) | 安装程序 |"
-            echo "| Windows | arm64 | [\`ClassIn-DL_${VERSION}_Windows_arm64.exe\`](${BASE_URL}/ClassIn-DL_${VERSION}_Windows_arm64.exe) | 安装程序 |"
-            echo "| Linux | x64 | [\`ClassIn-DL_${VERSION}_Linux_x64.zip\`](${BASE_URL}/ClassIn-DL_${VERSION}_Linux_x64.zip) | 便携版 |"
-            echo "| Linux | arm64 | [\`ClassIn-DL_${VERSION}_Linux_arm64.zip\`](${BASE_URL}/ClassIn-DL_${VERSION}_Linux_arm64.zip) | 便携版 |"
-            echo "| macOS | x64 | [\`ClassIn-DL_${VERSION}_macOS_x64.zip\`](${BASE_URL}/ClassIn-DL_${VERSION}_macOS_x64.zip) | 便携版 |"
-            echo "| macOS | arm64 | [\`ClassIn-DL_${VERSION}_macOS_arm64.zip\`](${BASE_URL}/ClassIn-DL_${VERSION}_macOS_arm64.zip) | 便携版 |"
-            echo ""
-            echo "### 哈希校验"
-            echo ""
-            echo "details>"
-            echo "summary>展开查看 SHA256 校验和</summary>"
-            echo ""
-            echo "\`\`\`"
-            cat SHA256SUMS.txt
-            echo "\`\`\`"
-            echo ""
-            echo "**校验方法：**"
-            echo "- Windows：\`Get-FileHash <文件名> -Algorithm SHA256\`"
-            echo "- Linux/macOS：\`sha256sum <文件名>\`"
-            echo ""
-            echo "</details>"
-            echo ""
-            echo "---"
-            echo ""
-            echo "**完整变更日志**：[CHANGELOG.md](https://github.com/${REPO}/blob/main/CHANGELOG.md)"
-            echo ""
-            echo "EOF"
-          } >> "$GITHUB_OUTPUT"
+          PROJECT_NAME="${{ env.PROJECT_NAME }}"
+          
+          cat > notes.md << 'NOTES_EOF'
+          ## ${PROJECT_NAME} ${TAG}
+
+          **发布日期**: ${DATE}
+
+          ---
+
+          ### 新增功能
+
+          - Avalonia UI 图形化版本（.NET 8）
+          - 启动画面（Splash Screen）优化
+          - URL 安全验证（SSRF 防护、域名白名单）
+          - 异步日志服务（高性能文件写入）
+          - 异步确认对话框
+          - 配置保存重试机制
+          - 内存监控服务优化
+          - 进度变化检测 BUG 修复
+          - 课程名称乱码问题修复
+
+          ### 下载说明
+
+          | 平台 | 架构 | 文件 | 说明 |
+          |------|------|------|------|
+          | Windows | x64 | [`${PROJECT_NAME}_${FILE_VERSION}_Windows_x64.exe`](${BASE_URL}/${PROJECT_NAME}_${FILE_VERSION}_Windows_x64.exe) | 单文件便携 |
+          | Windows | x86 | [`${PROJECT_NAME}_${FILE_VERSION}_Windows_x86.exe`](${BASE_URL}/${PROJECT_NAME}_${FILE_VERSION}_Windows_x86.exe) | 单文件便携 |
+          | Windows | arm64 | [`${PROJECT_NAME}_${FILE_VERSION}_Windows_arm64.exe`](${BASE_URL}/${PROJECT_NAME}_${FILE_VERSION}_Windows_arm64.exe) | 单文件便携 |
+          | Windows | x64 | [`${PROJECT_NAME}_${FILE_VERSION}_Windows_x64_portable.zip`](${BASE_URL}/${PROJECT_NAME}_${FILE_VERSION}_Windows_x64_portable.zip) | 便携版 ZIP |
+          | Windows | x86 | [`${PROJECT_NAME}_${FILE_VERSION}_Windows_x86_portable.zip`](${BASE_URL}/${PROJECT_NAME}_${FILE_VERSION}_Windows_x86_portable.zip) | 便携版 ZIP |
+          | Windows | arm64 | [`${PROJECT_NAME}_${FILE_VERSION}_Windows_arm64_portable.zip`](${BASE_URL}/${PROJECT_NAME}_${FILE_VERSION}_Windows_arm64_portable.zip) | 便携版 ZIP |
+          | Linux | x64 | [`${PROJECT_NAME}_${FILE_VERSION}_Linux_x64`](${BASE_URL}/${PROJECT_NAME}_${FILE_VERSION}_Linux_x64) | 单文件便携 |
+          | Linux | arm64 | [`${PROJECT_NAME}_${FILE_VERSION}_Linux_arm64`](${BASE_URL}/${PROJECT_NAME}_${FILE_VERSION}_Linux_arm64) | 单文件便携 |
+          | Linux | x64 | [`${PROJECT_NAME}_${FILE_VERSION}_Linux_x64_portable.zip`](${BASE_URL}/${PROJECT_NAME}_${FILE_VERSION}_Linux_x64_portable.zip) | 便携版 |
+          | Linux | arm64 | [`${PROJECT_NAME}_${FILE_VERSION}_Linux_arm64_portable.zip`](${BASE_URL}/${PROJECT_NAME}_${FILE_VERSION}_Linux_arm64_portable.zip) | 便携版 |
+          | macOS | x64 | [`${PROJECT_NAME}_${FILE_VERSION}_macOS_x64`](${BASE_URL}/${PROJECT_NAME}_${FILE_VERSION}_macOS_x64) | 单文件便携 |
+          | macOS | arm64 | [`${PROJECT_NAME}_${FILE_VERSION}_macOS_arm64`](${BASE_URL}/${PROJECT_NAME}_${FILE_VERSION}_macOS_arm64) | 单文件便携 |
+          | macOS | x64 | [`${PROJECT_NAME}_${FILE_VERSION}_macOS_x64_portable.zip`](${BASE_URL}/${PROJECT_NAME}_${FILE_VERSION}_macOS_x64_portable.zip) | 便携版 |
+          | macOS | arm64 | [`${PROJECT_NAME}_${FILE_VERSION}_macOS_arm64_portable.zip`](${BASE_URL}/${PROJECT_NAME}_${FILE_VERSION}_macOS_arm64_portable.zip) | 便携版 |
+
+          ### 哈希校验
+
+          <details>
+          <summary>展开查看 SHA256 校验和</summary>
+
+          ```
+          ${SHA256_SUMS}
+          ```
+
+          **校验方法**：
+          - Windows: `Get-FileHash <文件名> -Algorithm SHA256`
+          - Linux/macOS: `sha256sum <文件名>`
+
+          </details>
+
+          ---
+
+          **完整变更日志**: [CHANGELOG.md](https://github.com/${REPO}/blob/main/CHANGELOG.md)
+          NOTES_EOF
+          
+          SHA256_SUMS=$(cat SHA256SUMS.txt)
+          sed -i "s|SHA256_SUMS|${SHA256_SUMS}|g" notes.md
+          
+          echo "body<<EOF"
+          cat notes.md
+          echo "EOF"
+
 
       - name: Delete existing release (if any)
         env:
