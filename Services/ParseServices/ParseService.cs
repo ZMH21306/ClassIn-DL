@@ -78,13 +78,6 @@ namespace Classin视频解析下载工具.Services.ParseServices
 
                 _loggingService.Debug($"提取到课程名称: {lessonName}", "ParseService.JSON");
 
-                var originalLessonName = lessonName;
-                lessonName = FormatUtils.FixEncoding(lessonName);
-                if (originalLessonName != lessonName)
-                {
-                    _loggingService.Debug($"课程名称编码已修复: '{originalLessonName}' -> '{lessonName}'", "ParseService.JSON");
-                }
-
                 var videoUrl = ExtractVideoUrlFromJson(data);
                 if (string.IsNullOrEmpty(videoUrl))
                 {
@@ -123,7 +116,6 @@ namespace Classin视频解析下载工具.Services.ParseServices
             _loggingService.Debug($"提取到课程名称: {currentLessonName}", "ParseService.Line");
 
             var originalLessonName = currentLessonName;
-            currentLessonName = FormatUtils.FixEncoding(currentLessonName);
             if (originalLessonName != currentLessonName)
             {
                 _loggingService.Debug($"课程名称编码已修复: '{originalLessonName}' -> '{currentLessonName}'", "ParseService.Line");
