@@ -94,14 +94,19 @@ namespace Classin视频解析下载工具.Models
                 if (_progress != value)
                 {
                     _progress = value;
-                    // 只有在值变化超过1%时才通知，减少频繁更新
-                    if (Math.Abs(_progress - value) >= 1 || value == 0 || value == 100)
+                    // 修复BUG: 修正后的进度变化检测
+                    // 之前的 Math.Abs(_progress - value) 计算是错误的，因为 _progress 已等于 value
+                    // 现在按 1% 节流，边界值始终通知
+                    if (value == 0 || value == 100 || Math.Abs(_progress - _lastNotifiedProgress) >= 1)
                     {
+                        _lastNotifiedProgress = _progress;
                         OnPropertyChanged(nameof(Progress));
                     }
                 }
             }
         }
+
+        private int _lastNotifiedProgress = -1;
 
         private long _downloadedBytes;
         public long DownloadedBytes
