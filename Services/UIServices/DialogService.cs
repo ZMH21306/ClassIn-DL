@@ -1,8 +1,8 @@
-using System;
+﻿using System;
 using System.Threading.Tasks;
 using Avalonia.Controls;
-using Avalonia.Platform.Storage;
 using Avalonia.Controls.Notifications;
+using Avalonia.Platform.Storage;
 
 namespace Classin视频解析下载工具.Services.UIServices
 {
@@ -50,7 +50,7 @@ namespace Classin视频解析下载工具.Services.UIServices
             }
         }
 
-        public bool ShowConfirmDialog(string message, string title = "确认")
+        public async Task<bool> ShowConfirmDialogAsync(string message, string title = "确认")
         {
             if (_mainWindow == null) return true;
 
@@ -58,7 +58,7 @@ namespace Classin视频解析下载工具.Services.UIServices
             {
                 var tcs = new TaskCompletionSource<bool>();
 
-                Avalonia.Threading.Dispatcher.UIThread.Post(async () =>
+                await Avalonia.Threading.Dispatcher.UIThread.InvokeAsync(async () =>
                 {
                     try
                     {
@@ -110,13 +110,13 @@ namespace Classin视频解析下载工具.Services.UIServices
                         yesButton.Click += (s, e) =>
                         {
                             dialog.Close();
-                            tcs.SetResult(true);
+                            tcs.TrySetResult(true);
                         };
 
                         noButton.Click += (s, e) =>
                         {
                             dialog.Close();
-                            tcs.SetResult(false);
+                            tcs.TrySetResult(false);
                         };
 
                         buttonPanel.Children.Add(yesButton);
@@ -130,11 +130,26 @@ namespace Classin视频解析下载工具.Services.UIServices
                     catch (Exception ex)
                     {
                         Console.WriteLine($"显示确认对话框失败: {ex.Message}");
-                        tcs.SetResult(true);
+                        tcs.TrySetResult(true);
                     }
                 });
 
-                return tcs.Task.Result;
+                return await tcs.Task;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"显示确认对话框失败: {ex.Message}");
+                return true;
+            }
+        }
+
+        public bool ShowConfirmDialog(string message, string title = "确认")
+        {
+            if (_mainWindow == null) return true;
+
+            try
+            {
+                return ShowConfirmDialogAsync(message, title).GetAwaiter().GetResult();
             }
             catch (Exception ex)
             {
@@ -165,3 +180,4 @@ namespace Classin视频解析下载工具.Services.UIServices
         }
     }
 }
+
