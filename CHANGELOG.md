@@ -4,20 +4,23 @@
 
 ## [1.0.2] - 2026-09-01
 
+### 新增功能
+- 统一发行规范，资产命名标准化为 \ClassInDL_<ver>_<OS>_<arch>.<ext>\ 格式
+- 标准化 Release Notes 模板
+- SHA256SUMS 校验文件自动生成
+
 ### 改进
-- 重写统一发行规范（release.yml / AI-WORKFLOW.md / scripts/release.ps1）
 - 移除 update-readme.yml 工作流，README 下载表格改为手动维护
+- 重写 AI-WORKFLOW.md，固化统一发行规范
 - 删除已合并到主分支的 v1.0.2 / v1.0.3 测试标签
 
-### 依赖与安全
-- 升级 GitHub Actions 工作流至 v4 版本
-- 新增 SHA256SUMS 校验文件，每个 Release 自动附带产物完整性校验
-- 构建矩阵扩充至 7 平台（新增 Windows x86）
+### 修复
+- 修正历史版本命名混乱问题（CHANGELOG 历史归档段）
 
-### 文档
-- 重写 AI-WORKFLOW.md，固化统一发行规范（含产物矩阵、Release Notes 模板、CHANGELOG 模板）
-- CHANGELOG 历史归档段补全 v0.4.0 ~ v1.0.0 版本说明
-- README.md 下载表格按新规范重写（19 个平台产物）
+### 依赖与安全
+- 升级工作流 Action 至 v4
+- 使用 SHA256SUMS 提供产物完整性校验
+
 ## [Unreleased]
 
 ## [1.0.1] - 2026-08-08

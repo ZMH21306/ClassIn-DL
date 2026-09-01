@@ -168,7 +168,6 @@ jobs:
           BASE_URL="https://github.com/${REPO}/releases/download/${TAG}"
           DATE=$(date -u +'%Y-%m-%d')
           cat > /tmp/release-notes.md <<HEADER
-          # ClassIn视频下载工具 ${TAG}
           发布日期：${DATE}
 
           ## 新增功能
@@ -250,7 +249,7 @@ jobs:
         uses: softprops/action-gh-release@v2
         with:
           tag_name: ${{ steps.version.outputs.tag }}
-          name: ClassIn视频下载工具 ${{ steps.version.outputs.tag }}
+          name: ClassInDL ${{ steps.version.outputs.tag }}
           draft: false
           prerelease: false
           body: ${{ steps.notes.outputs.body }}

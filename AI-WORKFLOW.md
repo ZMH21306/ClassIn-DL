@@ -10,8 +10,10 @@
 | 用户自然语言 | AI 执行操作 |
 |------------|------------|
 | **提交代码** / **commit** / **保存改动** | 按「Commit 规范」生成消息并执行 `git add` + `git commit` |
-| **发布新版本** / **release** / **打标签** | 运行 `.\scriptselease.ps1`（若工作区干净且有功能/修复变更） |
-| **发布 v1.2.3** / **release v1.2.3** | 运行 `.\scriptselease.ps1 -Version 1.2.3` |
+| **发布新版本** / **release** / **打标签** | 运行 `.\scripts
+elease.ps1`（若工作区干净且有功能/修复变更） |
+| **发布 v1.2.3** / **release v1.2.3** | 运行 `.\scripts
+elease.ps1 -Version 1.2.3` |
 | **更新 CHANGELOG** / **更新日志** | 运行 `.\scripts\generate-changelog.ps1 -Version x.y.z` |
 | **本地构建** / **build** / **编译** | 运行 `dotnet build` 或 `dotnet run` |
 | **运行测试** / **test** | 运行 `dotnet test` |
@@ -134,8 +136,10 @@ ClassInDL_<ver>_<OS>_<arch>.<ext>
 | macOS | arm64 | `.dmg` + `.tar.gz` |
 
 ### Release Notes 结构（标准化模板）
-```markdown
-# ClassIn视频下载工具 v<tag>
+
+> 以下为 v1.0.2 实际发布说明的完整格式。
+
+`markdown
 发布日期：<YYYY-MM-DD>
 
 ## 新增功能
@@ -154,18 +158,36 @@ ClassInDL_<ver>_<OS>_<arch>.<ext>
 
 | 平台 | 架构 | 文件 | 说明 |
 |------|------|------|------|
+| Windows | x64 | [ClassInDL_<ver>_Windows_x64.exe](...) | NSIS 安装程序 |
+| Windows | x64 | [ClassInDL_<ver>_Windows_x64.zip](...) | 便携版 |
+| Windows | x86 | [ClassInDL_<ver>_Windows_x86.exe](...) | NSIS 安装程序 |
+| Windows | x86 | [ClassInDL_<ver>_Windows_x86.zip](...) | 便携版 |
+| Windows | arm64 | [ClassInDL_<ver>_Windows_arm64.exe](...) | NSIS 安装程序 |
+| Windows | arm64 | [ClassInDL_<ver>_Windows_arm64.zip](...) | 便携版 |
+| Linux | x64 | [ClassInDL_<ver>_Linux_x64.tar.gz](...) | 便携版 |
+| Linux | arm64 | [ClassInDL_<ver>_Linux_arm64.tar.gz](...) | 便携版 |
+| macOS | x64 | [ClassInDL_<ver>_macOS_x64.tar.gz](...) | 便携版 |
+| macOS | arm64 | [ClassInDL_<ver>_macOS_arm64.tar.gz](...) | 便携版 |
 
 ## 哈希校验
 
 <details>
 <summary>展开查看 SHA256 校验和</summary>
-```
+
+`
 SHA256SUMS.txt 内容
-```
+`
+
+**校验方法**：
+- Windows: Get-FileHash <文件名> -Algorithm SHA256
+- Linux/macOS: sha256sum <文件名>
+
 </details>
 
-完整变更日志：CHANGELOG.md
-```
+---
+
+**完整变更日志**: [CHANGELOG.md](https://github.com/ZMH21306/ClassIn-DL/blob/<tag>/CHANGELOG.md)
+`
 
 ### CHANGELOG 模板
 ```markdown
@@ -190,7 +212,7 @@ SHA256SUMS.txt 内容
 
 | 项目 | 技术栈 | 构建命令 | CI 产物 |
 |------|--------|---------|---------|
-| ClassIn-DL | C# .NET 8 + Avalonia UI | `dotnet publish -c Release -r <rid> --self-contained` | .exe + .msi + .zip + .deb + .AppImage + .tar.gz + .dmg（共 22 项） |
+| ClassIn-DL | C# .NET 8 + Avalonia UI | \dotnet publish -c Release -r <rid> --self-contained\ | .exe + .zip（Windows）+ .tar.gz（Linux/macOS）（共 13 项） |
 | LlamaUI | Rust + Tauri 2 | `cargo tauri build --target <rust_target>` | .exe/.msi/.zip + .deb/.AppImage/.tar.gz + .dmg（共 22 项） |
 
 ---
@@ -208,8 +230,12 @@ SHA256SUMS.txt 内容
 
 ## CI 工作流参考
 
+
+> 以下为 v1.0.2 实际工作流配置（已验证可正常工作）。
+
 - 触发条件：推送 `v*` tag 或手动 `workflow_dispatch`
 - 构建矩阵：7 平台（Windows x64/x86/arm64、Linux x64/arm64、macOS x64/arm64）
 - 发布地址：https://github.com/ZMH21306/ClassIn-DL/releases
 - 产物命名：`ClassInDL_{VERSION}_{OS}_{ARCH}.<ext>`
+- 产物数量：13 项（7 平台 × 2 格式 + SHA256SUMS.txt）
 - SHA256SUMS：每个 release 自动附带产物校验文件
