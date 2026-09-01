@@ -94,14 +94,33 @@
 
 获取适用于各平台的 ClassIn 视频下载器最新版本：
 
-| 平台 | 架构 | 下载链接 |
-|:----:|:----:|:--------:|
-| Windows | x86_64 | [GitHub 直链](https://github.com/ZMH21306/ClassIn-DL/releases/download/v1.0.0-Avalonia_UI/Classin_DL-v1.0.0-Windows-x64.exe) <br> [CDN 镜像](https://gh-proxy.org/https://github.com/ZMH21306/ClassIn-DL/releases/download/v1.0.0-Avalonia_UI/Classin_DL-v1.0.0-Windows-x64.exe) |
-| Windows | arm64  | [GitHub 直链](https://github.com/ZMH21306/ClassIn-DL/releases/download/v1.0.0-Avalonia_UI/Classin_DL-v1.0.0-Windows-arm64.exe) <br> [CDN 镜像](https://gh-proxy.org/https://github.com/ZMH21306/ClassIn-DL/releases/download/v1.0.0-Avalonia_UI/Classin_DL-v1.0.0-Windows-arm64.exe) |
-| Linux   | x86_64 | [GitHub 直链](https://github.com/ZMH21306/ClassIn-DL/releases/download/v1.0.0-Avalonia_UI/Classin_DL-v1.0.0-Linux-x64) <br> [CDN 镜像](https://gh-proxy.org/https://github.com/ZMH21306/ClassIn-DL/releases/download/v1.0.0-Avalonia_UI/Classin_DL-v1.0.0-Linux-x64) |
-| Linux   | arm64  | [GitHub 直链](https://github.com/ZMH21306/ClassIn-DL/releases/download/v1.0.0-Avalonia_UI/Classin_DL-v1.0.0-Linux-arm64) <br> [CDN 镜像](https://gh-proxy.org/https://github.com/ZMH21306/ClassIn-DL/releases/download/v1.0.0-Avalonia_UI/Classin_DL-v1.0.0-Linux-arm64) |
-| macOS   | x86_64 | [GitHub 直链](https://github.com/ZMH21306/ClassIn-DL/releases/download/v1.0.0-Avalonia_UI/Classin_DL-v1.0.0-macOS-x64) <br> [CDN 镜像](https://gh-proxy.org/https://github.com/ZMH21306/ClassIn-DL/releases/download/v1.0.0-Avalonia_UI/Classin_DL-v1.0.0-macOS-x64) |
-| macOS   | arm64  | [GitHub 直链](https://github.com/ZMH21306/ClassIn-DL/releases/download/v1.0.0-Avalonia_UI/Classin_DL-v1.0.0-macOS-arm64) <br> [CDN 镜像](https://gh-proxy.org/https://github.com/ZMH21306/ClassIn-DL/releases/download/v1.0.0-Avalonia_UI/Classin_DL-v1.0.0-macOS-arm64) |
+| 平台 | 架构 | 文件 | 说明 |
+|------|------|------|------|
+| Linux | arm64 | `ClassInDL_1.0.2_Linux_arm64.AppImage` | 通用应用 |
+| Linux | arm64 | `ClassInDL_1.0.2_Linux_arm64.deb` | Debian/Ubuntu |
+| Linux | arm64 | `ClassInDL_1.0.2_Linux_arm64.tar.gz` | 便携版 |
+| Linux | x64 | `ClassInDL_1.0.2_Linux_x64.AppImage` | 通用应用 |
+| Linux | x64 | `ClassInDL_1.0.2_Linux_x64.deb` | Debian/Ubuntu |
+| Linux | x64 | `ClassInDL_1.0.2_Linux_x64.tar.gz` | 便携版 |
+| Windows | arm64 | `ClassInDL_1.0.2_Windows_arm64.exe` | NSIS 安装程序 |
+| Windows | arm64 | `ClassInDL_1.0.2_Windows_arm64.msi` | MSI 安装程序 |
+| Windows | arm64 | `ClassInDL_1.0.2_Windows_arm64.zip` | 便携版 |
+| Windows | x64 | `ClassInDL_1.0.2_Windows_x64.exe` | NSIS 安装程序 |
+| Windows | x64 | `ClassInDL_1.0.2_Windows_x64.msi` | MSI 安装程序 |
+| Windows | x64 | `ClassInDL_1.0.2_Windows_x64.zip` | 便携版 |
+| Windows | x86 | `ClassInDL_1.0.2_Windows_x86.exe` | NSIS 安装程序 |
+| Windows | x86 | `ClassInDL_1.0.2_Windows_x86.msi` | MSI 安装程序 |
+| Windows | x86 | `ClassInDL_1.0.2_Windows_x86.zip` | 便携版 |
+| macOS | arm64 | `ClassInDL_1.0.2_macOS_arm64.dmg` | 磁盘映像 |
+| macOS | arm64 | `ClassInDL_1.0.2_macOS_arm64.tar.gz` | 便携版 |
+| macOS | x64 | `ClassInDL_1.0.2_macOS_x64.dmg` | 磁盘映像 |
+| macOS | x64 | `ClassInDL_1.0.2_macOS_x64.tar.gz` | 便携版 |
+
+> 完整下载链接请前往 [GitHub Releases](https://github.com/ZMH21306/ClassIn-DL/releases/latest) 查看。
+>
+> **SHA256 校验**：每个 Release 附带 `SHA256SUMS.txt`，请在下载后校验文件完整性。
+> - Windows: `Get-FileHash <文件名> -Algorithm SHA256`
+> - Linux/macOS: `sha256sum <文件名>`
 
 <!-- CONTRIBUTING -->
 ## 贡献指南

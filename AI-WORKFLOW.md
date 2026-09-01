@@ -1,4 +1,4 @@
-# AI 执行契约 — ClassIn-DL
+# AI 执行契约 - ClassIn-DL
 
 > 本文档是 AI（包括 Trae/GitHub Copilot 等）执行项目操作时的**唯一权威指令来源**。
 > 自然语言指令按本表映射，不得自行推断执行路径。
@@ -10,8 +10,8 @@
 | 用户自然语言 | AI 执行操作 |
 |------------|------------|
 | **提交代码** / **commit** / **保存改动** | 按「Commit 规范」生成消息并执行 `git add` + `git commit` |
-| **发布新版本** / **release** / **打标签** | 运行 `.\scripts\release.ps1`（若工作区干净且有功能/修复变更） |
-| **发布 v1.2.3** / **release v1.2.3** | 运行 `.\scripts\release.ps1 -Version 1.2.3` |
+| **发布新版本** / **release** / **打标签** | 运行 `.\scriptselease.ps1`（若工作区干净且有功能/修复变更） |
+| **发布 v1.2.3** / **release v1.2.3** | 运行 `.\scriptselease.ps1 -Version 1.2.3` |
 | **更新 CHANGELOG** / **更新日志** | 运行 `.\scripts\generate-changelog.ps1 -Version x.y.z` |
 | **本地构建** / **build** / **编译** | 运行 `dotnet build` 或 `dotnet run` |
 | **运行测试** / **test** | 运行 `dotnet test` |
@@ -49,7 +49,7 @@
 
 ### 示例
 
-```
+```text
 feat(parse): 支持解析 EEO 视频课程页面
 fix(download): 修复断网后重试次数计算错误
 perf(parser): 优化正则匹配减少内存分配
@@ -95,7 +95,7 @@ refactor(download): 将并发控制抽取为独立服务
 
 ## 发布流程（完整步骤）
 
-```
+```text
 1. 检查工作区干净（git status）
 2. 运行 generate-changelog.ps1 更新 CHANGELOG
 3. 运行 release.ps1 自动：
@@ -105,10 +105,83 @@ refactor(download): 将并发控制抽取为独立服务
    d. 提交版本更新到 main
    e. 打 v*x.y.z tag 并推送到远端
 4. GitHub Actions (release.yml) 自动触发
-   → 7 平台并行构建（dotnet publish --self-contained）
-   → 收集产物（.exe + .zip）
-   → 生成 SHA256SUMS.txt
-   → 创建 GitHub Release
+   -> 7 平台并行构建（dotnet publish --self-contained）
+   -> 收集产物（.exe + .msi + .zip + .deb + .AppImage + .tar.gz + .dmg）
+   -> 生成 SHA256SUMS.txt
+   -> 创建 GitHub Release
+```
+
+---
+
+## 产物规范（统一发行标准）
+
+### 资产命名
+```
+ClassInDL_<ver>_<OS>_<arch>.<ext>
+```
+例：`ClassInDL_1.0.2_Windows_x64.exe`、`ClassInDL_1.0.2_Linux_x64.tar.gz`
+
+### 产物矩阵（7 平台）
+
+| 平台 | 架构 | 产物 |
+|------|------|------|
+| Windows | x64 | `.exe`（NSIS）+ `.msi`（WiX）+ `.zip`（便携） |
+| Windows | x86 | `.exe` + `.msi` + `.zip` |
+| Windows | arm64 | `.exe` + `.msi` + `.zip` |
+| Linux | x64 | `.deb` + `.AppImage`+ `.tar.gz` |
+| Linux | arm64 | `.deb` + `.AppImage` + `.tar.gz` |
+| macOS | x64 | `.dmg` + `.tar.gz` |
+| macOS | arm64 | `.dmg` + `.tar.gz` |
+
+### Release Notes 结构（标准化模板）
+```markdown
+# ClassIn视频下载工具 v<tag>
+发布日期：<YYYY-MM-DD>
+
+## 新增功能
+- ...
+
+## 改进
+- ...
+
+## 修复
+- ...
+
+## 依赖与安全
+- ...
+
+## 下载
+
+| 平台 | 架构 | 文件 | 说明 |
+|------|------|------|------|
+
+## 哈希校验
+
+<details>
+<summary>展开查看 SHA256 校验和</summary>
+```
+SHA256SUMS.txt 内容
+```
+</details>
+
+完整变更日志：CHANGELOG.md
+```
+
+### CHANGELOG 模板
+```markdown
+## [<ver>] - <YYYY-MM-DD>
+
+### 新增
+- ...
+
+### 改进
+- ...
+
+### 修复
+- ...
+
+### 依赖与安全
+- ...
 ```
 
 ---
@@ -117,8 +190,8 @@ refactor(download): 将并发控制抽取为独立服务
 
 | 项目 | 技术栈 | 构建命令 | CI 产物 |
 |------|--------|---------|---------|
-| ClassIn-DL | C# .NET 8 + Avalonia UI | `dotnet publish -c Release -r <rid> --self-contained` | .exe + .zip（每平台） |
-| LlamaUI | Rust + Tauri 2 | `cargo tauri build --target <rust_target>` | .exe/.msi/.zip + .deb/.AppImage/.tar.gz + .dmg（共 20 个文件） |
+| ClassIn-DL | C# .NET 8 + Avalonia UI | `dotnet publish -c Release -r <rid> --self-contained` | .exe + .msi + .zip + .deb + .AppImage + .tar.gz + .dmg（共 22 项） |
+| LlamaUI | Rust + Tauri 2 | `cargo tauri build --target <rust_target>` | .exe/.msi/.zip + .deb/.AppImage/.tar.gz + .dmg（共 22 项） |
 
 ---
 
@@ -138,4 +211,5 @@ refactor(download): 将并发控制抽取为独立服务
 - 触发条件：推送 `v*` tag 或手动 `workflow_dispatch`
 - 构建矩阵：7 平台（Windows x64/x86/arm64、Linux x64/arm64、macOS x64/arm64）
 - 发布地址：https://github.com/ZMH21306/ClassIn-DL/releases
-- 产物命名：`ClassIn-DL_{VERSION}_{OS}_{ARCH}.exe/.zip`
+- 产物命名：`ClassInDL_{VERSION}_{OS}_{ARCH}.<ext>`
+- SHA256SUMS：每个 release 自动附带产物校验文件

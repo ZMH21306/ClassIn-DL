@@ -1,11 +1,11 @@
-# 统一发布脚本
-# 当用户说"发布新版本"时，AI 按此流程执行，确保 3 个项目行为一致
+# 统一发布脚本 — ClassIn-DL
+# 当用户说"发布新版本"时，AI 按此流程执行。
 # 用法: .\scripts\release.ps1 [-Version x.y.z] [-Type major|minor|patch] [-CommitOnly]
 #
 # 流程:
 #   1. 检查工作区干净
 #   2. 分析 commit 确定版本号（若未指定）
-#   3. 更新版本文件（Cargo.toml / tauri.conf.json / .csproj）
+#   3. 更新 .csproj 版本号（单一版本源）
 #   4. 生成 CHANGELOG 条目
 #   5. 提交版本更新
 #   6. 打 tag 并推送（触发 CI）
@@ -41,14 +41,13 @@ Write-Host "✅ 工作区干净"
 
 # ---------- 2. 确定版本号 ----------
 if (-not $Version) {
-    # 从 Cargo.toml 或 .csproj 读取当前版本
-    $current = $null
-    if (Test-Path "Cargo.toml") {
-        $current = (Select-String -Path "Cargo.toml" -Pattern '^version = "([^"]+)"' | Select-Object -First 1).Matches[0].Groups[1].Value
-    } elseif (Test-Path "*.csproj") {
-        $csproj = Get-ChildItem "*.csproj" | Select-Object -First 1
-        $current = (Select-String -Path $csproj.FullName -Pattern '<Version>([^<]+)</Version>' | Select-Object -First 1).Matches[0].Groups[1].Value
+    # 从 .csproj 读取当前版本（单一版本源）
+    $csproj = Get-ChildItem "*.csproj" -ErrorAction SilentlyContinue | Select-Object -First 1
+    if (-not $csproj) {
+        Write-Host "❌ 未找到 .csproj 文件"
+        exit 1
     }
+    $current = (Select-String -Path $csproj.FullName -Pattern '<Version>([^<]+)</Version>' | Select-Object -First 1).Matches[0].Groups[1].Value
     if (-not $current) {
         Write-Host "❌ 无法读取当前版本，请用 -Version 指定"
         exit 1
@@ -84,19 +83,12 @@ if (-not $Version) {
 }
 Write-Host "✅ 新版本号: v$Version"
 
-# ---------- 3. 更新版本文件 ----------
-Write-Host "=== 更新版本文件 ==="
-if (Test-Path "Cargo.toml") {
-    (Get-Content "Cargo.toml" -Raw) -replace '^version = "[^"]+"', "version = `"$Version`"" | Set-Content "Cargo.toml" -Encoding UTF8
-    Write-Host "✅ Cargo.toml -> $Version"
-}
-if (Test-Path "tauri.conf.json") {
-    (Get-Content "tauri.conf.json" -Raw) -replace '"version": "[^"]+"', "`"version`": `"$Version`"" | Set-Content "tauri.conf.json" -Encoding UTF8
-    Write-Host "✅ tauri.conf.json -> $Version"
-}
-Get-ChildItem "*.csproj" -ErrorAction SilentlyContinue | ForEach-Object {
-    (Get-Content $_.FullName -Raw) -replace '<Version>[^<]+</Version>', "<Version>$Version</Version>" | Set-Content $_.FullName -Encoding UTF8
-    Write-Host "✅ $($_.Name) -> $Version"
+# ---------- 3. 更新 .csproj 版本号 ----------
+Write-Host "=== 更新 .csproj 版本号 ==="
+$csproj = Get-ChildItem "*.csproj" -ErrorAction SilentlyContinue | Select-Object -First 1
+if ($csproj) {
+    (Get-Content $csproj.FullName -Raw) -replace '<Version>[^<]+</Version>', "<Version>$Version</Version>" | Set-Content $csproj.FullName -Encoding UTF8
+    Write-Host "✅ $($csproj.Name) -> $Version"
 }
 
 # ---------- 4. 生成 CHANGELOG ----------
@@ -108,9 +100,7 @@ if (Test-Path "scripts\generate-changelog.ps1") {
 # ---------- 5. 提交 ----------
 Write-Host "=== 提交版本更新 ==="
 $filesToStage = @()
-if (Test-Path "Cargo.toml") { $filesToStage += "Cargo.toml" }
-if (Test-Path "tauri.conf.json") { $filesToStage += "tauri.conf.json" }
-Get-ChildItem "*.csproj" -ErrorAction SilentlyContinue | ForEach-Object { $filesToStage += $_.FullName }
+if ($csproj) { $filesToStage += $csproj.FullName }
 if (Test-Path "CHANGELOG.md") { $filesToStage += "CHANGELOG.md" }
 git add @filesToStage
 git commit -m "chore(release): bump version to v$Version"

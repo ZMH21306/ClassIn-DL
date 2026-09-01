@@ -1,4 +1,4 @@
-# CHANGELOG 自动生成脚本
+# CHANGELOG 自动生成脚本 - ClassIn-DL
 # 从上次 tag 以来的 commit 自动提取变更，按 Conventional Commits 分类
 # 用法: .\scripts\generate-changelog.ps1 [-Version x.y.z] [-Date YYYY-MM-DD] [-NoInsert]
 #
@@ -8,6 +8,7 @@
 #   perf  -> 性能 (Performance)
 #   refactor -> 改进 (Changed)
 #   BREAKING CHANGE / ! -> 破坏性变更 (Breaking Changes)
+#   docs/style/test/build/ci/chore -> 忽略
 
 param(
     [string]$Version,
@@ -55,7 +56,6 @@ foreach ($line in $commits) {
     elseif ($line -match '^fix') { $fixed += $line }
     elseif ($line -match '^perf') { $perf += $line }
     elseif ($line -match '^refactor') { $changed += $line }
-    # docs/style/test/build/ci/chore 忽略
 }
 
 # 生成 Markdown
@@ -72,7 +72,15 @@ if ($breaking.Count -gt 0) {
 if ($added.Count -gt 0) {
     $output += "### 新增"
     $output += ""
+
+
     foreach ($c in $added) { $output += "- $c" }
+    $output += ""
+}
+if ($changed.Count -gt 0) {
+    $output += "### 改进"
+    $output += ""
+    foreach ($c in $changed) { $output += "- $c" }
     $output += ""
 }
 if ($fixed.Count -gt 0) {
@@ -87,12 +95,6 @@ if ($perf.Count -gt 0) {
     foreach ($c in $perf) { $output += "- $c" }
     $output += ""
 }
-if ($changed.Count -gt 0) {
-    $output += "### 改进"
-    $output += ""
-    foreach ($c in $changed) { $output += "- $c" }
-    $output += ""
-}
 
 $result = $output -join "`n"
 Write-Host ""
@@ -100,33 +102,33 @@ Write-Host "===== 生成的 CHANGELOG 条目 ====="
 Write-Host $result
 Write-Host "================================"
 
-# 写入 CHANGELOG.md
-$changelogPath = Join-Path (Get-Location) "CHANGELOG.md"
+$changelogPath = "CHANGELOG.md"
 
 if ($NoInsert) {
-    Write-Host "✅ --NoInsert 模式：已输出预览，未写入文件"
+    Write-Host "NoInsert mode: preview only"
     exit 0
 }
 
 if (Test-Path $changelogPath) {
     $content = Get-Content $changelogPath -Raw -Encoding UTF8
-    # 在 [Unreleased] 之后插入新条目
-    if ($content -match '## \[Unreleased\]') {
-        $content = $content -replace '## \[Unreleased\]', "## [Unreleased]`n`n$result"
+    $marker = "## [Unreleased]"
+    if ($content.Contains($marker)) {
+        $content = $content.Replace($marker, ($marker + "`n`n" + $result))
     } else {
-        # 无 [Unreleased]：在文件开头（标题行后）插入
-        if ($content -match '^# .+\r?\n') {
-            $content = $content -replace '^# .+\r?\n', "&`n`n$result`n"
+        $nl = "`n"
+        $idx = $content.IndexOf($nl)
+        if ($idx -gt 0) {
+            $header = $content.Substring(0, $idx + 1)
+            $rest = $content.Substring($idx + 1)
+            $content = ($header + "`n" + $result + "`n" + $rest)
         } else {
-            $content = "$result`n`n$content"
+            $content = ($result + "`n`n" + $content)
         }
     }
     Set-Content $changelogPath $content -Encoding UTF8
-    Write-Host "✅ CHANGELOG.md 已更新"
+    Write-Host "CHANGELOG.md updated"
 } else {
-    # 文件不存在，创建带规范头部的 CHANGELOG
     $header = "# 更新日志`n`n本文件记录项目的所有重要变更。格式基于 [Keep a Changelog](https://keepachangelog.com/zh-CN/1.1.0/)，版本号遵循 [语义化版本](https://semver.org/lang/zh-CN/)。`n`n## [Unreleased]`n"
-    $content = "$header`n$result`n"
-    Set-Content $changelogPath $content -Encoding UTF8
-    Write-Host "✅ CHANGELOG.md 已创建并写入"
+    Set-Content $changelogPath ($header + $result + "`n") -Encoding UTF8
+    Write-Host "CHANGELOG.md created"
 }
