@@ -100,7 +100,8 @@ jobs:
       - name: Package
         shell: bash
         run: |
-          VERSION=${{ replace(github.ref_name, 'v', '') }}
+          VERSION=${{ github.ref_name }}
+          VERSION=${VERSION#v}
           BASE=${{ env.PROJECT_NAME }}_${VERSION}_${{ matrix.os_name }}_${{ matrix.arch }}
           PUBLISH_DIR=bin/Release/net8.0/${{ matrix.rid }}/publish
           mkdir -p release_files
